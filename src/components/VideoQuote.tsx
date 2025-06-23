@@ -3,18 +3,13 @@ import React from 'react';
 const steps = [
   {
     icon: '🔗',
-    title: 'Connect',
+    title: 'Model Swap Router Layer',
     desc: 'Integrate Tilantra with your stack in minutes. Lorem ipsum dolor sit amet, consectetur.'
   },
   {
     icon: '⚙️',
-    title: 'Orchestrate',
+    title: 'Compliance Layer',
     desc: 'Route, optimize, and govern LLM usage with one API. Lorem ipsum dolor sit amet.'
-  },
-  {
-    icon: '📊',
-    title: 'Analyze',
-    desc: 'Monitor usage, cost, and compliance in real time. Lorem ipsum dolor sit amet.'
   }
 ];
 
@@ -96,10 +91,33 @@ const VideoQuote: React.FC = () => (
       </h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2.5rem', justifyContent: 'center', alignItems: 'stretch', maxWidth: 1200, margin: '0 auto' }}>
         {steps.map((step, i) => (
-          <div key={step.title} className="fade-in" style={{ flex: '1 1 220px', minWidth: 180, background: '#f6f8fa', borderRadius: '1.2rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', padding: '2.2rem 1.2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: `2px solid ${i === 1 ? '#7c3aed' : '#2563eb'}` }}>
+          <div
+            key={step.title}
+            className="fade-in"
+            style={{
+              minWidth: 380,
+              maxWidth: 480,
+              minHeight: 200,
+              background: '#fff',
+              borderRadius: '2rem',
+              boxShadow: '0 4px 32px rgba(124,58,237,0.10)',
+              padding: '2.5rem 2rem',
+              textAlign: 'center',
+              flex: '0 0 auto',
+              transition: 'box-shadow 0.2s, transform 0.4s',
+              fontSize: '1.1rem',
+              position: 'relative',
+              zIndex: 1,
+              opacity: 1,
+              cursor: 'pointer',
+              overflow: 'hidden',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 40px rgba(124,58,237,0.18)'; e.currentTarget.style.transform = 'scale(1.03)'; }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 4px 32px rgba(124,58,237,0.10)'; e.currentTarget.style.transform = 'scale(1)'; }}
+          >
             <div style={{ fontSize: '2.5rem', color: i === 1 ? '#7c3aed' : '#2563eb', marginBottom: '1.1rem' }}>{step.icon}</div>
-            <div style={{ fontWeight: 700, fontSize: '1.18rem', color: '#222', marginBottom: '0.7rem' }}>{step.title}</div>
-            <div style={{ color: '#374151', fontSize: '1.05rem' }}>{step.desc}</div>
+            <div style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: '0.8rem', background: 'linear-gradient(90deg, #2563eb 0%, #7c3aed 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{step.title}</div>
+            <div style={{ color: '#222', fontSize: '1.08rem', marginBottom: '0.5rem' }}>{step.desc}</div>
           </div>
         ))}
       </div>

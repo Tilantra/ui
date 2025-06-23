@@ -22,12 +22,12 @@ function App() {
           element={
             <>
               <Hero />
-              <About />
+              <div id="what-we-are"><About /></div>
               <VideoQuote />
-              <FeaturesCarousel />
+              <div id="our-features"><FeaturesCarousel /></div>
               <ChatbotSection />
               <PricingSection />
-              <Footer />
+              <div id="contact-footer"><Footer /></div>
             </>
           }
         />

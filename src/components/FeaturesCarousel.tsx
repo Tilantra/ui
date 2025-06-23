@@ -55,7 +55,7 @@ const FeaturesCarousel: React.FC = () => {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      <h2 style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '2.5rem', ...gradientText }}>
+      <h2 style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '2.5rem', color: '#2563eb' }}>
         Our Features
       </h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2.5rem', position: 'relative' }}>

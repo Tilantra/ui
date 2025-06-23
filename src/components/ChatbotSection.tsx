@@ -88,11 +88,14 @@ const ChatbotSection: React.FC = () => {
   };
 
   return (
-    <section style={{ background: '#fff', padding: '3rem 0', borderTop: '1px solid #ece6fa', borderBottom: '1px solid #ece6fa' }}>
+    <section id="tilantra-assistant" style={{ background: '#fff', padding: '3rem 0', borderTop: '1px solid #ece6fa', borderBottom: '1px solid #ece6fa' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: '2.5rem', alignItems: 'flex-start', boxShadow: '0 2px 24px rgba(80,60,120,0.06)', borderRadius: 24, background: '#fff', padding: '2.5rem 2rem' }}>
         {/* Chat area */}
         <div style={{ flex: 2, minWidth: 0, display: 'flex', flexDirection: 'column', height: 420, borderRight: '1.5px solid #ece6fa', paddingRight: '2rem' }}>
           <div style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: '1.2rem', color: '#2563eb', letterSpacing: '0.01em' }}>Tilantra Assistant</div>
+          <div style={{ marginBottom: '1.2rem', color: '#7c3aed', fontWeight: 500, fontSize: '1.08rem' }}>
+            This is only for a basic demo, please <a href="#contact-footer" style={{ color: '#2563eb', textDecoration: 'underline', cursor: 'pointer' }} onClick={e => { e.preventDefault(); document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' }); }}>reach out</a> for a full demo.
+          </div>
           <div style={{ flex: 1, overflowY: 'auto', marginBottom: '1.2rem', background: '#f8f8fc', borderRadius: 12, padding: '1.2rem', border: '1px solid #ece6fa' }}>
             {messages.map((msg, i) => (
               <div key={i} style={{

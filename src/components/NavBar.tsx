@@ -5,6 +5,13 @@ const blueText = {
   color: '#2563eb',
 };
 
+const scrollToId = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 const NavBar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -32,31 +39,40 @@ const NavBar: React.FC = () => {
       <div style={{ fontWeight: 700, fontSize: '2.1rem', letterSpacing: '0.04em', ...blueText }}>
         Tilantra
       </div>
-      <div style={{ display: 'flex', gap: '2.8rem' }}>
+      <div style={{ display: 'flex', gap: '2.8rem', alignItems: 'center' }}>
         <Link to="/" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
           onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
           onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >Home</Link>
-        <a href="#" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+        <a href="#what-we-are" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+          onClick={e => { e.preventDefault(); scrollToId('what-we-are'); }}
           onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
           onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >About</a>
-        <a href="#" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+        <a href="#our-features" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+          onClick={e => { e.preventDefault(); scrollToId('our-features'); }}
           onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
           onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >Features</a>
-        <a href="#" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+        <a href="#contact-footer" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+          onClick={e => { e.preventDefault(); scrollToId('contact-footer'); }}
           onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
           onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >Contact</a>
         <Link
           to="/docs"
-          style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 700, borderBottom: '2px solid transparent', transition: 'border-bottom 0.2s' }}
-          onMouseOver={e => (e.currentTarget.style.borderBottom = '2px solid #2563eb')}
-          onMouseOut={e => (e.currentTarget.style.borderBottom = '2px solid transparent')}
+          style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
+          onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
+          onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >
           Docs
         </Link>
+        <button
+          onClick={() => scrollToId('tilantra-assistant')}
+          style={{ marginLeft: '1.2rem', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '2rem', padding: '0.5rem 1.4rem', fontWeight: 700, fontSize: '1.05rem', cursor: 'pointer', boxShadow: '0 4px 16px rgba(37, 99, 235, 0.08)', transition: 'background 0.2s, box-shadow 0.2s' }}
+        >
+          Get a Demo
+        </button>
       </div>
     </nav>
   );
