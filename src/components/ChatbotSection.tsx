@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../App.css';
 
 const PREDEFINED_PROMPTS = [
@@ -87,16 +87,32 @@ const ChatbotSection: React.FC = () => {
     setInput('');
   };
 
+  useEffect(() => {
+    const elements = document.querySelectorAll('.fade-slide-up');
+    const observer = new window.IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="tilantra-assistant" style={{ background: '#fff', padding: '3rem 0', borderTop: '1px solid #ece6fa', borderBottom: '1px solid #ece6fa' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: '2.5rem', alignItems: 'flex-start', boxShadow: '0 2px 24px rgba(80,60,120,0.06)', borderRadius: 24, background: '#fff', padding: '2.5rem 2rem' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: '2.5rem', alignItems: 'flex-start', boxShadow: '0 2px 24px rgba(80,60,120,0.06)', borderRadius: 24, background: '#fff', padding: '2.5rem 2rem', border: '2.5px solid #e0e7ef' }}>
         {/* Chat area */}
         <div style={{ flex: 2, minWidth: 0, display: 'flex', flexDirection: 'column', height: 420, borderRight: '1.5px solid #ece6fa', paddingRight: '2rem' }}>
-          <div style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: '1.2rem', color: '#2563eb', letterSpacing: '0.01em' }}>Tilantra Assistant</div>
-          <div style={{ marginBottom: '1.2rem', color: '#7c3aed', fontWeight: 500, fontSize: '1.08rem' }}>
+          <div className="fade-slide-up" style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: '1.2rem', color: '#2563eb', letterSpacing: '0.01em' }}>Tilantra Assistant</div>
+          <div className="fade-slide-up" style={{ marginBottom: '1.2rem', color: '#7c3aed', fontWeight: 500, fontSize: '1.08rem' }}>
             This is only for a basic demo, please <a href="#contact-footer" style={{ color: '#2563eb', textDecoration: 'underline', cursor: 'pointer' }} onClick={e => { e.preventDefault(); document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' }); }}>reach out</a> for a full demo.
           </div>
-          <div style={{ flex: 1, overflowY: 'auto', marginBottom: '1.2rem', background: '#f8f8fc', borderRadius: 12, padding: '1.2rem', border: '1px solid #ece6fa' }}>
+          <div className="fade-slide-up" style={{ flex: 1, overflowY: 'auto', marginBottom: '1.2rem', background: '#f8f8fc', borderRadius: 12, padding: '1.2rem', border: '1px solid #ece6fa' }}>
             {messages.map((msg, i) => (
               <div key={i} style={{
                 marginBottom: '1.1rem',
@@ -141,47 +157,9 @@ const ChatbotSection: React.FC = () => {
               </div>
             )}
           </div>
-          <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'center' }}>
-            <input
-              type="text"
-              placeholder="Type your question..."
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
-              disabled={loading}
-              style={{
-                flex: 1,
-                background: '#fff',
-                border: '1.5px solid #ece6fa',
-                borderRadius: 8,
-                padding: '0.9rem 1.1rem',
-                fontSize: '1.08rem',
-                outline: 'none',
-                color: '#222',
-                fontWeight: 500,
-                boxShadow: '0 1px 6px 0 rgba(124,58,237,0.04)',
-              }}
-            />
-            <button
-              onClick={handleSend}
-              disabled={loading || !input.trim()}
-              style={{
-                background: 'linear-gradient(90deg, #7c3aed 0%, #2563eb 100%)',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 8,
-                padding: '0.9rem 2.1rem',
-                fontWeight: 700,
-                fontSize: '1.08rem',
-                cursor: loading || !input.trim() ? 'not-allowed' : 'pointer',
-                boxShadow: '0 2px 12px 0 rgba(124,58,237,0.10)',
-                transition: 'background 0.2s',
-              }}
-            >Send</button>
-          </div>
         </div>
         {/* Prompts column */}
-        <div style={{ flex: 1, minWidth: 220, paddingLeft: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+        <div style={{ flex: 1, minWidth: 220, paddingLeft: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem', maxHeight: 320, overflowY: 'auto', marginTop: '2.5rem' }}>
           <div style={{ fontWeight: 700, fontSize: '1.13rem', color: '#7c3aed', marginBottom: '0.7rem', letterSpacing: '0.01em' }}>Quick Prompts</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
             {PREDEFINED_PROMPTS.map((prompt, i) => (

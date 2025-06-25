@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 
 const features = [
-  { icon: '✨', title: 'Feature One', desc: 'Lorem ipsum dolor sit amet, consectetur.', metric: '99.9% uptime' },
-  { icon: '🔒', title: 'Feature Two', desc: 'Sed do eiusmod tempor incididunt ut labore.', metric: 'SOC2 Compliant' },
-  { icon: '⚡', title: 'Feature Three', desc: 'Ut enim ad minim veniam, quis nostrud.', metric: '2x hehehhehehehe my name is mahika d.Ut enim ad minim veniam, quis nostrud.' },
-  { icon: '🌐', title: 'Feature Four', desc: 'Duis aute irure dolor in reprehenderit.', metric: '40+ Models' },
-  { icon: '💡', title: 'Feature Five', desc: 'Excepteur sint occaecat cupidatat non proident.', metric: 'Smart Routing' },
-  { icon: '🚀', title: 'Feature Six', desc: 'Curabitur blandit tempus porttitor.', metric: 'Enterprise Ready' },
+  { icon: '✨', title: 'Smart Routing', desc: 'Auto-selects best models based on cost, performance, and preference.', metric: '90% accuracy' },
+  { icon: '🔒', title: 'Compliance Layer', desc: 'On-demand reports & enterprise-grade governance', metric: 'SOC2 Compliant' },
+  { icon: '⚡', title: 'Secure Caching', desc: 'Reuse prompts, slash token usage.', metric: '70% Cost Savings' },
+  { icon: '🌐', title: 'Prompt Suggestions', desc: 'AI-generated prompts to optimize your inputs.', metric: '2x Productivity' },
+  { icon: '💡', title: 'Multi-Model Hub', desc: 'Access a wide range of top AI models, all in one place.', metric: '40+ Hosted Models' },
+  { icon: '🚀', title: 'Cost Guardrails', desc: 'Real-time token budgeting to prevent overspend.', metric: 'Zero Runaway Costs' },
 ];
 
 const gradientText = {
@@ -46,6 +46,22 @@ const FeaturesCarousel: React.FC = () => {
     return arr;
   };
 
+  useEffect(() => {
+    const elements = document.querySelectorAll('.fade-slide-up');
+    const observer = new window.IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section style={{
       background: '#fff',
@@ -55,16 +71,16 @@ const FeaturesCarousel: React.FC = () => {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      <h2 style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '2.5rem', color: '#2563eb' }}>
+      <h2 className="fade-slide-up" style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '2.5rem', color: '#2563eb' }}>
         Our Features
       </h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2.5rem', position: 'relative' }}>
-        <button aria-label="Previous" style={arrowStyle} onClick={prev}>&#8592;</button>
+        <button aria-label="Previous" style={arrowStyle} onClick={prev} onMouseEnter={prev}>&#8592;</button>
         <div style={{ display: 'flex', gap: '2.5rem', transition: 'all 0.6s cubic-bezier(0.4,0,0.2,1)' }}>
           {getVisible().map((f, i) => (
             <div
               key={i}
-              className="fade-in"
+              className="fade-slide-up stat-card"
               style={{
                 minWidth: 380,
                 maxWidth: 480,
@@ -119,7 +135,7 @@ const FeaturesCarousel: React.FC = () => {
             </div>
           ))}
         </div>
-        <button aria-label="Next" style={arrowStyle} onClick={next}>&#8594;</button>
+        <button aria-label="Next" style={arrowStyle} onClick={next} onMouseEnter={next}>&#8594;</button>
       </div>
       <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
         {features.map((_, i) => (
