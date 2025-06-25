@@ -1,0 +1,19 @@
+/* Fade-in and slide-up animation */
+.fade-slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 2.2s cubic-bezier(0.4,0,0.2,1), transform 3s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-slide-up.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Card lift on hover */
+.stat-card {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.stat-card:hover {
+  box-shadow: 0 8px 32px rgba(124,58,237,0.18);
+  transform: translateY(-10px) scale(1.04);
+} 

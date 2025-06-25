@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const blueText = {
   color: '#2563eb',
@@ -14,6 +14,8 @@ const scrollToId = (id: string) => {
 
 const NavBar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll);
@@ -36,8 +38,17 @@ const NavBar: React.FC = () => {
       zIndex: 100,
       transition: 'box-shadow 0.2s, border-bottom 0.2s',
     }}>
-      <div style={{ fontWeight: 700, fontSize: '2.1rem', letterSpacing: '0.04em', ...blueText }}>
-        Tilantra
+      <div style={{ fontWeight: 700, fontSize: '2.1rem', letterSpacing: '0.04em', ...blueText, maxHeight: '56px', overflow: 'visible', display: 'flex', alignItems: 'center' }}>
+        <a href="#hero-section" onClick={e => {
+          e.preventDefault();
+          if (location.pathname === "/") {
+            scrollToId('hero-section');
+          } else {
+            navigate("/");
+          }
+        }}>
+          <img src="/Tilantra_blueLOGO.png" alt="Tilantra Logo" style={{ height: '72px', verticalAlign: 'middle', display: 'block' }} />
+        </a>
       </div>
       <div style={{ display: 'flex', gap: '2.8rem', alignItems: 'center' }}>
         <Link to="/" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}

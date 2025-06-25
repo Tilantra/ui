@@ -53,39 +53,59 @@ const Footer: React.FC = () => {
       <div style={{
         display: 'flex',
         flexWrap: 'wrap',
-        gap: '3rem',
-        justifyContent: 'space-between',
+        gap: '3.5rem',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
         maxWidth: 1200,
         margin: '0 auto 2rem auto',
       }}>
-        <div style={{ flex: '1 1 250px', minWidth: 220 }}>
-          <div style={{ fontWeight: 800, fontSize: '1.5rem', color: '#2563eb', marginBottom: '1rem' }}>
-            Tilantra
+        <div style={{ flex: '1 1 180px', minWidth: 180, maxWidth: 220, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ marginBottom: '1rem' }}>
+            <img src="/Tilantra_blueLOGO.png" alt="Tilantra Logo" style={{ height: '56px', verticalAlign: 'middle' }} />
           </div>
-          <div style={{ color: '#374151', fontSize: '1.05rem', marginBottom: '1.2rem' }}>
-            High-performance orchestration for LLMs. Total control, compliance, and cost-performance through a single API.
-          </div>
-          <div style={{ color: '#6b7280', fontSize: '0.98rem' }}>
-            © 2025 Tilantra. All rights reserved.
+          <div style={{ color: '#374151', fontSize: '1.05rem', marginBottom: '1.2rem', textAlign: 'left' }}>
+            High-performance orchestration for LLMs.<br />Total control, compliance, and cost-performance through a single API.
           </div>
         </div>
-        <div style={{ flex: '1 1 180px', minWidth: 160 }}>
-          <div style={{ fontWeight: 700, marginBottom: '0.7rem', color: '#222' }}>Quick Links</div>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#2563eb', fontWeight: 600, fontSize: '1.05rem' }}>
-            <li><a href="/" style={{ color: '#2563eb', textDecoration: 'none' }}>Home</a></li>
-            <li><a href="/docs" style={{ color: '#2563eb', textDecoration: 'none' }}>Docs</a></li>
-            <li><a href="#" style={{ color: '#2563eb', textDecoration: 'none' }}>About</a></li>
-            <li><a href="#" style={{ color: '#2563eb', textDecoration: 'none' }}>Features</a></li>
+        <div style={{ flex: '1 1 160px', minWidth: 160, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ fontWeight: 700, marginBottom: '1.2rem', color: '#222', textAlign: 'left', fontSize: '1.18rem', letterSpacing: '0.01em' }}>Quick Links</div>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#2563eb', fontWeight: 600, fontSize: '1.08rem', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+            <li><a href="/" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 400, fontSize: '1.08rem' }}>Home</a></li>
+            <li><a href="/docs" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 400, fontSize: '1.08rem' }}>Docs</a></li>
+            <li><a href="#what-we-are" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 400, fontSize: '1.08rem' }}>About</a></li>
+            <li><a href="#our-features" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 400, fontSize: '1.08rem' }}>Features</a></li>
           </ul>
         </div>
-        <div style={{ flex: '1 1 220px', minWidth: 180 }}>
-          <div style={{ fontWeight: 700, marginBottom: '0.7rem', color: '#222' }}>Contact</div>
-          <div style={{ color: '#374151', marginBottom: '0.5rem' }}>info@tilantra.com</div>
-          <div style={{ color: '#374151', marginBottom: '0.5rem' }}>+1 (555) 123-4567</div>
-          <div style={{ color: '#374151' }}>San Francisco, CA & Bangalore, IN</div>
+        <div style={{ flex: '1 1 200px', minWidth: 180, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ fontWeight: 700, marginBottom: '1.2rem', color: '#222', textAlign: 'left', fontSize: '1.18rem', letterSpacing: '0.01em' }}>Contact</div>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#374151', fontWeight: 400, fontSize: '1.08rem', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+            <li style={{ color: '#374151', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="22,6 12,13 2,6" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              tilantra.technologies@gmail.com
+            </li>
+            <li style={{ color: '#374151', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              +91 7042644614
+            </li>
+            <li style={{ color: '#374151', margin: 0 }}>Bangalore, IN</li>
+            <li>
+              <a href="https://www.linkedin.com/company/tilantra" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', color: '#2563eb', textDecoration: 'none', fontWeight: 400, fontSize: '1.08rem', gap: '0.5rem' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" style={{ marginRight: 6 }}>
+                  <circle cx="12" cy="12" r="12" fill="#0A66C2" />
+                  <text x="12" y="17" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontWeight="bold" fontSize="13" fill="#fff">in</text>
+                </svg>
+                LinkedIn
+              </a>
+            </li>
+          </ul>
         </div>
         <div style={{ flex: '1 1 320px', minWidth: 260, maxWidth: 400 }}>
-          <div style={{ fontWeight: 700, marginBottom: '0.7rem', color: '#222', fontSize: '1.15rem' }}>Schedule a Full Demo</div>
+          <div style={{ fontWeight: 700, marginBottom: '0.7rem', color: '#222', fontSize: '1.15rem', textAlign: 'left' }}>Schedule a Full Demo</div>
           <form className="inquiry-form" onSubmit={handleSubmit} style={{ background: '#fff', borderRadius: '1.2rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', padding: '1.5rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <div style={{ flex: 1 }}>
@@ -119,8 +139,9 @@ const Footer: React.FC = () => {
           </form>
         </div>
       </div>
+      <hr style={{ border: 'none', borderTop: '1px solid #eaecef', margin: '0 0 1.2rem 0' }} />
       <div style={{ textAlign: 'center', color: '#6b7280', fontSize: '0.98rem' }}>
-        Built for enterprises and AI-first SaaS teams.
+        Tilantra Technologies 2025. All Rights Reserved
       </div>
     </footer>
   );
