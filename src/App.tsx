@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import './css/custom.css';
 
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
@@ -11,6 +12,7 @@ import FeaturesCarousel from './components/FeaturesCarousel';
 import ChatbotSection from './components/ChatbotSection';
 import Footer from './components/Footer';
 import Docs from './components/Docs';
+import TeamSection from './components/TeamSection';
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
               <div id="our-features"><FeaturesCarousel /></div>
               <ChatbotSection />
               <PricingSection />
+              <TeamSection />
               <div id="contact-footer"><Footer /></div>
             </>
           }
