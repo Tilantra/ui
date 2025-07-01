@@ -13,6 +13,8 @@ import ChatbotSection from './components/ChatbotSection';
 import Footer from './components/Footer';
 import Docs from './components/Docs';
 import TeamSection from './components/TeamSection';
+import UseCasesSection from './components/UseCasesSection';
+import HowTilantraWorks from './components/HowTilantraWorks';
 
 function App() {
   return (
@@ -25,10 +27,10 @@ function App() {
             <>
               <Hero />
               <div id="what-we-are"><About /></div>
-              <VideoQuote />
+              <HowTilantraWorks />
               <div id="our-features"><FeaturesCarousel /></div>
+              <UseCasesSection />
               <ChatbotSection />
-              <PricingSection />
               <TeamSection />
               <div id="contact-footer"><Footer /></div>
             </>

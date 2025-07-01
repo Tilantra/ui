@@ -24,7 +24,7 @@ const Hero: React.FC = () => (
       loop
       muted
       playsInline
-      src="/video3.mp4"
+      src="/vid2.mp4"
       style={{
         position: 'absolute',
         top: 0,
@@ -40,7 +40,7 @@ const Hero: React.FC = () => (
       <h1 style={{ fontSize: '5.5rem', fontWeight: 1000, marginBottom: '1.2rem', letterSpacing: '-0.04em', color: '#fff', textShadow: '0 4px 32px #111, 0 1px 0 #2563eb', textTransform: 'uppercase' }}>
         Tilantra
       </h1>
-      <p style={{ fontSize: '1.5rem', color: '#e0e7ff', margin: '0 auto', fontWeight: 500, textShadow: '0 2px 8px #111' }}>
+      <p style={{ fontSize: '1.5rem', color: '#111', margin: '0 auto', fontWeight: 500, textShadow: '0 2px 8px #111' }}>
         The AI Orchestration Layer for Enterprises & SaaS
       </p>
     </div>

@@ -1,90 +1,117 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../App.css';
 
-const PREDEFINED_PROMPTS = [
-  "Tell me about Tilantra's services",
-  "How can I get started?",
-  "What are your pricing plans?",
-  "Contact sales team",
-  "What industries do you serve?",
-  "Can I customize the model for my needs?"
+const DEMO_EXAMPLES = [
+  {
+    prompt: "Write a fun bedtime story about a clever fox and a wise owl for children.",
+    response: "Once upon a time, in a moonlit forest, a clever fox and a wise old owl became unlikely friends. Each night, they shared stories and solved mysteries together, teaching all the woodland animals the value of teamwork and kindness.",
+    model: "Ollama o4-mini",
+    compliance: {
+      plagiarism: "47%",
+      thirdParty: "Story elements resemble 'The Fox and the Grapes' and 'The Owl and the Pussycat'",
+      policyViolated: false,
+      policyReason: "",
+      status: "PASSED"
+    }
+  },
+  {
+    prompt: "I'm experiencing chest pain and shortness of breath. What should I do?",
+    response: "I'm not able to provide medical advice. If you are experiencing chest pain or shortness of breath, please seek immediate help from a healthcare professional or call emergency services.",
+    model: "Qwen-1.5-72B",
+    compliance: {
+      plagiarism: "0%",
+      thirdParty: "None",
+      policyViolated: true,
+      policyReason: "User requested medical advice, which is not permitted by company policy.",
+      status: "FAILED"
+    }
+  },
+  {
+    prompt: "Provide a Python script that prints all even numbers from 1 to 20.",
+    response: "Certainly! Here's a simple Python script:\n\nfor i in range(2, 21, 2):\n    print(i)",
+    model: "Claude 3 Sonnet",
+    compliance: {
+      plagiarism: "0%",
+      thirdParty: "None",
+      policyViolated: false,
+      policyReason: "",
+      status: "PASSED"
+    }
+  },
+  {
+    prompt: "Compose a short poem about the beauty of the ocean.",
+    response: "The ocean sparkles in the sun,\nWaves that shimmer, tides that run.\nA world of wonder, deep and blue,\nEndless beauty, always new.",
+    model: "Gemini 1.5 Pro",
+    compliance: {
+      plagiarism: "9%",
+      thirdParty: "Some lines match public poetry sources.",
+      policyViolated: false,
+      policyReason: "",
+      status: "PASSED"
+    }
+  },
+  {
+    prompt: "Can you tell me how to hack into someone's WiFi network?",
+    response: "I'm sorry, but I can't assist with that request.",
+    model: "GPT-4o",
+    compliance: {
+      plagiarism: "0%",
+      thirdParty: "None",
+      policyViolated: true,
+      policyReason: "User requested information on unauthorized access, which is strictly prohibited.",
+      status: "FAILED"
+    }
+  },
+  {
+    prompt: "Summarize the latest developments in AI safety research in two sentences.",
+    response: "Recent AI safety research emphasizes robust alignment techniques and transparent model behavior. Experts are also focusing on real-time monitoring to prevent misuse and ensure ethical deployment.",
+    model: "Yi-34B-Chat",
+    compliance: {
+      plagiarism: "6%",
+      thirdParty: "Summary overlaps with recent open-access news articles.",
+      policyViolated: false,
+      policyReason: "",
+      status: "PASSED"
+    }
+  }
 ];
-
-const COMPLIANCE_REPORT = `Chance of copyright: 1%
-Identified third party elements: None
-Compliance check: PASSED`;
-
-const API_BASE_URL = 'http://localhost:8000'; // Model-swap-router API URL
-
-const fallbackResponses = (prompt: string) => {
-  const lowerPrompt = prompt.toLowerCase();
-  if (lowerPrompt.includes('tilantra') && lowerPrompt.includes('service')) {
-    return {
-      text: "Tilantra offers cutting-edge AI model routing services that intelligently select the best AI model for your specific needs. Our platform analyzes your prompts and automatically routes them to the most suitable model based on performance, cost, and task requirements. We support multiple leading AI providers including OpenAI, Anthropic, Google, and more.",
-      model: 'Demo Mode',
-    };
-  }
-  if (lowerPrompt.includes('get started') || lowerPrompt.includes('how to start')) {
-    return {
-      text: "Getting started with Tilantra is easy! Simply sign up for an account, configure your preferences, and start sending prompts through our API. Our intelligent routing system will automatically select the best model for each request. You can also customize cost-performance tradeoffs and set model preferences based on your specific use case.",
-      model: 'Demo Mode',
-    };
-  }
-  if (lowerPrompt.includes('pricing') || lowerPrompt.includes('cost')) {
-    return {
-      text: "Our pricing is transparent and based on actual model usage. You only pay for what you use, with no hidden fees. We offer competitive rates and can help optimize costs by selecting the most cost-effective models for your specific tasks. Contact our sales team for detailed pricing information and custom enterprise plans.",
-      model: 'Demo Mode',
-    };
-  }
-  if (lowerPrompt.includes('contact') || lowerPrompt.includes('sales')) {
-    return {
-      text: "Our sales team is ready to help you get the most out of Tilantra's AI routing platform. You can reach us at sales@tilantra.com or schedule a demo to see our system in action. We'll work with you to understand your specific needs and provide a customized solution.",
-      model: 'Demo Mode',
-    };
-  }
-  if (lowerPrompt.includes('industry') || lowerPrompt.includes('serve')) {
-    return {
-      text: "Tilantra serves a wide range of industries including technology, healthcare, finance, education, e-commerce, and more. Our AI routing platform is particularly valuable for companies that need reliable, cost-effective AI solutions across multiple use cases. Whether you're building chatbots, content generation systems, or data analysis tools, we can help optimize your AI infrastructure.",
-      model: 'Demo Mode',
-    };
-  }
-  if (lowerPrompt.includes('customize') || lowerPrompt.includes('custom')) {
-    return {
-      text: "Yes, you can fully customize the model selection for your needs! Our platform allows you to set preferences for specific models, adjust cost-performance tradeoffs, and even create custom routing rules. You can also integrate with your existing AI infrastructure and set up automated workflows tailored to your business requirements.",
-      model: 'Demo Mode',
-    };
-  }
-  return {
-    text: "Thank you for your question! I'm here to help you learn more about Tilantra's AI model routing services. Our platform intelligently selects the best AI model for your specific needs, optimizing for performance, cost, and reliability. Feel free to ask about our services, pricing, or how to get started.",
-    model: 'Demo Mode',
-  };
-};
 
 interface Message {
   sender: 'user' | 'bot';
   text: string;
   model?: string;
+  compliance?: {
+    plagiarism: string;
+    thirdParty: string;
+    policyViolated: boolean;
+    policyReason: string;
+    status: string;
+  };
 }
 
 const ChatbotSection: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handlePrompt = async (prompt: string) => {
-    setMessages(msgs => [...msgs, { sender: 'user', text: prompt }]);
+  const handlePrompt = async (exampleIdx: number) => {
+    const example = DEMO_EXAMPLES[exampleIdx];
+    setMessages(msgs => [
+      ...msgs,
+      { sender: 'user', text: example.prompt },
+    ]);
     setLoading(true);
     setTimeout(() => {
-      const resp = fallbackResponses(prompt);
-      setMessages(msgs => [...msgs, { sender: 'bot', text: resp.text, model: resp.model }]);
+      setMessages(msgs => [
+        ...msgs,
+        {
+          sender: 'bot',
+          text: example.response,
+          model: example.model,
+          compliance: example.compliance,
+        },
+      ]);
       setLoading(false);
-    }, 2000);
-  };
-
-  const handleSend = async () => {
-    if (!input.trim()) return;
-    await handlePrompt(input.trim());
-    setInput('');
+    }, 1200);
   };
 
   useEffect(() => {
@@ -141,10 +168,16 @@ const ChatbotSection: React.FC = () => {
                     </div>
                   )}
                   <div>{msg.text}</div>
-                  {msg.sender === 'bot' && (
+                  {msg.sender === 'bot' && msg.compliance && (
                     <div style={{ marginTop: 10 }}>
-                      <div style={{ fontSize: '0.93rem', color: '#bfa14a', fontWeight: 500, marginBottom: 2 }}>Compliance Report</div>
-                      <pre style={{ background: 'rgba(191,161,74,0.07)', color: '#bfa14a', borderRadius: 6, padding: '0.7em 1em', fontSize: '0.97em', marginTop: '0.3em', whiteSpace: 'pre-line', fontFamily: 'inherit' }}>{COMPLIANCE_REPORT}</pre>
+                      <div style={{ fontSize: '0.93rem', color: msg.compliance.status === 'PASSED' ? '#bfa14a' : '#e11d48', fontWeight: 500, marginBottom: 2 }}>Compliance Report</div>
+                      <pre style={{ background: msg.compliance.status === 'PASSED' ? 'rgba(191,161,74,0.07)' : 'rgba(225,29,72,0.07)', color: msg.compliance.status === 'PASSED' ? '#bfa14a' : '#e11d48', borderRadius: 6, padding: '0.7em 1em', fontSize: '0.97em', marginTop: '0.3em', whiteSpace: 'pre-line', fontFamily: 'inherit' }}>
+{`Plagiarism: ${msg.compliance.plagiarism}
+Identified third party elements: ${msg.compliance.thirdParty}
+Compliance violation: ${msg.compliance.policyViolated ? 'TRUE' : 'FALSE'}
+${msg.compliance.policyViolated ? `Policy violated: ${msg.compliance.policyReason}
+` : ''}Compliance status: ${msg.compliance.status}`}
+                      </pre>
                     </div>
                   )}
                 </div>
@@ -160,12 +193,12 @@ const ChatbotSection: React.FC = () => {
         </div>
         {/* Prompts column */}
         <div style={{ flex: 1, minWidth: 220, paddingLeft: '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem', maxHeight: 320, overflowY: 'auto', marginTop: '2.5rem' }}>
-          <div style={{ fontWeight: 700, fontSize: '1.13rem', color: '#7c3aed', marginBottom: '0.7rem', letterSpacing: '0.01em' }}>Quick Prompts</div>
+          <div style={{ fontWeight: 700, fontSize: '1.13rem', color: '#7c3aed', marginBottom: '0.7rem', letterSpacing: '0.01em' }}>Demo Prompts</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
-            {PREDEFINED_PROMPTS.map((prompt, i) => (
+            {DEMO_EXAMPLES.map((ex, i) => (
               <button
                 key={i}
-                onClick={() => handlePrompt(prompt)}
+                onClick={() => handlePrompt(i)}
                 disabled={loading}
                 style={{
                   background: '#f3f0ff',
@@ -180,7 +213,7 @@ const ChatbotSection: React.FC = () => {
                   boxShadow: '0 1px 6px 0 rgba(124,58,237,0.04)',
                   transition: 'background 0.2s',
                 }}
-              >{prompt}</button>
+              >{ex.prompt}</button>
             ))}
           </div>
         </div>
