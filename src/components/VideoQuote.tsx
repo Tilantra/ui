@@ -24,7 +24,7 @@ const VideoQuote: React.FC = () => {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'center', justifyContent: 'center', maxWidth: 1200, margin: '0 auto' }}>
           <div className="fade-in" style={{ flex: '1 1 500px', minWidth: 400, maxWidth: 700 }}>
             <video width="100%" height="360" controls style={{ borderRadius: '0.5rem', boxShadow: '0 4px 24px rgba(124,58,237,0.07)' }}>
-              <source src="./vid2.mp4" type="video/mp4" />
+              <source src="./video3.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
