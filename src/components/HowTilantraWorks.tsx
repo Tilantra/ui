@@ -44,7 +44,7 @@ const HowTilantraWorks: React.FC = () => {
       <h2 className="fade-slide-up" style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '2.5rem', color: '#2563eb', textAlign: 'center' }}>
         How Tilantra Works
       </h2>
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '2.5rem', alignItems: 'stretch', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <div className="how-tilantra-works-stats" style={{ display: 'flex', flexDirection: 'row', gap: '2.5rem', alignItems: 'stretch', justifyContent: 'center', flexWrap: 'wrap' }}>
         {steps.map((step, i) => (
           <div
             key={i}

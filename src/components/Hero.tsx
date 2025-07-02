@@ -16,26 +16,13 @@ const Hero: React.FC = () => (
       color: '#fff',
       fontFamily: 'inherit',
       overflow: 'hidden',
+      backgroundImage: 'url(/testwall2.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
     }}
     className="fade-in"
   >
-    <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      src="/vid2.mp4"
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        zIndex: 0,
-        opacity: 1.0,
-      }}
-    />
     <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <h1 style={{ fontSize: '5.5rem', fontWeight: 1000, marginBottom: '1.2rem', letterSpacing: '-0.04em', color: '#fff', textShadow: '0 4px 32px #111, 0 1px 0 #2563eb', textTransform: 'uppercase' }}>
         Tilantra

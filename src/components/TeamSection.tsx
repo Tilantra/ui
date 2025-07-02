@@ -49,7 +49,7 @@ const TeamSection: React.FC = () => {
       <h2 className="fade-slide-up" style={{ fontSize: '2.2rem', fontWeight: 700, color: '#2563eb', marginBottom: '2.5rem', letterSpacing: '0.04em' }}>
         MEET OUR TEAM
       </h2>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap' }}>
+      <div className="team-cards-row" style={{ display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap' }}>
         {teamMembers.map(member => (
           <div key={member.name} className="fade-slide-up stat-card" style={{ background: '#f6f8fa', borderRadius: '1.2rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', padding: '2rem 1.5rem', minWidth: 220, maxWidth: 260, textAlign: 'center' }}>
             <div style={{ width: 120, height: 120, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1.2rem auto', border: '4px solid #ece6fa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
