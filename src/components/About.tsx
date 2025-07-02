@@ -69,7 +69,7 @@ const About: React.FC = () => {
         </p>
         
       </div>
-      <div style={{ flex: '1 1 320px', minWidth: 220, display: 'flex', flexDirection: 'row', gap: '2rem', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="about-stats-row" style={{ flex: '1 1 320px', minWidth: 220, display: 'flex', flexDirection: 'row', gap: '2rem', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ background: '#f6f8fa', borderRadius: '1.2rem', padding: '2rem 1.5rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', minWidth: 120, textAlign: 'center' }} className="fade-slide-up stat-card">
           <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#2563eb', marginBottom: '0.5rem' }}>
             $1.5T

@@ -90,28 +90,134 @@ const statBoxStyle: React.CSSProperties = {
 
 const UseCasesSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const [protectionOpen, setProtectionOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offsets = sectionRefs.current.map(ref => ref?.getBoundingClientRect().top ?? Infinity);
-      const active = offsets.findIndex(offset => offset >= 0 && offset < window.innerHeight * 0.5);
-      setActiveIndex(active === -1 ? 0 : active);
-    };
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', handleScroll, { passive: true });
-    }
-    window.addEventListener('resize', handleScroll);
-    handleScroll();
-    return () => {
-      if (container) container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
+    const checkMobile = () => setIsMobile(window.matchMedia('(max-width: 700px)').matches);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    if (!isMobile) {
+      const handleScroll = () => {
+        const offsets = sectionRefs.current.map(ref => ref?.getBoundingClientRect().top ?? Infinity);
+        const active = offsets.findIndex(offset => offset >= 0 && offset < window.innerHeight * 0.5);
+        setActiveIndex(active === -1 ? 0 : active);
+      };
+      const container = scrollContainerRef.current;
+      if (container) {
+        container.addEventListener('scroll', handleScroll, { passive: true });
+      }
+      window.addEventListener('resize', handleScroll);
+      handleScroll();
+      return () => {
+        if (container) container.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', handleScroll);
+      };
+    }
+  }, [isMobile]);
+
   const current = useCases[activeIndex];
+
+  // Mobile navigation handlers
+  const goPrev = () => setActiveIndex(i => (i - 1 + useCases.length) % useCases.length);
+  const goNext = () => setActiveIndex(i => (i + 1) % useCases.length);
+
+  // Swipe gesture for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    const container = document.getElementById('usecases-mobile-swipe');
+    if (!container) return;
+    let startX = 0;
+    let endX = 0;
+    const onTouchStart = (e: TouchEvent) => { startX = e.touches[0].clientX; };
+    const onTouchEnd = (e: TouchEvent) => {
+      endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) goNext();
+      else if (endX - startX > 50) goPrev();
+    };
+    container.addEventListener('touchstart', onTouchStart);
+    container.addEventListener('touchend', onTouchEnd);
+    return () => {
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [isMobile, activeIndex]);
+
+  if (isMobile) {
+    return (
+      <section className="usecases-mobile-section" style={{ width: '100%', background: '#f6f8fa', padding: '2rem 0', minHeight: '80vh' }}>
+        {/* White area (use case) */}
+        <div id="usecases-mobile-swipe" style={{ background: '#fff', borderRadius: '1.2rem', margin: '0 1rem', padding: '2rem 1rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', textAlign: 'center', minHeight: 220, position: 'relative' }}>
+          <div style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '1rem', color: purple, lineHeight: 1.1 }}>{current.title}</div>
+          <div style={{ fontSize: '1.08rem', color: '#222', fontWeight: 500, lineHeight: 1.7, marginBottom: 18 }}>{current.description}</div>
+          {/* Impact Box */}
+          <div style={{ background: '#f6f8fa', borderRadius: '0.8rem', padding: '1rem', margin: '0 auto 1rem auto', color: '#374151', fontWeight: 500, fontSize: '0.98rem', textAlign: 'left' }}>
+            <div style={{ fontWeight: 700, color: purple, marginBottom: 6 }}>Impact:</div>
+            <ul style={{ paddingLeft: 18, margin: 0 }}>
+              {current.impact.map((point, idx) => (
+                <li key={idx} style={{ marginBottom: 4 }}>{point}</li>
+              ))}
+            </ul>
+          </div>
+          {/* Navigation arrows */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 12 }}>
+            <button onClick={goPrev} style={{ background: 'none', border: 'none', fontSize: '2rem', color: purple, cursor: 'pointer' }} aria-label="Previous">&#8592;</button>
+            <span style={{ fontSize: '1rem', color: '#888' }}>{activeIndex + 1} / {useCases.length}</span>
+            <button onClick={goNext} style={{ background: 'none', border: 'none', fontSize: '2rem', color: purple, cursor: 'pointer' }} aria-label="Next">&#8594;</button>
+          </div>
+          {/* Accordion button */}
+          <button
+            onClick={() => setProtectionOpen(o => !o)}
+            style={{
+              margin: '1.2rem auto 0 auto',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'none',
+              border: 'none',
+              color: purple,
+              fontWeight: 700,
+              fontSize: '1.08rem',
+              cursor: 'pointer',
+              transition: 'color 0.2s',
+              gap: 8,
+            }}
+            aria-expanded={protectionOpen}
+            aria-controls="usecases-protection-mobile"
+          >
+            {protectionOpen ? 'Hide Protection' : 'Show Protection'}
+            <span style={{ display: 'inline-block', transform: protectionOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>▼</span>
+          </button>
+        </div>
+        {/* Collapsible Purple area (protection) */}
+        {protectionOpen && (
+          <div id="usecases-protection-mobile" style={{ background: purple, color: '#fff', borderRadius: '1.2rem', margin: '1.2rem 1rem 0 1rem', padding: '2rem 1rem', textAlign: 'center', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', animation: 'fadeInAccordion 0.3s' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1.2rem', letterSpacing: '-0.01em' }}>How Guidera Protects</h3>
+            <div style={{ fontSize: '1.08rem', fontWeight: 500, marginBottom: '1.2rem', lineHeight: 1.7 }}>
+              {current.protection.map((point, idx) => (
+                <div key={idx} style={{ marginBottom: 10 }}>{point}</div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '0.7rem', justifyContent: 'center', marginTop: 8 }}>
+              <div style={{ ...statBoxStyle, width: 80, height: 70, fontSize: '0.95rem', borderRadius: '1.2rem' }}>{current.statBoxText}</div>
+              <div style={{ ...statBoxStyle, padding: 0, background: '#fff', width: 80, height: 70, borderRadius: '1.2rem' }}>
+                <img src={current.statBoxLogo} alt="logo" style={{ width: 32, height: 32, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+              </div>
+            </div>
+          </div>
+        )}
+        <style>{`
+          @keyframes fadeInAccordion { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+        `}</style>
+      </section>
+    );
+  }
 
   return (
     <section
