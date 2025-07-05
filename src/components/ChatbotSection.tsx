@@ -143,7 +143,7 @@ const ChatbotSection: React.FC = () => {
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: '2.5rem', alignItems: 'flex-start', boxShadow: '0 2px 24px rgba(80,60,120,0.06)', borderRadius: 24, background: '#fff', padding: '2.5rem 2rem', border: '2.5px solid #e0e7ef' }}>
         {/* Chat area */}
         <div style={{ flex: 2, minWidth: 0, display: 'flex', flexDirection: 'column', height: isMobile ? 520 : 420, borderRight: '1.5px solid #ece6fa', paddingRight: '2rem' }}>
-          <div className="fade-slide-up" style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: '1.2rem', color: '#2563eb', letterSpacing: '0.01em' }}>Tilantra Assistant</div>
+          <div className="fade-slide-up" style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: '1.2rem', color: '#2563eb', letterSpacing: '0.01em' }}>Guidera Assistant</div>
           <div className="fade-slide-up" style={{ marginBottom: '1.2rem', color: '#7c3aed', fontWeight: 500, fontSize: '1.08rem' }}>
             This is only for a basic demo, please <a href="#contact-footer" style={{ color: '#2563eb', textDecoration: 'underline', cursor: 'pointer' }} onClick={e => { e.preventDefault(); document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' }); }}>reach out</a> for a full demo.
           </div>

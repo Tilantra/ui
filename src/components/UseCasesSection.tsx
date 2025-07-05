@@ -104,21 +104,21 @@ const UseCasesSection: React.FC = () => {
 
   useEffect(() => {
     if (!isMobile) {
-      const handleScroll = () => {
-        const offsets = sectionRefs.current.map(ref => ref?.getBoundingClientRect().top ?? Infinity);
-        const active = offsets.findIndex(offset => offset >= 0 && offset < window.innerHeight * 0.5);
-        setActiveIndex(active === -1 ? 0 : active);
-      };
-      const container = scrollContainerRef.current;
-      if (container) {
-        container.addEventListener('scroll', handleScroll, { passive: true });
-      }
-      window.addEventListener('resize', handleScroll);
-      handleScroll();
-      return () => {
-        if (container) container.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('resize', handleScroll);
-      };
+    const handleScroll = () => {
+      const offsets = sectionRefs.current.map(ref => ref?.getBoundingClientRect().top ?? Infinity);
+      const active = offsets.findIndex(offset => offset >= 0 && offset < window.innerHeight * 0.5);
+      setActiveIndex(active === -1 ? 0 : active);
+    };
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+    return () => {
+      if (container) container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
     }
   }, [isMobile]);
 

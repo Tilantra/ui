@@ -16,7 +16,7 @@
 .stat-card:hover {
   box-shadow: 0 8px 32px rgba(124,58,237,0.18);
   transform: translateY(-10px) scale(1.04);
-}
+} 
 
 /* Responsive styles for VideoQuote component */
 @media (max-width: 700px) {
@@ -180,25 +180,32 @@
     display: none !important;
   }
 
-  /* About stat cards stack vertically and are smaller */
+  /* About section - new layout with Why Now and Why Us sections */
   .about-stats-row {
     flex-direction: column !important;
-    gap: 1.2rem !important;
+    gap: 1.5rem !important;
     align-items: stretch !important;
+  }
+  .about-stats-row > div {
+    width: 100% !important;
+  }
+  .about-stats-row h3 {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.8rem !important;
   }
   .about-stats-row .stat-card {
     min-width: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
-    padding: 1.2rem 0.7rem !important;
-    font-size: 1rem !important;
+    padding: 1rem 0.5rem !important;
+    font-size: 0.9rem !important;
   }
   .about-stats-row .stat-card > div:first-child {
-    font-size: 1.3rem !important;
-    margin-bottom: 0.3rem !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 0.2rem !important;
   }
   .about-stats-row .stat-card > div:last-child {
-    font-size: 0.95rem !important;
+    font-size: 0.8rem !important;
   }
 
   /* TeamSection cards smaller on mobile */
@@ -325,5 +332,67 @@
   .team-cards-row .stat-card > div,
   .usecases-mobile-section .stat-card > div {
     font-size: 0.92em !important;
+  }
+}
+
+/* Responsive styles for Hero buttons */
+@media (max-width: 700px) {
+  #hero-section button {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 1rem !important;
+    min-width: 140px !important;
+  }
+  #hero-section h1 {
+    font-size: 3rem !important;
+  }
+  #hero-section p {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Responsive styles for MarketStats */
+@media (max-width: 700px) {
+  /* Make the main container stack vertically on mobile */
+  .market-stats-container {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  
+  /* Left side - boxes in 2 columns of 3 each */
+  .market-stats-boxes {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  
+  .market-stats-boxes .stat-card {
+    width: calc(50% - 0.5rem) !important;
+    min-width: 0 !important;
+    padding: 1rem 0.5rem !important;
+  }
+  
+  .market-stats-boxes .stat-card > div:first-child {
+    font-size: 1.2rem !important;
+  }
+  
+  .market-stats-boxes .stat-card > div:last-child {
+    font-size: 0.75rem !important;
+  }
+  
+  /* Right side - image and text below boxes */
+  .market-stats-image {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    order: 2 !important;
+  }
+  
+  .market-stats-image img {
+    max-width: 90% !important;
+  }
+  
+  .market-stats-image p {
+    font-size: 1rem !important;
+    padding: 0.5rem 0 !important;
   }
 }

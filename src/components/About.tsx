@@ -65,30 +65,23 @@ const About: React.FC = () => {
           Our mission is to empower organizations to seamlessly orchestrate, optimize, and govern their AI workflows—without sacrificing speed, security, or compliance. As the landscape of AI models grows more complex, businesses need a unified solution that can route tasks to the best-performing models, ensure regulatory compliance, and keep costs under control.
         </p>
         <p className="fade-slide-up" style={{ fontSize: '1.18rem', color: '#374151', marginBottom: '1.5rem' }}>
-          <span style={{ color: '#7c3aed', fontWeight: 600 }}>Tilantra</span> is a high-performance orchestration layer for LLMs, giving you total control, compliance, and cost-performance through a single API.
+          <span style={{ color: '#7c3aed', fontWeight: 600 }}>Guidera</span> is a high-performance orchestration layer for LLMs, giving you total control, compliance, and cost-performance through a single API.
         </p>
         
       </div>
-      <div className="about-stats-row" style={{ flex: '1 1 320px', minWidth: 220, display: 'flex', flexDirection: 'row', gap: '2rem', justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ background: '#f6f8fa', borderRadius: '1.2rem', padding: '2rem 1.5rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', minWidth: 120, textAlign: 'center' }} className="fade-slide-up stat-card">
-          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#2563eb', marginBottom: '0.5rem' }}>
-            $1.5T
-          </div>
-          <div style={{ color: '#374151', fontWeight: 600, fontSize: '1.1rem' }}>AI market by 2030</div>
-        </div>
-        <div style={{ background: '#f6f8fa', borderRadius: '1.2rem', padding: '2rem 1.5rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', minWidth: 120, textAlign: 'center' }} className="fade-slide-up stat-card">
-          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#7c3aed', marginBottom: '0.5rem' }}>
-            $10B
-          </div>
-          <div style={{ color: '#374151', fontWeight: 600, fontSize: '1.1rem' }}>Revenue target (2yr)</div>
-        </div>
-        <div style={{ background: '#f6f8fa', borderRadius: '1.2rem', padding: '2rem 1.5rem', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', minWidth: 120, textAlign: 'center' }} className="fade-slide-up stat-card">
-          <div style={{ fontSize: '2.2rem', fontWeight: 800, color: '#2563eb', marginBottom: '0.5rem' }}>
-            $28K
-          </div>
-          <div style={{ color: '#374151', fontWeight: 600, fontSize: '1.1rem' }}>Avg. monthly AI spend</div>
-        </div>
+      
+      <div style={{ flex: '1 1 320px', minWidth: 220, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <img 
+          src="/robopic.png" 
+          alt="Robot AI" 
+          style={{ 
+            maxWidth: '70%', 
+            height: 'auto', 
+            borderRadius: '0.5rem'
+          }} 
+        />
       </div>
+      
     </section>
   );
 };

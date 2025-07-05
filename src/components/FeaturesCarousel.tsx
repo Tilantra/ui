@@ -146,62 +146,62 @@ const FeaturesCarousel: React.FC = () => {
                 </div>
               ))
             : getVisible().map((f, i) => (
-                <div
-                  key={i}
-                  className="fade-slide-up stat-card"
+            <div
+              key={i}
+              className="fade-slide-up stat-card"
+              style={{
+                minWidth: 380,
+                maxWidth: 480,
+                minHeight: 200,
+                background: '#fff',
+                borderRadius: '2rem',
+                boxShadow: '0 4px 32px rgba(124,58,237,0.10)',
+                padding: '2.5rem 2rem',
+                textAlign: 'center',
+                flex: '0 0 auto',
+                transition: 'box-shadow 0.2s, transform 0.4s',
+                fontSize: '1.1rem',
+                position: 'relative',
+                zIndex: 1,
+                opacity: 1,
+                cursor: 'pointer',
+                overflow: 'hidden',
+              }}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <div style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: '0.8rem', ...gradientText }}>{f.title}</div>
+              <div style={{ position: 'relative', height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span
                   style={{
-                    minWidth: 380,
-                    maxWidth: 480,
-                    minHeight: 200,
-                    background: '#fff',
-                    borderRadius: '2rem',
-                    boxShadow: '0 4px 32px rgba(124,58,237,0.10)',
-                    padding: '2.5rem 2rem',
-                    textAlign: 'center',
-                    flex: '0 0 auto',
-                    transition: 'box-shadow 0.2s, transform 0.4s',
-                    fontSize: '1.1rem',
-                    position: 'relative',
-                    zIndex: 1,
-                    opacity: 1,
-                    cursor: 'pointer',
-                    overflow: 'hidden',
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    opacity: hovered === i ? 0 : 1,
+                    transition: 'opacity 0.3s',
+                    color: '#222',
+                    fontSize: '1.08rem',
                   }}
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
                 >
-                  <div style={{ fontWeight: 700, fontSize: '1.3rem', marginBottom: '0.8rem', ...gradientText }}>{f.title}</div>
-                  <div style={{ position: 'relative', height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span
-                      style={{
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        opacity: hovered === i ? 0 : 1,
-                        transition: 'opacity 0.3s',
-                        color: '#222',
-                        fontSize: '1.08rem',
-                      }}
-                    >
-                      {f.desc}
-                    </span>
-                    <span
-                      style={{
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        opacity: hovered === i ? 1 : 0,
-                        transition: 'opacity 0.3s',
-                        color: '#2563eb',
-                        fontWeight: 700,
-                        fontSize: '1.15rem',
-                      }}
-                    >
-                      {f.metric}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                  {f.desc}
+                </span>
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    opacity: hovered === i ? 1 : 0,
+                    transition: 'opacity 0.3s',
+                    color: '#2563eb',
+                    fontWeight: 700,
+                    fontSize: '1.15rem',
+                  }}
+                >
+                  {f.metric}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
         {!isMobile && (
           <button aria-label="Next" className="features-carousel-arrow" style={arrowStyle} onClick={next} onMouseEnter={next}>&#8594;</button>
