@@ -28,7 +28,7 @@ const sectionStyle: React.CSSProperties = {
   margin: '0 auto',
   borderRadius: '1.5rem',
   boxShadow: '0 2px 24px rgba(80,60,120,0.04)',
-  marginBottom: '2.5rem',
+  marginBottom: '1.2rem',
 };
 
 const iconStyle: React.CSSProperties = {
@@ -55,10 +55,10 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section style={{ background: '#fff', padding: '4rem 2rem', color: '#222', fontFamily: 'inherit', maxWidth: 1200, margin: '0 auto', borderRadius: '1.5rem', boxShadow: '0 2px 24px rgba(80,60,120,0.04)', display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'center', justifyContent: 'space-between' }}>
+    <section style={{ ...sectionStyle, display: 'flex', flexWrap: 'wrap', gap: '3rem', alignItems: 'center', justifyContent: 'space-between' }}>
       <div style={{ flex: '1 1 400px', minWidth: 280, maxWidth: 520 }}>
         <h2 className="fade-slide-up" style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '1.2rem', color: '#2563eb' }}>
-          What We Are
+         Orchestrate. Optimize. Accelerate.
         </h2>
        
         <p className="fade-slide-up" style={{ fontSize: '1.18rem', color: '#374151', marginBottom: '1.5rem' }}>
@@ -72,7 +72,7 @@ const About: React.FC = () => {
       
       <div style={{ flex: '1 1 320px', minWidth: 220, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <img 
-          src="/robopic.png" 
+          src="/heroimage.png" 
           alt="Robot AI" 
           style={{ 
             maxWidth: '70%', 

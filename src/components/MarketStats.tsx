@@ -21,14 +21,14 @@ const MarketStats: React.FC = () => {
   return (
     <section style={{ 
       background: '#fff', 
-      padding: '3rem 2rem', 
+      padding: '4rem 2rem', 
       color: '#222', 
       fontFamily: 'inherit', 
       maxWidth: 1200, 
       margin: '0 auto', 
       borderRadius: '1.5rem', 
       boxShadow: '0 2px 24px rgba(80,60,120,0.04)',
-      marginBottom: '2.5rem',
+      marginBottom: '1.2rem',
       display: 'flex',
       flexWrap: 'wrap',
       gap: '3rem',

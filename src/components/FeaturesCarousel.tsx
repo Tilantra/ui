@@ -80,7 +80,7 @@ const FeaturesCarousel: React.FC = () => {
       overflow: 'hidden',
     }}>
       <h2 className="fade-slide-up" style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '2.5rem', color: '#2563eb' }}>
-        Our Features
+        Unlock Limitless Possibilities
       </h2>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2.5rem', position: 'relative' }}>
         {!isMobile && (

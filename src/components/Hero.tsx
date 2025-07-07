@@ -42,7 +42,16 @@ const Hero: React.FC = () => {
         backgroundColor: 'rgba(255, 255, 255, 0.0)',
         zIndex: 0
       }}></div>
-      
+      {/* Bottom fade overlay */}
+      <div style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: '120px',
+        background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 100%)',
+        zIndex: 1
+      }}></div>
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', maxWidth: '800px', padding: '0 2rem' }}>
         <h1 style={{ 
           fontSize: '4.5rem', 
@@ -114,7 +123,7 @@ const Hero: React.FC = () => {
               transition: 'all 0.2s ease'
             }}
           >
-            Get a Demo
+            Try It Out!
           </button>
         </div>
       </div>

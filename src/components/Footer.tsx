@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
             <img src="/Tilantra_blueLOGO.png" alt="Tilantra Logo" style={{ height: '56px', verticalAlign: 'middle' }} />
           </div>
           <div style={{ color: '#374151', fontSize: '1.05rem', marginBottom: '1.2rem', textAlign: 'left' }}>
-            High-performance orchestration for LLMs.<br />Total control, compliance, and cost-performance through a single API.
+            High-performance orchestration for LLMs.<br />Total control, compliance, and cost-performance.
           </div>
         </div>
         <div style={{ flex: '1 1 160px', minWidth: 160, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <polyline points="22,6 12,13 2,6" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              tilantra.technologies@gmail.com
+              tech@tilantra.com
             </li>
             <li style={{ color: '#374151', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
