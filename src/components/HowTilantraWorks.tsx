@@ -40,7 +40,7 @@ const HowTilantraWorks: React.FC = () => {
   };
 
   return (
-    <section style={{ background: '#fff', padding: '4rem 2rem', fontFamily: 'inherit' }}>
+    <section style={{ background: '#fff', padding: '1.5rem 2rem 4rem 2rem', fontFamily: 'inherit' }}>
       <h2 className="fade-slide-up" style={{ fontSize: '2.2rem', fontWeight: 700, marginBottom: '2.5rem', color: '#2563eb', textAlign: 'center' }}>
         What We Offer
       </h2>

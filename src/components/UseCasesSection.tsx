@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const useCases = [
   {
     title: 'Klarna: When Automation Crossed the Line',
-    description: "Klarna's bot left customers stuck in endless loops—no humans, just frustration. Trust tanked, and the company had to bring people back.",
+    description: "Klarna's bot left customers stuck in endless loops—no humans, just frustration. Trust tanked, and the company had to bring people back. Even the most advanced automation can backfire if it loses the human touch, turning convenience into a customer service nightmare.",
     impact: [
       'Customer trust eroded by impersonal, inconsistent AI',
       'Brand reputation took a public hit',
@@ -18,10 +18,11 @@ const useCases = [
     ],
     statBoxText: 'Intelligent Routing',
     statBoxLogo: '/cyber-security.png',
+    solutionHeading: 'Smart Routing for Human-Like Support',
   },
   {
     title: 'Air Canada: The Chatbot That Promised Too Much',
-    description: "Imagine paying out refunds for a policy that never existed! Air Canada's bot invented a rule, and the airline had to pay the price.",
+    description: "Imagine paying out refunds for a policy that never existed! Air Canada's bot invented a rule, and the airline had to pay the price. A single unchecked response can create costly legal obligations and erode years of brand trust in an instant.",
     impact: [
       'Legal liability for AI misrepresentation',
       'Public relations fallout and loss of customer trust',
@@ -34,10 +35,11 @@ const useCases = [
     ],
     statBoxText: 'Compliance Layer',
     statBoxLogo: '/decision-making.png',
+    solutionHeading: 'Policy-Checked Answers, Every Time',
   },
   {
     title: 'Claude: When AI Became a Security Risk',
-    description: "Hackers tricked Claude into running malware—turning helpful AI into a security threat. Even smart bots can be fooled.",
+    description: "Hackers tricked Claude into running malware—turning helpful AI into a security threat. Even smart bots can be fooled. Without real-time safeguards, AI can become an entry point for sophisticated attacks that put sensitive data at risk.",
     impact: [
       'Potential for large-scale data breaches',
       'Loss of user trust in AI security',
@@ -50,10 +52,11 @@ const useCases = [
     ],
     statBoxText: 'Threat Filter',
     statBoxLogo: '/threat-detection.png',
+    solutionHeading: 'Real-Time Threat Blocking',
   },
   {
     title: 'Grok: When AI Spread Dangerous Myths',
-    description: "Grok's chatbot started spouting conspiracy theories—one rogue edit, and it became a megaphone for misinformation.",
+    description: "Grok's chatbot started spouting conspiracy theories—one rogue edit, and it became a megaphone for misinformation. Misinformation can spread rapidly at scale, making robust oversight and transparency essential for public trust.",
     impact: [
       'Spread of harmful misinformation at scale',
       'Loss of public trust in AI platforms',
@@ -66,6 +69,7 @@ const useCases = [
     ],
     statBoxText: 'Ethics Engine',
     statBoxLogo: '/policy.png',
+    solutionHeading: 'Stopping Misinformation at the Source',
   },
 ];
 
@@ -198,7 +202,7 @@ const UseCasesSection: React.FC = () => {
         {/* Collapsible Purple area (protection) */}
         {protectionOpen && (
           <div id="usecases-protection-mobile" style={{ background: purple, color: '#fff', borderRadius: '1.2rem', margin: '1.2rem 1rem 0 1rem', padding: '2rem 1rem', textAlign: 'center', boxShadow: '0 2px 12px rgba(80,60,120,0.07)', animation: 'fadeInAccordion 0.3s' }}>
-            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1.2rem', letterSpacing: '-0.01em' }}>How Guidera Protects</h3>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1.2rem', letterSpacing: '-0.01em' }}>{current.solutionHeading}</h3>
             <div style={{ fontSize: '1.08rem', fontWeight: 500, marginBottom: '1.2rem', lineHeight: 1.7 }}>
               {current.protection.map((point, idx) => (
                 <div key={idx} style={{ marginBottom: 10 }}>{point}</div>
@@ -224,7 +228,7 @@ const UseCasesSection: React.FC = () => {
       style={{
         display: 'flex',
         flexDirection: 'row',
-        minHeight: '80vh',
+        minHeight: '75vh',
         width: '100%',
         background: '#f6f8fa',
         position: 'relative',
@@ -236,8 +240,8 @@ const UseCasesSection: React.FC = () => {
           position: 'sticky',
           top: 0,
           left: 0,
-          width: '50vw',
-          minHeight: '100vh',
+          width: '40vw',
+          minHeight: '75vh',
           background: purple,
           color: '#fff',
           display: 'flex',
@@ -250,14 +254,14 @@ const UseCasesSection: React.FC = () => {
         }}
       >
         <div style={{ width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h3 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.01em', textAlign: 'center' }}>How Guidera Protects</h3>
+          <h3 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '-0.01em', textAlign: 'center' }}>{current.solutionHeading}</h3>
           <div style={{ fontSize: '1.22rem', fontWeight: 500, textAlign: 'center', color: '#fff', marginBottom: '2.2rem', lineHeight: 1.7, width: '100%' }}>
             {current.protection.map((point, idx) => (
               <div key={idx} style={{ marginBottom: 12 }}>{point}</div>
             ))}
           </div>
-          {/* Stat boxes stacked vertically, same size, more square-shaped */}
-          <div key={activeIndex} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', marginTop: 8, alignItems: 'center', width: 150 }}>
+          {/* Stat boxes stacked horizontally, same size, more square-shaped */}
+          <div key={activeIndex} style={{ display: 'flex', flexDirection: 'row', gap: '1.2rem', marginTop: 8, alignItems: 'center', width: 'auto', justifyContent: 'center' }}>
             <div className={`fade-in-box`} style={{ ...statBoxStyle, width: 150, height: 110, fontSize: '1.08rem', borderRadius: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{current.statBoxText}</div>
             <div className={`fade-in-box`} style={{ ...statBoxStyle, padding: 0, background: '#fff', width: 150, height: 110, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '1.2rem' }}>
               <img src={current.statBoxLogo} alt="logo" style={{ width: 54, height: 54, objectFit: 'contain', display: 'block', margin: '0 auto' }} />
@@ -269,8 +273,8 @@ const UseCasesSection: React.FC = () => {
       <div
         ref={scrollContainerRef}
         style={{
-          width: '50vw',
-          height: '100vh',
+          width: '60vw',
+          height: '75vh',
           overflowY: 'scroll',
           scrollSnapType: 'y mandatory',
           WebkitOverflowScrolling: 'touch',
@@ -296,13 +300,13 @@ const UseCasesSection: React.FC = () => {
               background: 'none',
               border: 'none',
               boxShadow: 'none',
-              maxWidth: 600,
+              maxWidth: 800,
               margin: '0 auto',
               position: 'relative',
             }}
           >
             <div style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem', color: purple, lineHeight: 1.1, textAlign: 'center', letterSpacing: '-0.01em' }}>{uc.title}</div>
-            <div style={{ fontSize: '1.22rem', color: '#222', fontWeight: 500, lineHeight: 1.7, marginBottom: 32, textAlign: 'center' }}>{uc.description}</div>
+            <div style={{ fontSize: '1.22rem', color: '#222', fontWeight: 500, lineHeight: 1.7, marginBottom: 32, textAlign: 'center', maxWidth: 700 }}>{uc.description}</div>
             {/* Impact Box */}
             <div key={activeIndex} className="fade-in-box" style={{
               background: 'rgba(191,161,74,0.07)',
@@ -310,8 +314,8 @@ const UseCasesSection: React.FC = () => {
               borderRadius: '1.1rem',
               boxShadow: '0 2px 12px rgba(80,60,120,0.07)',
               padding: '1.1rem 1.5rem',
-              minWidth: 320,
-              maxWidth: 420,
+              minWidth: 400,
+              maxWidth: 600,
               fontWeight: 700,
               fontSize: '1.08rem',
               display: 'flex',

@@ -91,7 +91,7 @@ interface Message {
 
 const ChatbotSection: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -107,19 +107,25 @@ const ChatbotSection: React.FC = () => {
       ...msgs,
       { sender: 'user', text: example.prompt },
     ]);
-    setLoading(true);
+    setLoadingStep(1);
     setTimeout(() => {
-      setMessages(msgs => [
-        ...msgs,
-        {
-          sender: 'bot',
-          text: example.response,
-          model: example.model,
-          compliance: example.compliance,
-        },
-      ]);
-      setLoading(false);
-    }, 1200);
+      setLoadingStep(0);
+      setTimeout(() => {
+        setLoadingStep(2);
+        setTimeout(() => {
+          setLoadingStep(0);
+          setMessages(msgs => [
+            ...msgs,
+            {
+              sender: 'bot',
+              text: example.response,
+              model: example.model,
+              compliance: example.compliance,
+            },
+          ]);
+        }, 1500);
+      }, 200);
+    }, 1500);
   };
 
   useEffect(() => {
@@ -142,8 +148,36 @@ const ChatbotSection: React.FC = () => {
     <section id="tilantra-assistant" style={{ background: '#fff', padding: '3rem 0', borderTop: '1px solid #ece6fa', borderBottom: '1px solid #ece6fa' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: '2.5rem', alignItems: 'flex-start', boxShadow: '0 2px 24px rgba(80,60,120,0.06)', borderRadius: 24, background: '#fff', padding: '2.5rem 2rem', border: '2.5px solid #e0e7ef' }}>
         {/* Chat area */}
-        <div style={{ flex: 2, minWidth: 0, display: 'flex', flexDirection: 'column', height: isMobile ? 520 : 420, borderRight: '1.5px solid #ece6fa', paddingRight: '2rem' }}>
-          <div className="fade-slide-up" style={{ fontWeight: 800, fontSize: '1.5rem', marginBottom: '1.2rem', color: '#2563eb', letterSpacing: '0.01em' }}>Guidera Assistant</div>
+        <div style={{ flex: 2, minWidth: 0, display: 'flex', flexDirection: 'column', height: isMobile ? 520 : 520, borderRight: '1.5px solid #ece6fa', paddingRight: '2rem' }}>
+          <div 
+            className="fade-slide-up visible"
+            style={{ 
+              fontWeight: 800, 
+              fontSize: '1.5rem', 
+              marginBottom: '1.2rem', 
+              letterSpacing: '0.01em',
+              display: 'inline-block',
+            }}
+          >
+            <span style={{ color: '#2563eb' }}>Experience the</span>{' '}
+            <span className="shiny-gradient-text" style={{
+              background: 'linear-gradient(90deg, #2563eb 0%, #5b21b6 40%, #a78bfa 60%, #2563eb 100%)',
+              backgroundSize: '200% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              color: 'transparent',
+              animation: 'shiny-gradient-flow 2.5s linear infinite',
+              fontWeight: 900,
+              display: 'inline-block',
+            }}>Future of AI</span>
+            <style>{`
+              @keyframes shiny-gradient-flow {
+                0% { background-position: 0% 50%; }
+                100% { background-position: 200% 50%; }
+              }
+            `}</style>
+          </div>
           <div className="fade-slide-up" style={{ marginBottom: '1.2rem', color: '#7c3aed', fontWeight: 500, fontSize: '1.08rem' }}>
             This is only for a basic demo, please <a href="#contact-footer" style={{ color: '#2563eb', textDecoration: 'underline', cursor: 'pointer' }} onClick={e => { e.preventDefault(); document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' }); }}>reach out</a> for a full demo.
           </div>
@@ -191,23 +225,29 @@ ${msg.compliance.policyViolated ? `Policy violated: ${msg.compliance.policyReaso
                 </div>
               </div>
             ))}
-            {loading && (
+            {loadingStep === 1 && (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', margin: '1.1rem 0' }}>
                 <div style={{ width: 22, height: 22, border: '3px solid #c7d2fe', borderTop: '3px solid #7c3aed', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-                <span style={{ color: '#7c3aed', fontWeight: 600, fontSize: '1.08rem' }}>Thinking...</span>
+                <span style={{ color: '#7c3aed', fontWeight: 600, fontSize: '1.08rem' }}>Choosing the Best Model...</span>
+              </div>
+            )}
+            {loadingStep === 2 && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', margin: '1.1rem 0' }}>
+                <div style={{ width: 22, height: 22, border: '3px solid #c7d2fe', borderTop: '3px solid #7c3aed', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                <span style={{ color: '#7c3aed', fontWeight: 600, fontSize: '1.08rem' }}>Generating Compliance Report...</span>
               </div>
             )}
           </div>
         </div>
         {/* Prompts column */}
-        <div style={{ flex: 1, minWidth: 220, paddingLeft: isMobile ? 0 : '2rem', display: 'flex', flexDirection: 'column', gap: '1.2rem', maxHeight: isMobile ? 220 : 320, overflowY: 'auto', marginTop: isMobile ? '1.5rem' : '2.5rem' }}>
+        <div style={{ flex: 1, minWidth: 220, paddingLeft: isMobile ? 0 : '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.2rem', maxHeight: isMobile ? 220 : 520, overflowY: 'auto', marginTop: isMobile ? '1.5rem' : '2.5rem' }}>
           <div style={{ fontWeight: 700, fontSize: '1.13rem', color: '#7c3aed', marginBottom: '0.7rem', letterSpacing: '0.01em' }}>Demo Prompts</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
             {(isMobile ? DEMO_EXAMPLES.slice(0, 3) : DEMO_EXAMPLES).map((ex, i) => (
               <button
                 key={i}
                 onClick={() => handlePrompt(i)}
-                disabled={loading}
+                disabled={loadingStep !== 0}
                 style={{
                   background: '#f3f0ff',
                   border: '1.5px solid #ece6fa',
@@ -217,12 +257,22 @@ ${msg.compliance.policyViolated ? `Policy violated: ${msg.compliance.policyReaso
                   fontWeight: 600,
                   fontSize: '1.05rem',
                   textAlign: 'left',
-                  cursor: loading ? 'not-allowed' : 'pointer',
+                  cursor: loadingStep !== 0 ? 'not-allowed' : 'pointer',
                   boxShadow: '0 1px 6px 0 rgba(124,58,237,0.04)',
                   transition: 'background 0.2s',
                   overflow: 'hidden',
                   whiteSpace: 'nowrap',
                   textOverflow: 'ellipsis',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.whiteSpace = 'normal';
+                  (e.currentTarget as HTMLButtonElement).style.overflow = 'visible';
+                  (e.currentTarget as HTMLButtonElement).style.textOverflow = 'unset';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.whiteSpace = 'nowrap';
+                  (e.currentTarget as HTMLButtonElement).style.overflow = 'hidden';
+                  (e.currentTarget as HTMLButtonElement).style.textOverflow = 'ellipsis';
                 }}
               >{ex.prompt}</button>
             ))}
