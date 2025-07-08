@@ -38,7 +38,7 @@ const Community: React.FC = () => (
   <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0' }}>
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Community</h1>
     <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
-      Join the OpenRouter community to connect, learn, and contribute. Here are some ways to get involved:
+      Join the Guidera community to connect, learn, and contribute. Here are some ways to get involved:
     </p>
     <table style={{ width: '100%', borderCollapse: 'collapse', margin: '1.5em 0', fontSize: '1.05rem' }}>
       <thead>
@@ -58,12 +58,12 @@ const Community: React.FC = () => (
         </tr>
         <tr>
           <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Email Support</td>
-          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}><a href="mailto:support@openrouter.com" style={{ color: '#2563eb' }}>support@openrouter.com</a></td>
+          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}><a href="mailto:support@guidera.com" style={{ color: '#2563eb' }}>support@guidera.com</a></td>
         </tr>
       </tbody>
     </table>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Join Discord Example</h2>
-    {codeBlock(`window.open('https://discord.gg/openrouter', '_blank');`)}
+    {codeBlock(`window.open('https://discord.gg/guidera', '_blank');`)}
   </div>
 );
 

@@ -38,7 +38,7 @@ const UseCases: React.FC = () => (
   <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0' }}>
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Use Cases</h1>
     <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
-      OpenRouter powers a wide range of applications, from chatbots to enterprise automation. Here are some common use cases:
+      Guidera powers a wide range of applications, from chatbots to enterprise automation. Here are some common use cases:
     </p>
     <table style={{ width: '100%', borderCollapse: 'collapse', margin: '1.5em 0', fontSize: '1.05rem' }}>
       <thead>
@@ -76,9 +76,9 @@ const UseCases: React.FC = () => (
     </table>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Example: Chatbot Integration</h2>
     {codeBlock(`const response = await client.chat({
-  model: 'openrouter-llm',
+  model: 'guidera-llm',
   messages: [
-    { role: 'user', content: 'How can I use OpenRouter in my app?' }
+    { role: 'user', content: 'How can I use Guidera in my app?' }
   ]
 });`)}
   </div>

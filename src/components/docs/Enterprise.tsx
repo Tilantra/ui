@@ -38,7 +38,7 @@ const Enterprise: React.FC = () => (
   <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0' }}>
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Enterprise Features</h1>
     <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
-      OpenRouter provides advanced features for enterprise customers, including key management, compliance, and analytics.
+    Guidera provides advanced features for enterprise customers, including key management, compliance, and analytics.
     </p>
     <table style={{ width: '100%', borderCollapse: 'collapse', margin: '1.5em 0', fontSize: '1.05rem' }}>
       <thead>

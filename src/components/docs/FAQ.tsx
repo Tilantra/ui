@@ -39,11 +39,11 @@ const FAQ: React.FC = () => (
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Frequently Asked Questions</h1>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>How do I install the SDK?</h2>
     <p>Install using npm:</p>
-    {codeBlock('npm install openrouter')}
+    {codeBlock('npm install guidera')}
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>How do I authenticate?</h2>
     <p>Use your API key in the client initialization:</p>
-    {codeBlock(`import OpenRouter from 'openrouter';
-const client = new OpenRouter({ apiKey: 'YOUR_API_KEY' });`)}
+    {codeBlock(`import Guidera from 'guidera';
+const client = new Guidera({ apiKey: 'YOUR_API_KEY' });`)}
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Common Questions</h2>
     <table style={{ width: '100%', borderCollapse: 'collapse', margin: '1.5em 0', fontSize: '1.05rem' }}>
       <thead>
@@ -63,11 +63,11 @@ const client = new OpenRouter({ apiKey: 'YOUR_API_KEY' });`)}
         </tr>
         <tr>
           <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Where can I get support?</td>
-          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Email support@openrouter.com or join our Discord.</td>
+          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Email support@tilantra.com or join our Discord.</td>
         </tr>
         <tr>
           <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Can I use this in production?</td>
-          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Yes, OpenRouter is production-ready and used by many teams.</td>
+          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Yes, Guidera is production-ready and used by many teams.</td>
         </tr>
       </tbody>
     </table>

@@ -92,7 +92,13 @@ const Footer: React.FC = () => {
               </svg>
               +91 7042644614
             </li>
-            <li style={{ color: '#374151', margin: 0 }}>Bangalore, IN</li>
+            <li style={{ color: '#374151', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21s-6-5.686-6-10A6 6 0 0 1 18 11c0 4.314-6 10-6 10z" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="11" r="2.5" stroke="#2563eb" strokeWidth="2"/>
+              </svg>
+              Bangalore, IN
+            </li>
             <li>
               <a href="https://www.linkedin.com/company/tilantra" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', color: '#2563eb', textDecoration: 'none', fontWeight: 400, fontSize: '1.08rem', gap: '0.5rem' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" style={{ marginRight: 6 }}>

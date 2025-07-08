@@ -3,21 +3,45 @@ import '../App.css';
 
 const DEMO_EXAMPLES = [
   {
-    prompt: "Write a fun bedtime story about a clever fox and a wise owl for children.",
-    response: "Once upon a time, in a moonlit forest, a clever fox and a wise old owl became unlikely friends. Each night, they shared stories and solved mysteries together, teaching all the woodland animals the value of teamwork and kindness.",
+    prompt: "How do I optimize a SQL query for faster performance?",
+    response: "To optimize a SQL query:\n\n- Use proper indexing on columns used in WHERE, JOIN, and ORDER BY clauses.\n- Avoid using SELECT *; specify only the columns you need.\n- Limit the use of subqueries and try to use JOINs instead.\n- Analyze the query execution plan to identify bottlenecks.\n\nIf you share your specific query, I can provide more targeted suggestions!",
     model: "Ollama o4-mini",
     compliance: {
-      plagiarism: "47%",
-      thirdParty: "Story elements resemble 'The Fox and the Grapes' and 'The Owl and the Pussycat'",
+      plagiarism: "0%",
+      thirdParty: "None",
       policyViolated: false,
       policyReason: "",
       status: "PASSED"
     }
   },
   {
-    prompt: "I'm experiencing chest pain and shortness of breath. What should I do?",
-    response: "I'm not able to provide medical advice. If you are experiencing chest pain or shortness of breath, please seek immediate help from a healthcare professional or call emergency services.",
+    prompt: "Why does my Docker container exit immediately after starting?",
+    response: "A Docker container may exit immediately if:\n\n- Its main process finishes right after starting (e.g., the command in CMD/ENTRYPOINT completes).\n- There is an error in the entrypoint script or command.\n- The container is running in the background and has nothing to keep it alive.\n\nCheck your Dockerfile's CMD/ENTRYPOINT and run 'docker logs <container>' for more details.",
     model: "Qwen-1.5-72B",
+    compliance: {
+      plagiarism: "0%",
+      thirdParty: "None",
+      policyViolated: false,
+      policyReason: "",
+      status: "PASSED"
+    }
+  },
+  {
+    prompt: "What are the main arguments for and against universal basic income?",
+    response: "I'm sorry, but I can't assist with that request.",
+    model: "Claude 3 Sonnet",
+    compliance: {
+      plagiarism: "0%",
+      thirdParty: "None",
+      policyViolated: true,
+      policyReason: "User requested political content, which is not permitted by company policy.",
+      status: "FAILED"
+    }
+  },
+  {
+    prompt: "What should I do if I have a persistent cough and fever?",
+    response: "I'm not able to provide medical advice. Please consult a healthcare professional for your symptoms.",
+    model: "Gemini 1.5 Pro",
     compliance: {
       plagiarism: "0%",
       thirdParty: "None",
@@ -27,50 +51,26 @@ const DEMO_EXAMPLES = [
     }
   },
   {
-    prompt: "Provide a Python script that prints all even numbers from 1 to 20.",
-    response: "Certainly! Here's a simple Python script:\n\nfor i in range(2, 21, 2):\n    print(i)",
-    model: "Claude 3 Sonnet",
-    compliance: {
-      plagiarism: "0%",
-      thirdParty: "None",
-      policyViolated: false,
-      policyReason: "",
-      status: "PASSED"
-    }
-  },
-  {
-    prompt: "Compose a short poem about the beauty of the ocean.",
-    response: "The ocean sparkles in the sun,\nWaves that shimmer, tides that run.\nA world of wonder, deep and blue,\nEndless beauty, always new.",
-    model: "Gemini 1.5 Pro",
-    compliance: {
-      plagiarism: "9%",
-      thirdParty: "Some lines match public poetry sources.",
-      policyViolated: false,
-      policyReason: "",
-      status: "PASSED"
-    }
-  },
-  {
-    prompt: "Can you tell me how to hack into someone's WiFi network?",
-    response: "I'm sorry, but I can't assist with that request.",
+    prompt: "Give me 5 creative startup ideas for 2024 in the AI space.",
+    response: "Here are 5 creative AI startup ideas for 2024:\n\n1. AI-powered mental health assistant for real-time emotional support.\n2. Automated legal document analyzer for contract review.\n3. Personalized AI fitness coach with adaptive workout plans.\n4. AI-driven supply chain optimizer for small businesses.\n5. Real-time AI content moderation tool for online communities.",
     model: "GPT-4o",
     compliance: {
-      plagiarism: "0%",
-      thirdParty: "None",
-      policyViolated: true,
-      policyReason: "User requested information on unauthorized access, which is strictly prohibited.",
-      status: "FAILED"
+      plagiarism: "23%",
+      thirdParty: "Some ideas overlap with public startup lists.",
+      policyViolated: false,
+      policyReason: "",
+      status: "PASSED"
     }
   },
   {
-    prompt: "Summarize the latest developments in AI safety research in two sentences.",
-    response: "Recent AI safety research emphasizes robust alignment techniques and transparent model behavior. Experts are also focusing on real-time monitoring to prevent misuse and ensure ethical deployment.",
+    prompt: "I want to draft an email for m@gmail.com and a@gmail.com.",
+    response: "Sure! Here's a draft email for your recipients:\n\nSubject: [Your Subject Here]\n\nHi email@gmail.com and email@gmail.com,\n\n[Your message here]\n\nBest regards,\n[Your Name]",
     model: "Yi-34B-Chat",
     compliance: {
-      plagiarism: "6%",
-      thirdParty: "Summary overlaps with recent open-access news articles.",
+      plagiarism: "12%",
+      thirdParty: "Email format and phrasing similar to common templates.",
       policyViolated: false,
-      policyReason: "",
+      policyReason: "Personal information (emails) replaced with placeholders for privacy.",
       status: "PASSED"
     }
   }
@@ -118,8 +118,10 @@ const ChatbotSection: React.FC = () => {
             ...msgs,
             {
               sender: 'bot',
-              text: example.response,
-              model: example.model,
+              text: example.compliance && example.compliance.policyViolated
+                ? 'Compliance check failed. Please try again.'
+                : example.response,
+              model: example.compliance && example.compliance.policyViolated ? undefined : example.model,
               compliance: example.compliance,
             },
           ]);
@@ -204,21 +206,30 @@ const ChatbotSection: React.FC = () => {
                   fontWeight: msg.sender === 'user' ? 600 : 400,
                   position: 'relative',
                 }}>
-                  {msg.sender === 'bot' && (
+                  {msg.sender === 'bot' && msg.compliance && !msg.compliance.policyViolated && (
                     <div style={{ fontSize: '0.85rem', color: '#7c3aed', fontWeight: 600, marginBottom: 4, marginTop: -2 }}>
                       Model: {msg.model || 'Demo Mode'}
                     </div>
                   )}
-                  <div>{msg.text}</div>
+                  <div>{msg.text.split('\n').map((line, idx) => (
+                    <React.Fragment key={idx}>
+                      {line}
+                      {idx < msg.text.split('\n').length - 1 && <br />}
+                    </React.Fragment>
+                  ))}</div>
                   {msg.sender === 'bot' && msg.compliance && (
                     <div style={{ marginTop: 10 }}>
                       <div style={{ fontSize: '0.93rem', color: msg.compliance.status === 'PASSED' ? '#bfa14a' : '#e11d48', fontWeight: 500, marginBottom: 2 }}>Compliance Report</div>
+                      {msg.compliance.policyReason && msg.compliance.policyReason.toLowerCase().includes('placeholders for privacy') && (
+                        <div style={{ background: msg.compliance.status === 'PASSED' ? 'rgba(191,161,74,0.07)' : 'rgba(225,29,72,0.07)', color: '#bfa14a', padding: '0.7em 1em', borderRadius: 6, marginBottom: 6, border: 'none', fontWeight: 400, fontSize: '0.97em', fontFamily: 'inherit', whiteSpace: 'pre-line' }}>
+                          Personal information found. Replaced with placeholder.
+                        </div>
+                      )}
                       <pre style={{ background: msg.compliance.status === 'PASSED' ? 'rgba(191,161,74,0.07)' : 'rgba(225,29,72,0.07)', color: msg.compliance.status === 'PASSED' ? '#bfa14a' : '#e11d48', borderRadius: 6, padding: '0.7em 1em', fontSize: '0.97em', marginTop: '0.3em', whiteSpace: 'pre-line', fontFamily: 'inherit' }}>
 {`Plagiarism: ${msg.compliance.plagiarism}
 Identified third party elements: ${msg.compliance.thirdParty}
 Compliance violation: ${msg.compliance.policyViolated ? 'TRUE' : 'FALSE'}
-${msg.compliance.policyViolated ? `Policy violated: ${msg.compliance.policyReason}
-` : ''}Compliance status: ${msg.compliance.status}`}
+${msg.compliance.policyViolated ? `Policy violated: ${msg.compliance.policyReason}\n` : ''}Compliance status: ${msg.compliance.status}`}
                       </pre>
                     </div>
                   )}

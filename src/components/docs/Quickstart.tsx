@@ -55,15 +55,15 @@ const Quickstart: React.FC = () => {
           Welcome! This is a placeholder for the Quickstart documentation. Replace this with your own getting started instructions.
         </p>
         <h2 id="install" style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Install</h2>
-        {codeBlock('npm install openrouter')}
+        {codeBlock('npm install guidera')}
         <h2 id="api-key" style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Get an API Key</h2>
         <p style={{ marginBottom: 18 }}>Sign up and create an API key from your dashboard.</p>
         <h2 id="usage" style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Usage Example</h2>
-        {codeBlock(`import OpenRouter from 'openrouter';
+        {codeBlock(`import Guidera from 'guidera';
 
-const client = new OpenRouter({ apiKey: 'YOUR_API_KEY' });
+const client = new Guidera({ apiKey: 'YOUR_API_KEY' });
 const response = await client.chat({
-  model: 'openrouter-model',
+  model: 'guidera-model',
   messages: [
     { role: 'user', content: 'Hello!' }
   ]

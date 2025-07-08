@@ -38,7 +38,7 @@ const Features: React.FC = () => (
   <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0' }}>
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Features</h1>
     <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
-      OpenRouter offers a robust set of features for developers and enterprises. Explore the highlights below.
+      Guidera offers a robust set of features for developers and enterprises. Explore the highlights below.
     </p>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Core Features</h2>
     <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
@@ -60,10 +60,10 @@ const Features: React.FC = () => (
     </ul>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Feature Usage Example</h2>
     {codeBlock(`const response = await client.chat({
-  model: 'openrouter-llm',
+  model: 'guidera-llm',
   tools: ['web-search'],
   messages: [
-    { role: 'user', content: 'Find the latest news on OpenRouter.' }
+    { role: 'user', content: 'Find the latest news on Guidera.' }
   ]
 });`)}
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Feature Availability</h2>

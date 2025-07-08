@@ -38,7 +38,7 @@ const Models: React.FC = () => (
   <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0' }}>
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Supported Models & Pricing</h1>
     <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
-      OpenRouter supports 40+ models from leading providers. Choose the best for your use case—compare context, cost, and features below.
+      Guidera supports 40+ models from leading providers. Choose the best for your use case—compare context, cost, and features below.
     </p>
     <table style={{ width: '100%', borderCollapse: 'collapse', margin: '1.5em 0', fontSize: '1.05rem' }}>
       <thead>
@@ -53,11 +53,11 @@ const Models: React.FC = () => (
       </thead>
       <tbody>
         <tr>
-          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>openrouter-llm</td>
+          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>guidera-llm</td>
           <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>128K</td>
           <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>$0.0004</td>
           <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>$0.0008</td>
-          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>OpenRouter</td>
+          <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Guidera</td>
           <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Routing, Compliance, Cost Guardrails</td>
         </tr>
         <tr>

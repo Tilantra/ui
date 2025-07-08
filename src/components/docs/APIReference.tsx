@@ -38,7 +38,7 @@ const APIReference: React.FC = () => (
   <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0' }}>
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>API Reference</h1>
     <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
-      The OpenRouter API provides endpoints for chat, completions, and more. All requests require your API key in the Authorization header.
+      The Guidera API provides endpoints for chat, completions, and more. All requests require your API key in the Authorization header.
     </p>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Endpoints</h2>
     <table style={{ width: '100%', borderCollapse: 'collapse', margin: '1.5em 0', fontSize: '1.05rem' }}>
@@ -68,9 +68,9 @@ const APIReference: React.FC = () => (
       </tbody>
     </table>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Example: Chat Completion</h2>
-    {codeBlock(`curl -X POST https://api.openrouter.com/v1/chat/completions \
+    {codeBlock(`curl -X POST https://api.guidera.com/v1/chat/completions \
   -H "Authorization: Bearer YOUR_API_KEY" \
-  -d '{"model": "openrouter-llm", "messages": [{"role": "user", "content": "Hello!"}]}'`)}
+  -d '{"model": "guidera-llm", "messages": [{"role": "user", "content": "Hello!"}]}'`)}
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Parameters</h2>
     <table style={{ width: '100%', borderCollapse: 'collapse', margin: '1.5em 0', fontSize: '1.05rem' }}>
       <thead>

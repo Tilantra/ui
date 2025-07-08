@@ -38,7 +38,7 @@ const Principles: React.FC = () => (
   <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0' }}>
     <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Principles</h1>
     <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
-      OpenRouter is built on a foundation of modularity, cost efficiency, and compliance. Here are our core principles:
+      Guidera is built on a foundation of modularity, cost efficiency, and compliance. Here are our core principles:
     </p>
     <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
       <li><strong>Modularity:</strong> Plug in new models, providers, and rules without code changes.</li>
@@ -48,7 +48,7 @@ const Principles: React.FC = () => (
       <li><strong>Enterprise Security:</strong> All API calls are authenticated, data is encrypted, and logs are available for audit.</li>
     </ul>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Configuration Example</h2>
-    {codeBlock(`const client = new OpenRouter({
+    {codeBlock(`const client = new Guidera({
   apiKey: 'YOUR_API_KEY',
   compliance: true,
   providers: ['openai', 'anthropic'],

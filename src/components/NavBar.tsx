@@ -12,11 +12,21 @@ const scrollToId = (id: string) => {
   }
 };
 
+// Helper: section ids for NavBar
+const SECTION_IDS = {
+  about: 'what-we-are',
+  features: 'our-features',
+  contact: 'contact-footer',
+  hero: 'hero-section',
+};
+
 const NavBar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll);
@@ -27,6 +37,17 @@ const NavBar: React.FC = () => {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
+
+  // After navigation, scroll to the pending section if set
+  useEffect(() => {
+    if (pendingScroll) {
+      // Wait for DOM to update
+      setTimeout(() => {
+        scrollToId(pendingScroll);
+        setPendingScroll(null);
+      }, 80);
+    }
+  }, [location, pendingScroll]);
 
   return (
     <nav className="tilantra-navbar" style={{
@@ -48,8 +69,9 @@ const NavBar: React.FC = () => {
         <a href="#hero-section" onClick={e => {
           e.preventDefault();
           if (location.pathname === "/") {
-            scrollToId('hero-section');
+            scrollToId(SECTION_IDS.hero);
           } else {
+            setPendingScroll(SECTION_IDS.hero);
             navigate("/");
           }
         }}>
@@ -64,22 +86,42 @@ const NavBar: React.FC = () => {
       </button>
       {/* Nav links */}
       <div className={`navbar-links${mobileMenuOpen ? ' open' : ''}`} style={{ display: 'flex', gap: '2.8rem', alignItems: 'center' }}>
-        <Link to="/" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
-          onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
-          onMouseOut={e => (e.currentTarget.style.color = '#222')}
-        >Home</Link>
         <a href="#what-we-are" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
-          onClick={e => { e.preventDefault(); scrollToId('what-we-are'); }}
+          onClick={e => {
+            e.preventDefault();
+            if (location.pathname === "/") {
+              scrollToId(SECTION_IDS.about);
+            } else {
+              setPendingScroll(SECTION_IDS.about);
+              navigate("/");
+            }
+          }}
           onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
           onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >About</a>
         <a href="#our-features" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
-          onClick={e => { e.preventDefault(); scrollToId('our-features'); }}
+          onClick={e => {
+            e.preventDefault();
+            if (location.pathname === "/") {
+              scrollToId(SECTION_IDS.features);
+            } else {
+              setPendingScroll(SECTION_IDS.features);
+              navigate("/");
+            }
+          }}
           onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
           onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >Features</a>
         <a href="#contact-footer" style={{ color: '#222', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}
-          onClick={e => { e.preventDefault(); scrollToId('contact-footer'); }}
+          onClick={e => {
+            e.preventDefault();
+            if (location.pathname === "/") {
+              scrollToId(SECTION_IDS.contact);
+            } else {
+              setPendingScroll(SECTION_IDS.contact);
+              navigate("/");
+            }
+          }}
           onMouseOver={e => (e.currentTarget.style.color = '#2563eb')}
           onMouseOut={e => (e.currentTarget.style.color = '#222')}
         >Contact</a>
@@ -92,7 +134,14 @@ const NavBar: React.FC = () => {
           Docs
         </Link>
         <button
-          onClick={() => scrollToId('tilantra-assistant')}
+          onClick={() => {
+            if (location.pathname === "/") {
+              scrollToId('tilantra-assistant');
+            } else {
+              setPendingScroll('tilantra-assistant');
+              navigate("/");
+            }
+          }}
           style={{ marginLeft: '1.2rem', background: '#2563eb', color: '#fff', border: 'none', borderRadius: '2rem', padding: '0.5rem 1.4rem', fontWeight: 700, fontSize: '1.05rem', cursor: 'pointer', boxShadow: '0 4px 16px rgba(37, 99, 235, 0.08)', transition: 'background 0.2s, box-shadow 0.2s' }}
         >
           Get a Demo
