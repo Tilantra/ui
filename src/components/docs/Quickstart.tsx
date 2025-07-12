@@ -1,4 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDocsOnThisPage } from '../Docs';
+
+const PURPLE = '#7c3aed';
+const BLUE = '#2563eb';
+const headingScrollMargin = { scrollMarginTop: 64 };
+
+const ON_THIS_PAGE = [
+  { label: 'Overview', anchor: 'quickstart-overview' },
+  { label: 'What is Model Swap Router?', anchor: 'quickstart-what' },
+  { label: 'Key Capabilities', anchor: 'quickstart-capabilities' },
+  { label: 'Getting Started', anchor: 'quickstart-getting-started' },
+  { label: 'Why Use Model Swap Router?', anchor: 'quickstart-why' },
+  { label: 'SDK Usage Example', anchor: 'quickstart-sdk-example' },
+  { label: 'Customization Options', anchor: 'quickstart-customization' },
+  { label: 'Support & Contact', anchor: 'quickstart-support' },
+];
 
 const codeBlock = (code: string) => (
   <div style={{
@@ -18,7 +34,7 @@ const codeBlock = (code: string) => (
         top: 10,
         right: 12,
         background: '#fff',
-        color: '#2563eb',
+        color: BLUE,
         border: '1px solid #eaecef',
         borderRadius: 4,
         padding: '3px 12px',
@@ -35,70 +51,60 @@ const codeBlock = (code: string) => (
 );
 
 const Quickstart: React.FC = () => {
-  return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      maxWidth: 1200,
-      margin: '0 auto',
-      padding: '2.5rem 1rem 2.5rem 1rem',
-      background: 'transparent',
-      minHeight: '100vh',
-      boxSizing: 'border-box',
-      width: '100%',
-      gap: 32,
-    }}>
-      {/* Main Content */}
-      <div style={{ flex: 3, minWidth: 0, wordBreak: 'break-word', paddingRight: 0 }}>
-        <h1 style={{ color: '#2563eb', fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Quickstart</h1>
-        <p style={{ fontSize: '1.13rem', marginBottom: 28, color: '#222' }}>
-          Welcome! This is a placeholder for the Quickstart documentation. Replace this with your own getting started instructions.
-        </p>
-        <h2 id="install" style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Install</h2>
-        {codeBlock('npm install guidera')}
-        <h2 id="api-key" style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Get an API Key</h2>
-        <p style={{ marginBottom: 18 }}>Sign up and create an API key from your dashboard.</p>
-        <h2 id="usage" style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Usage Example</h2>
-        {codeBlock(`import Guidera from 'guidera';
+  const { setLinks } = useDocsOnThisPage();
+  useEffect(() => {
+    setLinks(ON_THIS_PAGE);
+    return () => setLinks([]);
+  }, [setLinks]);
 
-const client = new Guidera({ apiKey: 'YOUR_API_KEY' });
-const response = await client.chat({
-  model: 'guidera-model',
-  messages: [
-    { role: 'user', content: 'Hello!' }
-  ]
-});
-console.log(response.choices[0].message.content);`)}
-        <h2 id="next-steps" style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Next Steps</h2>
-        <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
-          <li>Read the <a href="/docs/api-reference" style={{ color: '#2563eb' }}>API Reference</a></li>
-          <li>See <a href="/docs/models" style={{ color: '#2563eb' }}>Supported Models</a></li>
-          <li>Check <a href="/docs/faq" style={{ color: '#2563eb' }}>FAQ</a></li>
-        </ul>
-      </div>
-      {/* Right Sidebar (On this page) */}
-      <div style={{
-        flex: 1,
-        minWidth: 220,
-        maxWidth: 260,
-        paddingLeft: 24,
-        borderLeft: '1px solid #ece6fa',
-        fontSize: '0.98rem',
-        color: '#222',
-        position: 'sticky',
-        top: 40,
-        alignSelf: 'flex-start',
-        height: 'fit-content',
-        background: 'transparent',
-        display: 'block',
-      }}>
-        <div style={{ fontWeight: 700, marginBottom: 12, color: '#2563eb' }}>On this page</div>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          <li><a href="#install" style={{ color: '#2563eb', textDecoration: 'none' }}>Install</a></li>
-          <li><a href="#api-key" style={{ color: '#2563eb', textDecoration: 'none' }}>Get an API Key</a></li>
-          <li><a href="#usage" style={{ color: '#2563eb', textDecoration: 'none' }}>Usage Example</a></li>
-          <li><a href="#next-steps" style={{ color: '#2563eb', textDecoration: 'none' }}>Next Steps</a></li>
-        </ul>
+  return (
+    <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0', background: '#fff' }}>
+      <h1 id="quickstart-overview" style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Quickstart</h1>
+      <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
+        Welcome! This guide will help you get started with Model Swap Router, an enterprise-grade platform for intelligent, compliant, and cost-optimized access to the world’s best LLMs.
+      </p>
+      <h2 id="quickstart-what" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>What is Model Swap Router?</h2>
+      <p style={{ fontSize: '1.07rem', marginBottom: 18 }}>
+        Model Swap Router is an enterprise-grade platform for intelligent, compliant, and cost-optimized access to the world’s best LLMs. It is designed for reliability, security, and seamless integration into your workflows.
+      </p>
+      <h2 id="quickstart-capabilities" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Key Capabilities</h2>
+      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+        <li>Automatic, intelligent model routing (ARMS)</li>
+        <li>Enterprise-grade compliance (PII, policy, copyright, and more)</li>
+        <li>Lightning-fast prompt caching</li>
+        <li>Structured, machine-readable outputs</li>
+        <li>Seamless tool calling and message transformation</li>
+        <li>Unmatched uptime and reliability</li>
+        <li>Zero completion insurance (never leave your users without a response)</li>
+        <li>Self-service API key provisioning</li>
+      </ul>
+      <h2 id="quickstart-getting-started" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Getting Started</h2>
+      <ol style={{ margin: '0 0 24px 24px', color: '#222', fontSize: '1.05rem', lineHeight: 1.7 }}>
+        <li><b>Install the SDK</b>{codeBlock('pip install guidera')}</li>
+        <li><b>Initialize the Client</b>{codeBlock('import guidera\nsdk_key = "YOUR_SDK_KEY"\nguidera_client = guidera.Client()')}</li>
+        <li><b>Generate a Response</b>{codeBlock('response = guidera_client.generate(\n    prompt="write a small python code for the first n times of the 2\'s table.",\n    prefs={},\n    cp_tradeoff_parameter=0,  # optional, defaults to 0.7\n    compliance_enabled=True   # optional, defaults to False\n)\nprint(response)')}</li>
+      </ol>
+      <h2 id="quickstart-why" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Why Use Model Swap Router?</h2>
+      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+        <li><b>No model lock-in:</b> Instantly access OpenAI, Anthropic, Google, Mistral, and more.</li>
+        <li><b>Enterprise compliance:</b> Enable with a single flag.</li>
+        <li><b>Cost-performance control:</b> Tune with <code>cp_tradeoff_parameter</code>.</li>
+      </ul>
+      <h2 id="quickstart-sdk-example" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>SDK Usage Example</h2>
+      <p style={{ fontSize: '1.07rem', marginBottom: 18 }}><b>Example: Generating a Creative Story</b></p>
+      {codeBlock('import guidera\nsdk_key = "YOUR_SDK_KEY"\nguidera_client = guidera.Client()\n\nresponse = guidera_client.generate(\n    prompt="write a short story about a cat and a polar bear",\n    prefs={},\n    cp_tradeoff_parameter=0.8,\n    compliance_enabled=True\n)\nprint(response)')}
+      <h2 id="quickstart-customization" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Customization Options</h2>
+      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+        <li><b>prefs:</b> Pass user or company preferences as a dictionary.</li>
+        <li><b>cp_tradeoff_parameter:</b> Control the balance between cost and performance (0 = lowest cost, 1 = highest performance).</li>
+        <li><b>compliance_enabled:</b> Enable or disable compliance checks per request.</li>
+      </ul>
+      <h2 id="quickstart-support" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Support & Contact</h2>
+      <p style={{ fontSize: '1.07rem', marginBottom: 18 }}>
+        For integration help, feature requests, or support, contact the product team or refer to in-code docstrings and comments.
+      </p>
+      <div style={{ marginTop: 36, color: '#444', fontSize: '1.05rem' }}>
+        <b>Model Swap Router: The future of LLM integration, today.</b>
       </div>
     </div>
   );

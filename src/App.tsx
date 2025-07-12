@@ -25,15 +25,11 @@ import Features from './components/docs/Features';
 import APIReference from './components/docs/APIReference';
 import UseCases from './components/docs/UseCases';
 import Community from './components/docs/Community';
-import PrivacyAndLogging from './components/docs/PrivacyAndLogging';
-import ModelRouting from './components/docs/ModelRouting';
-import ProviderRouting from './components/docs/ProviderRouting';
 import PromptCaching from './components/docs/PromptCaching';
 import StructuredOutputs from './components/docs/StructuredOutputs';
 import ToolCalling from './components/docs/ToolCalling';
 import MessageTransforms from './components/docs/MessageTransforms';
 import UptimeOptimization from './components/docs/UptimeOptimization';
-import WebSearch from './components/docs/WebSearch';
 import ZeroCompletionInsurance from './components/docs/ZeroCompletionInsurance';
 import ProvisioningAPIKeys from './components/docs/ProvisioningAPIKeys';
 import Overview from './components/docs/Overview';
@@ -42,6 +38,8 @@ import Limits from './components/docs/Limits';
 import Authentication from './components/docs/Authentication';
 import Parameters from './components/docs/Parameters';
 import Errors from './components/docs/Errors';
+import ComplianceEngine from './components/docs/ComplianceEngine';
+import ArmsModel from './components/docs/armsModel';
 
 function App() {
   return (
@@ -70,15 +68,13 @@ function App() {
           <Route path="principles" element={<Principles />} />
           <Route path="models" element={<Models />} />
           <Route path="enterprise" element={<Enterprise />} />
-          <Route path="privacy-and-logging" element={<PrivacyAndLogging />} />
-          <Route path="model-routing" element={<ModelRouting />} />
-          <Route path="provider-routing" element={<ProviderRouting />} />
+          <Route path="arms-routing" element={<ArmsModel />}/>
+          <Route path="compliance-engine" element={<ComplianceEngine />} />
           <Route path="prompt-caching" element={<PromptCaching />} />
           <Route path="structured-outputs" element={<StructuredOutputs />} />
           <Route path="tool-calling" element={<ToolCalling />} />
           <Route path="message-transforms" element={<MessageTransforms />} />
           <Route path="uptime-optimization" element={<UptimeOptimization />} />
-          <Route path="web-search" element={<WebSearch />} />
           <Route path="zero-completion-insurance" element={<ZeroCompletionInsurance />} />
           <Route path="provisioning-api-keys" element={<ProvisioningAPIKeys />} />
           <Route path="overview" element={<Overview />} />
