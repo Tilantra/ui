@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/chatbot/*"
+  to = "https://guidera-chatbot.netlify.app/:splat"
+  status = 200 
