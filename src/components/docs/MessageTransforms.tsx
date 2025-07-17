@@ -57,7 +57,7 @@ const MessageTransforms: React.FC = () => {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0', background: '#fff' }}>
       <h1 id="message-transforms-overview" style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Message Transforms</h1>
-      <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
+    <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
         Automated prompt optimization and message transforms ensure higher quality outputs, fewer errors, and compliance with your requirements—no prompt engineering expertise needed.
       </p>
       <h2 id="message-transforms-problem" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>The Problem</h2>
@@ -87,13 +87,13 @@ const MessageTransforms: React.FC = () => {
 # The system will automatically optimize the prompt for best results.`)}
       </div>
       <h2 id="message-transforms-benefits" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Benefits</h2>
-      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+    <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
         <li>Higher quality outputs.</li>
         <li>Fewer errors and compliance issues.</li>
         <li>No need to be a prompt engineering expert.</li>
-      </ul>
-    </div>
-  );
+    </ul>
+  </div>
+);
 };
 
 export default MessageTransforms; 

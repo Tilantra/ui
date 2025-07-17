@@ -57,7 +57,7 @@ const StructuredOutputs: React.FC = () => {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0', background: '#fff' }}>
       <h1 id="structured-outputs-overview" style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Structured Outputs</h1>
-      <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
+    <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
         Predictable, structured responses make integration easy and reliable. Every response includes the generated text, model used, cost-performance summary, and (if enabled) a compliance report.
       </p>
       <h2 id="structured-outputs-problem" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>The Problem</h2>
@@ -93,13 +93,13 @@ const StructuredOutputs: React.FC = () => {
 }`)}
       </div>
       <h2 id="structured-outputs-benefits" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Benefits</h2>
-      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+    <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
         <li>Easy integration into your workflows.</li>
         <li>No surprises—always know what to expect.</li>
         <li>Real-time feedback for your users.</li>
-      </ul>
-    </div>
-  );
+    </ul>
+  </div>
+);
 };
 
 export default StructuredOutputs; 

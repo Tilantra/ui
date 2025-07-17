@@ -23,7 +23,7 @@ const PromptCaching: React.FC = () => {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0', background: '#fff' }}>
       <h1 id="prompt-caching-overview" style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Prompt Caching</h1>
-      <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
+    <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
         Intelligent prompt caching reduces latency and cost for frequent prompts by serving instant responses for eligible requests—without ever risking privacy or compliance.
       </p>
       <h2 id="prompt-caching-problem" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>The Problem</h2>
@@ -44,13 +44,13 @@ const PromptCaching: React.FC = () => {
         <li><b>Cache Retrieval:</b> On repeat requests, cached responses are returned instantly.</li>
       </ol>
       <h2 id="prompt-caching-benefits" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Benefits</h2>
-      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+    <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
         <li>Lightning-fast responses for common tasks.</li>
         <li>Lower compute costs.</li>
         <li>No risk of leaking sensitive or unique data.</li>
-      </ul>
-    </div>
-  );
+    </ul>
+  </div>
+);
 };
 
 export default PromptCaching; 

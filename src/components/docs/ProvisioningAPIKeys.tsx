@@ -23,7 +23,7 @@ const ProvisioningAPIKeys: React.FC = () => {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0', background: '#fff' }}>
       <h1 id="provisioning-api-keys-overview" style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Provisioning API Keys</h1>
-      <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
+    <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
         Secure, self-service API key management makes onboarding, access control, and security effortless for users and teams of any size.
       </p>
       <h2 id="provisioning-api-keys-problem" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>The Problem</h2>
@@ -43,13 +43,13 @@ const ProvisioningAPIKeys: React.FC = () => {
         <li><b>Access Control:</b> Only authorized users can access your resources.</li>
       </ol>
       <h2 id="provisioning-api-keys-benefits" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Benefits</h2>
-      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+    <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
         <li>Effortless onboarding for new users and teams.</li>
         <li>Enhanced security and control.</li>
         <li>Scalable for organizations of any size.</li>
-      </ul>
-    </div>
-  );
+    </ul>
+  </div>
+);
 };
 
 export default ProvisioningAPIKeys; 

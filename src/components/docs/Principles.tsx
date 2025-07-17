@@ -104,15 +104,15 @@ const Principles: React.FC = () => {
             <div style={{ color: '#222', fontSize: '1.04rem', lineHeight: 1.7 }}>{p.desc}</div>
           </li>
         ))}
-      </ul>
+    </ul>
       <h2 id="configuration-example" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Configuration Example</h2>
-      {codeBlock(`const client = new Guidera({
+    {codeBlock(`const client = new Guidera({
   apiKey: 'YOUR_API_KEY',
   compliance: true,
   providers: ['openai', 'anthropic'],
 });`)}
-    </div>
-  );
+  </div>
+);
 };
 
 export default Principles; 

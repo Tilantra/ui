@@ -57,7 +57,7 @@ const ToolCalling: React.FC = () => {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0', background: '#fff' }}>
       <h1 id="tool-calling-overview" style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Tool Calling</h1>
-      <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
+    <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
         Some tasks require more than just text generation—they need real-world actions or up-to-date information. Tool Calling enables seamless integration with external APIs and tools directly in your workflow.
       </p>
       <h2 id="tool-calling-problem" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>The Problem</h2>
@@ -87,13 +87,13 @@ const ToolCalling: React.FC = () => {
 # The system will automatically call a weather API and return the result with the model output.`)}
       </div>
       <h2 id="tool-calling-benefits" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Benefits</h2>
-      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+    <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
         <li>Unlock new capabilities for your users.</li>
         <li>Always provide the most relevant, actionable answers.</li>
         <li>No manual integration required.</li>
-      </ul>
-    </div>
-  );
+    </ul>
+  </div>
+);
 };
 
 export default ToolCalling; 

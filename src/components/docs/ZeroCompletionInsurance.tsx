@@ -23,7 +23,7 @@ const ZeroCompletionInsurance: React.FC = () => {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', color: '#222', fontFamily: 'inherit', padding: '2rem 0', background: '#fff' }}>
       <h1 id="zero-completion-insurance-overview" style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18 }}>Zero Completion Insurance</h1>
-      <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
+    <p style={{ fontSize: '1.13rem', marginBottom: 28 }}>
         Even the best systems can encounter unexpected failures. Zero Completion Insurance guarantees your users are never left without a response.
       </p>
       <h2 id="zero-completion-insurance-problem" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>The Problem</h2>
@@ -41,12 +41,12 @@ const ZeroCompletionInsurance: React.FC = () => {
         <li><b>Fallback Messaging:</b> A default, user-friendly message is returned.</li>
       </ol>
       <h2 id="zero-completion-insurance-benefits" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Benefits</h2>
-      <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
+    <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
         <li>Users are never left without a response.</li>
         <li>Maintains a professional, trustworthy experience.</li>
-      </ul>
-    </div>
-  );
+    </ul>
+  </div>
+);
 };
 
 export default ZeroCompletionInsurance; 

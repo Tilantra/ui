@@ -181,7 +181,7 @@ const ChatbotSection: React.FC = () => {
             `}</style>
           </div>
           <div className="fade-slide-up" style={{ marginBottom: '1.2rem', color: '#7c3aed', fontWeight: 500, fontSize: '1.08rem' }}>
-            This is only for a basic demo, please <a href="#contact-footer" style={{ color: '#2563eb', textDecoration: 'underline', cursor: 'pointer' }} onClick={e => { e.preventDefault(); document.getElementById('contact-footer')?.scrollIntoView({ behavior: 'smooth' }); }}>reach out</a> for a full demo.
+            This is a basic demo, for the full Demo <a href="/chatbot" style={{ color: '#2563eb', textDecoration: 'underline', cursor: 'pointer' }}>Click Here</a>.
           </div>
           <div className="fade-slide-up" style={{ flex: 1, overflowY: 'auto', marginBottom: '1.2rem', background: '#f8f8fc', borderRadius: 12, padding: '1.2rem', border: '1px solid #ece6fa' }}>
             {messages.map((msg, i) => (
