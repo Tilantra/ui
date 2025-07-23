@@ -75,14 +75,8 @@ const faqs = [
   {
     section: 'Pricing and Fees',
     qas: [
-      {
-        q: 'What are the fees for using Guidera?',
-        a: 'Guidera charges a 5.5% ($0.80 minimum) fee when you purchase credits. There is no markup on inference pricing; you pay the same rate as the provider.'
-      },
-      {
-        q: 'Is there a fee for using my own provider keys (BYOK)?',
-        a: 'Yes, using your own provider API keys incurs a 5% fee of what the same model/provider would cost on Guidera. This is deducted from your Guidera credits.'
-      },
+      { q: 'What are the fees for using Guidera?', a: 'Details will be coming soon.' },
+      { q: 'Is there a fee for using my own provider keys (BYOK)?', a: 'Details will be coming soon.' },
     ]
   },
   {
@@ -275,7 +269,7 @@ const FAQ: React.FC = () => {
         </div>
       ))}
       <div style={{ marginTop: 48, color: '#444', fontSize: '1.05rem' }}>
-        <b>Still have questions?</b> See the <a href="/docs/api-reference" style={{ color: PURPLE }}>API Reference</a> or <a href="/docs/community" style={{ color: PURPLE }}>Community</a> page, or contact support.
+        <b>Still have questions?</b> See the <a href="/docs/overview" style={{ color: PURPLE }}>API Reference</a> or <a href="/docs/community" style={{ color: PURPLE }}>Community</a> page, or contact support.
       </div>
   </div>
 );

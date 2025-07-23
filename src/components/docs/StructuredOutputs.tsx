@@ -92,6 +92,14 @@ const StructuredOutputs: React.FC = () => {
   "error": null
 }`)}
       </div>
+      <div style={{ margin: '1.5em 0' }}>
+        <b>Example Output:</b>
+        {codeBlock(`{
+  "suggestion_1": "PROMPT: ...",
+  "suggestion_2": "PROMPT: ...",
+  "suggestion_3": "PROMPT: ..."
+}`)}
+      </div>
       <h2 id="structured-outputs-benefits" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Benefits</h2>
     <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '1.05rem' }}>
         <li>Easy integration into your workflows.</li>

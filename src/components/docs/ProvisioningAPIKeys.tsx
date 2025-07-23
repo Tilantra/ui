@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDocsOnThisPage } from '../Docs';
+import CodeBlock from './CodeBlock';
 
 const PURPLE = '#7c3aed';
 const BLUE = '#2563eb';

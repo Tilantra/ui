@@ -4,10 +4,10 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 const sidebarLinks = [
   { section: 'Overview', items: ['Quickstart', 'FAQ', 'Principles', 'Models', 'Enterprise'] },
   { section: 'Features', items: [
-    'ARMS Routing', 'Compliance Engine', 'Prompt Caching', 'Structured Outputs', 'Tool Calling', 'Message Transforms', 'Uptime Optimization', 'Zero Completion Insurance', 'Provisioning API Keys'
+    'ARMS Routing', 'Compliance Engine', 'Prompt Suggestion', 'Prompt Caching', 'Structured Outputs', 'Tool Calling', 'Message Transforms', 'Uptime Optimization', 'Zero Completion Insurance'
   ] },
   { section: 'API Reference', items: [
-    'Overview', 'Streaming', 'Limits', 'Authentication', 'Parameters', 'Errors', 'API Keys'
+    'Overview', 'Streaming', 'Limits', 'Authentication', 'Provisioning API Keys', 'Errors'
   ] },
   { section: 'Use Cases', items: [
     'BYOK', 'Crypto API', 'OAuth PKCE', 'MCP Servers', 'For Providers', 'Reasoning Tokens', 'Usage Accounting', 'User Tracking'
