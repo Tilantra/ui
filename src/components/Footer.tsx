@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
     setSuccess(null);
     setError(null);
     try {
-      const response = await fetch('http://localhost:8000/inquiry', {
+      const response = await fetch('https://backend.tilantra.com/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
