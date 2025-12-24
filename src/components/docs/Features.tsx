@@ -46,6 +46,7 @@ const Features: React.FC = () => (
       <li><strong>Model Routing:</strong> Auto-selects best model for cost and performance.</li>
       <li><strong>Provider Routing:</strong> Restrict or choose providers for your prompts.</li>
       <li><strong>Prompt Caching:</strong> Reduce latency and cost for frequent prompts.</li>
+      <li><strong>Prompt Suggestion:</strong> Instantly generate high-quality prompt templates for any task.</li>
       <li><strong>Structured Outputs:</strong> Get responses in JSON, tables, and more.</li>
     </ul>
     <h2 style={{ color: '#2563eb', fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Advanced Features</h2>
@@ -78,6 +79,7 @@ const Features: React.FC = () => (
         <tr><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Model Routing</td><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>✔️</td></tr>
         <tr><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Provider Routing</td><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>✔️</td></tr>
         <tr><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Prompt Caching</td><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>✔️</td></tr>
+        <tr><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Prompt Suggestion</td><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>✔️</td></tr>
         <tr><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Web Search</td><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>✔️</td></tr>
         <tr><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Tool Calling</td><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>✔️</td></tr>
         <tr><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>File Support</td><td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>✔️</td></tr>

@@ -22,7 +22,6 @@ import Principles from './components/docs/Principles';
 import Models from './components/docs/Models';
 import Enterprise from './components/docs/Enterprise';
 import Features from './components/docs/Features';
-import APIReference from './components/docs/APIReference';
 import UseCases from './components/docs/UseCases';
 import Community from './components/docs/Community';
 import PromptCaching from './components/docs/PromptCaching';
@@ -36,10 +35,10 @@ import Overview from './components/docs/Overview';
 import Streaming from './components/docs/Streaming';
 import Limits from './components/docs/Limits';
 import Authentication from './components/docs/Authentication';
-import Parameters from './components/docs/Parameters';
 import Errors from './components/docs/Errors';
 import ComplianceEngine from './components/docs/ComplianceEngine';
 import ArmsModel from './components/docs/armsModel';
+import PromptSuggestion from './components/docs/PromptSuggestion';
 
 function App() {
   return (
@@ -76,16 +75,17 @@ function App() {
           <Route path="message-transforms" element={<MessageTransforms />} />
           <Route path="uptime-optimization" element={<UptimeOptimization />} />
           <Route path="zero-completion-insurance" element={<ZeroCompletionInsurance />} />
+          <Route path="prompt-suggestion" element={<PromptSuggestion />} />
           <Route path="provisioning-api-keys" element={<ProvisioningAPIKeys />} />
           <Route path="overview" element={<Overview />} />
           <Route path="streaming" element={<Streaming />} />
           <Route path="limits" element={<Limits />} />
           <Route path="authentication" element={<Authentication />} />
-          <Route path="parameters" element={<Parameters />} />
           <Route path="errors" element={<Errors />} />
-          <Route path="api-reference" element={<APIReference />} />
+          <Route path="api-reference" element={<Overview />} />
           <Route path="use-cases" element={<UseCases />} />
           <Route path="community" element={<Community />} />
+          
         </Route>
       </Routes>
     </Router>

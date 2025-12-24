@@ -1,42 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDocsOnThisPage } from '../Docs';
+import CodeBlock from './CodeBlock';
 
 const PURPLE = '#7c3aed';
 const BLUE = '#2563eb';
-
-const codeBlock = (code: string) => (
-  <div style={{
-    background: '#f6f8fa',
-    borderRadius: 8,
-    padding: '1.1em 1em 1em 1em',
-    margin: '1.5em 0',
-    fontSize: '1.01rem',
-    fontFamily: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-    position: 'relative',
-    overflowX: 'auto',
-  }}>
-    <pre style={{ margin: 0, background: 'none', padding: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{code}</pre>
-    <button
-      style={{
-        position: 'absolute',
-        top: 10,
-        right: 12,
-        background: '#fff',
-        color: BLUE,
-        border: '1px solid #eaecef',
-        borderRadius: 4,
-        padding: '3px 12px',
-        cursor: 'pointer',
-        fontWeight: 600,
-        fontSize: '0.95rem',
-        boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
-      }}
-      onClick={() => navigator.clipboard.writeText(code)}
-    >
-      Copy
-    </button>
-  </div>
-);
 
 const ON_THIS_PAGE = [
   { label: 'Principles', anchor: 'principles' },
@@ -106,11 +73,21 @@ const Principles: React.FC = () => {
         ))}
     </ul>
       <h2 id="configuration-example" style={{ ...headingScrollMargin, color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 36, marginBottom: 10 }}>Configuration Example</h2>
-    {codeBlock(`const client = new Guidera({
-  apiKey: 'YOUR_API_KEY',
-  compliance: true,
-  providers: ['openai', 'anthropic'],
-});`)}
+      <ol style={{ margin: '0 0 0 24px', color: '#222', fontSize: '1.05rem', lineHeight: 1.7 }}>
+        <li><b>Install the SDK</b></li>
+      </ol>
+      <CodeBlock tabs={[
+        {label: 'Python', language: 'bash', code: 'pip install guidera'},
+        {label: 'TypeScript', language: 'bash', code: 'npm install guidera'}
+      ]} />
+      <ol start={2} style={{ margin: '0 0 24px 24px', color: '#222', fontSize: '1.05rem', lineHeight: 1.7 }}>
+        <li><b>Connect and configure the client</b></li>
+      </ol>
+      <CodeBlock tabs={[
+        {label: 'Python', language: 'python', code: 'import guidera\nsdk_key = "YOUR_API_KEY"\nguidera_client = guidera.Client()\n\nresponse = guidera_client.generate(\n    prompt="your prompt here",\n    prefs={"gpt-4o", "claude-3.5-sonnet"},\n    cp_tradeoff_parameter=0.7,  # optional, defaults to 0.7\n    compliance_enabled=True     # optional, defaults to False\n)\nprint(response)\n'},
+        {label: 'TypeScript', language: 'typescript', code: 'import { Guidera } from \'guidera\';\n\nconst guideraClient = new Guidera({ apiKey: \'YOUR_API_KEY\' });\n\nconst response = await guideraClient.generate({\n  prompt: \'your prompt here\',\n  prefs: { "gpt-4o", "claude-3.5-sonnet" },\n  cp_tradeoff_parameter: 0.7, // optional, defaults to 0.7\n  compliance_enabled: true    // optional, defaults to false\n});\nconsole.log(response);\n'},
+        {label: 'Shell', language: 'bash', code: 'curl -X POST "https://api.guidera.com/generate" \\\n  -H "Content-Type: application/json" \\\n  -H "Authorization: Bearer YOUR_API_KEY" \\\n  -d \'{\n    "prompt": "your prompt here",\n    "prefs": { "gpt-4o", "claude-3.5-sonnet" },\n    "cp_tradeoff_parameter": 0.7,\n    "compliance_enabled": true\n  }\''}
+      ]} />
   </div>
 );
 };

@@ -1,42 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDocsOnThisPage } from '../Docs';
+import CodeBlock from './CodeBlock';
 
 const PURPLE = '#7c3aed';
 const BLUE = '#2563eb';
-
-const codeBlock = (code: string) => (
-  <div style={{
-    background: '#f6f8fa',
-    borderRadius: 8,
-    padding: '1.1em 1em 1em 1em',
-    margin: '1.5em 0',
-    fontSize: '0.98rem',
-    fontFamily: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-    position: 'relative',
-    overflowX: 'auto',
-  }}>
-    <pre style={{ margin: 0, background: 'none', padding: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{code}</pre>
-    <button
-      style={{
-        position: 'absolute',
-        top: 10,
-        right: 12,
-        background: '#fff',
-        color: BLUE,
-        border: '1px solid #eaecef',
-        borderRadius: 4,
-        padding: '3px 12px',
-        cursor: 'pointer',
-        fontWeight: 600,
-        fontSize: '0.95rem',
-        boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
-      }}
-      onClick={() => navigator.clipboard.writeText(code)}
-    >
-      Copy
-    </button>
-  </div>
-);
 
 const ON_THIS_PAGE = [
   { label: 'Supported Models', anchor: 'supported-models' },
@@ -209,20 +176,20 @@ const Models: React.FC = () => {
     }}>
       {/* Main Content */}
       <div style={{ flex: 3, minWidth: 0, wordBreak: 'break-word', paddingRight: 0, fontSize: '0.97rem' }}>
-        <h1 style={{ color: BLUE, fontWeight: 800, fontSize: '2.1rem', marginBottom: 18, marginTop: 0 }}>Models</h1>
-        <p style={{ fontSize: '1.04rem', color: '#444', marginBottom: 18 }}>
+        <h1 style={{ color: BLUE, fontWeight: 800, fontSize: '2.2rem', marginBottom: 18, marginTop: 0 }}>Models</h1>
+        <p style={{ fontSize: '1.13rem', color: '#374151', marginBottom: 18 }}>
           Welcome to the heart of Guidera’s platform—our ever-growing collection of powerful AI models. Whether you’re building for scale, speed, or experimentation, Guidera makes it simple to access the world’s best language models with a single API key.<br /><br />
           <b>Unified access, unlimited potential:</b> With Guidera, you don’t need to juggle multiple accounts or integrations. One key unlocks every model we support, and we’re adding more all the time. Today, you can choose from over 40 models across leading providers like OpenAI, Google, Meta, Anthropic, and more. In the next two months, we’ll be expanding to support 100+ models—so you’re always ahead of the curve.<br /><br />
           <b>Built for everyone:</b> Whether you’re an individual exploring new ideas or an enterprise with strict requirements, Guidera adapts to your needs. Enjoy a generous trial period, flexible rate limits, and seamless upgrades as your usage grows. For teams, our enterprise controls let you specify exactly which models are available to your users, ensuring compliance and cost control.<br /><br />
           <b>Explore the table below</b> to see all currently available models, and check back often as our library continues to expand. If there’s a model you’d like to see, <a href="/docs/community" style={{ color: BLUE }}>let us know</a>—we’re always listening!
         </p>
         {/* Supported Models */}
-        <h2 id="supported-models" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.13rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>Supported Models</h2>
+        <h2 id="supported-models" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>Supported Models</h2>
         <div style={{ overflowX: 'auto', marginBottom: 32 }}>
           <table style={{ minWidth: 700, width: '100%', borderCollapse: 'collapse', fontSize: '0.97rem' }}>
       <thead>
         <tr style={{ background: '#f6f8fa' }}>
-          <th style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Provider</th>
+          <th style={{ padding: '0.7rem', border: '1px solid #ece6fa', width: '140px' }}>Provider</th>
                 <th style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Model Name</th>
                 <th style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Model ID</th>
                 <th style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>Mapped ID</th>
@@ -233,9 +200,9 @@ const Models: React.FC = () => {
                 group.models.map((model, idx) => (
                   <tr key={model.id} style={{ background: idx % 2 === 0 ? '#fff' : '#f9fafb' }}>
                     {idx === 0 && (
-                      <td rowSpan={group.models.length} style={{ padding: '0.7rem', border: '1px solid #ece6fa', fontWeight: 600, color: PURPLE, verticalAlign: 'top', background: '#f6f8fa' }}>{group.provider}</td>
+                      <td rowSpan={group.models.length} style={{ padding: '0.7rem', border: '1px solid #ece6fa', fontWeight: 600, color: PURPLE, verticalAlign: 'top', background: '#f6f8fa', width: '140px' }}>{group.provider}</td>
                     )}
-                    <td style={{ padding: '0.7rem', border: '1px solid #ece6fa' }}>{model.name}</td>
+                    <td style={{ padding: '0.7rem', border: '1px solid #ece6fa', width: '140px' }}>{model.name}</td>
                     <td style={{ padding: '0.7rem', border: '1px solid #ece6fa', fontFamily: 'monospace', color: '#444' }}>{model.id}</td>
                     <td style={{ padding: '0.7rem', border: '1px solid #ece6fa', fontFamily: 'monospace', color: '#888' }}>{model.mapped}</td>
         </tr>
@@ -245,31 +212,121 @@ const Models: React.FC = () => {
     </table>
         </div>
         {/* Model Access */}
-        <h2 id="model-access" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.13rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>Model Access</h2>
+        <h2 id="model-access" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>Model Access</h2>
         <div style={{ fontSize: '1.01rem', color: '#222', marginBottom: 24 }}>
           <b>Enterprise users:</b> When you register, you specify which models are allowed for your organization. Guidera will always route to the best model only out of those you have approved.<br /><br />
           <b>Individual users:</b> You get a trial period with access to all models, subject to a rate limit. After the trial, you can purchase a key to continue using your preferred models.
         </div>
         {/* How to Select a Model */}
-        <h2 id="how-to-select" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.13rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>How to Select a Model</h2>
-        <div style={{ marginBottom: 18, fontSize: '0.99rem' }}>
-          <b>Enterprise users:</b>
-          {codeBlock(`const response = await client.chat({
-  models: ['gpt4o', 'llama3', 'claude3.5-sonnet'], // Only your allowed models
-  messages: [
-    { role: 'user', content: 'Hello!' }
-  ]
-});`)}
-          <b>Individual users:</b>
-    {codeBlock(`const response = await client.chat({
-  model: 'gpt4o',
-  messages: [
-    { role: 'user', content: 'Hello!' }
-  ]
-});`)}
+        <h2 id="how-to-select" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>How to Select a Model</h2>
+        <div style={{ fontSize: '1.01rem', color: '#222', marginBottom: 24 }}>
+          <b>Default (auto-select best model):</b>
+          <CodeBlock
+            tabs={[
+              {
+                label: 'Python',
+                language: 'python',
+                code: `import guidera
+
+sdk_key = "YOUR_SDK_KEY"
+guidera_client = guidera.Client(api_key=sdk_key)
+
+response = guidera_client.generate(
+    prompt="Write a summary of this article.",
+    prefs={},  # optional, can be omitted
+    cp_tradeoff_parameter=0.7,  # optional, defaults to 0.7
+    compliance_enabled=True      # optional, defaults to False
+)
+print(response)
+`,
+              },
+              {
+                label: 'TypeScript',
+                language: 'typescript',
+                code: `import { Guidera } from 'guidera';
+
+const guideraClient = new Guidera({ apiKey: 'YOUR_SDK_KEY' });
+
+const response = await guideraClient.generate({
+  prompt: 'Write a summary of this article.',
+  prefs: {}, // optional, can be omitted
+  cp_tradeoff_parameter: 0.7, // optional, defaults to 0.7
+  compliance_enabled: true // optional, defaults to false
+});
+console.log(response);
+`,
+              },
+              {
+                label: 'Shell',
+                language: 'bash',
+                code: `curl -X POST https://api.guidera.com/v1/generate \
+  -H "Authorization: Bearer YOUR_SDK_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "Write a summary of this article.",
+    "prefs": {},
+    "cp_tradeoff_parameter": 0.7,
+    "compliance_enabled": true
+  }'
+`,
+              },
+            ]}
+          />
+          <b>Force a specific model (e.g., gpt-4o):</b>
+          <CodeBlock
+            tabs={[
+              {
+                label: 'Python',
+                language: 'python',
+                code: `import guidera
+
+sdk_key = "YOUR_SDK_KEY"
+guidera_client = guidera.Client(api_key=sdk_key)
+
+response = guidera_client.generate(
+    prompt="Write a summary of this article.",
+    prefs={ "model": "gpt-4o" },
+    cp_tradeoff_parameter=0.7,  # optional, defaults to 0.7
+    compliance_enabled=True      # optional, defaults to False
+)
+print(response)
+`,
+              },
+              {
+                label: 'TypeScript',
+                language: 'typescript',
+                code: `import { Guidera } from 'guidera';
+
+const guideraClient = new Guidera({ apiKey: 'YOUR_SDK_KEY' });
+
+const response = await guideraClient.generate({
+  prompt: 'Write a summary of this article.',
+  prefs: { model: 'gpt-4o' },
+  cp_tradeoff_parameter: 0.7, // optional, defaults to 0.7
+  compliance_enabled: true // optional, defaults to false
+});
+console.log(response);
+`,
+              },
+              {
+                label: 'Shell',
+                language: 'bash',
+                code: `curl -X POST https://api.guidera.com/v1/generate \
+  -H "Authorization: Bearer YOUR_SDK_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "Write a summary of this article.",
+    "prefs": { "model": "gpt-4o" },
+    "cp_tradeoff_parameter": 0.7,
+    "compliance_enabled": true
+  }'
+`,
+              },
+            ]}
+          />
         </div>
         {/* Stats */}
-        <h2 id="stats" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.13rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>Stats</h2>
+        <h2 id="stats" style={{ color: PURPLE, fontWeight: 700, fontSize: '1.18rem', marginTop: 32, marginBottom: 10, ...headingScrollMargin }}>Stats</h2>
         <ul style={{ margin: '0 0 24px 20px', color: '#222', fontSize: '0.97rem' }}>
           <li>{MODEL_GROUPS.reduce((acc, g) => acc + g.models.length, 0)} models supported</li>
           <li>All major providers: Qwen, Google, Meta, OpenAI, Grok, DeepSeek, Anthropic, Microsoft, Tencent, Mistral, Cohere, Amazon, Dracarys</li>
