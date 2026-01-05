@@ -40,6 +40,7 @@ import Parameters from './components/docs/Parameters';
 import Errors from './components/docs/Errors';
 import ComplianceEngine from './components/docs/ComplianceEngine';
 import ArmsModel from './components/docs/armsModel';
+import PrivacyPolicy from './components/docs/PrivacyPolicy';
 
 function App() {
   return (
@@ -68,7 +69,8 @@ function App() {
           <Route path="principles" element={<Principles />} />
           <Route path="models" element={<Models />} />
           <Route path="enterprise" element={<Enterprise />} />
-          <Route path="arms-routing" element={<ArmsModel />}/>
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="arms-routing" element={<ArmsModel />} />
           <Route path="compliance-engine" element={<ComplianceEngine />} />
           <Route path="prompt-caching" element={<PromptCaching />} />
           <Route path="structured-outputs" element={<StructuredOutputs />} />

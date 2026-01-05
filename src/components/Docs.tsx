@@ -2,16 +2,22 @@ import React, { createContext, useContext, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const sidebarLinks = [
-  { section: 'Overview', items: ['Quickstart', 'FAQ', 'Principles', 'Models', 'Enterprise'] },
-  { section: 'Features', items: [
-    'ARMS Routing', 'Compliance Engine', 'Prompt Caching', 'Structured Outputs', 'Tool Calling', 'Message Transforms', 'Uptime Optimization', 'Zero Completion Insurance', 'Provisioning API Keys'
-  ] },
-  { section: 'API Reference', items: [
-    'Overview', 'Streaming', 'Limits', 'Authentication', 'Parameters', 'Errors', 'API Keys'
-  ] },
-  { section: 'Use Cases', items: [
-    'BYOK', 'Crypto API', 'OAuth PKCE', 'MCP Servers', 'For Providers', 'Reasoning Tokens', 'Usage Accounting', 'User Tracking'
-  ] },
+  { section: 'Overview', items: ['Quickstart', 'FAQ', 'Principles', 'Models', 'Enterprise', 'Privacy Policy'] },
+  {
+    section: 'Features', items: [
+      'ARMS Routing', 'Compliance Engine', 'Prompt Caching', 'Structured Outputs', 'Tool Calling', 'Message Transforms', 'Uptime Optimization', 'Zero Completion Insurance', 'Provisioning API Keys'
+    ]
+  },
+  {
+    section: 'API Reference', items: [
+      'Overview', 'Streaming', 'Limits', 'Authentication', 'Parameters', 'Errors', 'API Keys'
+    ]
+  },
+  {
+    section: 'Use Cases', items: [
+      'BYOK', 'Crypto API', 'OAuth PKCE', 'MCP Servers', 'For Providers', 'Reasoning Tokens', 'Usage Accounting', 'User Tracking'
+    ]
+  },
   { section: 'Community', items: ['Frameworks', 'Discord'] },
 ];
 
@@ -57,7 +63,7 @@ const bannerStyle: React.CSSProperties = {
 // Context for On This Page links
 export const DocsOnThisPageContext = createContext({
   links: [] as { label: string; anchor: string }[],
-  setLinks: (_: { label: string; anchor: string }[]) => {},
+  setLinks: (_: { label: string; anchor: string }[]) => { },
 });
 
 export const useDocsOnThisPage = () => useContext(DocsOnThisPageContext);
