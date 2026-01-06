@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Zap, Move, Users, Globe, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const CapsuleHub = () => {
@@ -138,38 +137,70 @@ const CapsuleHub = () => {
 
                             {/* Key Features */}
                             <div>
-                                <h2 className="text-3xl font-bold mb-8 text-slate-900">Key Features</h2>
-                                <div className="grid gap-6">
+                                <h2 className="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-primary pl-4">Key Features</h2>
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                                     {[
                                         {
+                                            icon: Zap,
                                             title: "Context Capsule Generation",
-                                            desc: "Instantly capture the core context of a conversation into a Capsule. This removes the need to copy-paste long chat histories or repeatedly explain the same background.",
+                                            desc: "Instantly capture the core context of a conversation into a Capsule. This removes the need to copy-paste long chat histories.",
+                                            metric: "1-Click Capture"
                                         },
                                         {
+                                            icon: Move,
                                             title: "Drag and Drop Injection",
-                                            desc: "Use the Drop feature to inject a saved capsule into a new chat. The AI immediately understands the background, goals, and constraints of your work.",
+                                            desc: "Use the Drop feature to inject a saved capsule into a new chat. The AI immediately understands the background and goals.",
+                                            metric: "Zero Copy-Paste"
                                         },
                                         {
-                                            title: "Team and Collaboration Management",
-                                            desc: "You can organize capsules by teams such as Engineering, Marketing, or Product. See who created each capsule to maintain transparency and smooth collaboration.",
+                                            icon: Users,
+                                            title: "Team Collaboration",
+                                            desc: "Organize capsules by teams such as Engineering or Product. See who created each capsule for transparency.",
+                                            metric: "Role-Based Access"
                                         },
                                         {
+                                            icon: Globe,
                                             title: "Multi-Model Support",
                                             desc: "Works seamlessly with ChatGPT (Official and Plus), Claude.ai, and Google Gemini and AI Studio.",
+                                            metric: "GPT, Claude, Gemini"
                                         },
                                         {
+                                            icon: Search,
                                             title: "Smart Library",
-                                            desc: "Search your capsule library by content, tags, or team for fast and easy retrieval.",
+                                            desc: "Search your capsule library by content, tags, or team for fast and easy retrieval of your best AI prompts.",
+                                            metric: "Instant Retrieval"
                                         },
-                                    ].map((feature, i) => (
-                                        <div key={i} className="flex gap-5 items-start p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-primary/30 hover:bg-slate-100 transition-all group shadow-sm">
-                                            <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform">
-                                                <CheckCircle2 className="w-6 h-6" />
+                                    ].map((feature) => (
+                                        <div
+                                            key={feature.title}
+                                            className="group relative p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-primary/30 hover:bg-white transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
+                                        >
+                                            <div className="flex flex-col h-full">
+                                                {/* Icon container */}
+                                                <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                                                    <feature.icon className="w-5 h-5 text-primary" />
+                                                </div>
+
+                                                <div className="flex-1 min-w-0">
+                                                    {/* Content */}
+                                                    <h3 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-primary transition-colors duration-300">
+                                                        {feature.title}
+                                                    </h3>
+                                                    <p className="text-sm text-slate-600 leading-relaxed mb-4 line-clamp-3">
+                                                        {feature.desc}
+                                                    </p>
+                                                </div>
+
+                                                {/* Metric Tag */}
+                                                <div className="mt-auto">
+                                                    <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary/10 text-primary border border-primary/20">
+                                                        {feature.metric}
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h3 className="text-xl font-bold mb-2 text-slate-800">{i + 1}. {feature.title}</h3>
-                                                <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
-                                            </div>
+
+                                            {/* Decorative background glow on hover */}
+                                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                                         </div>
                                     ))}
                                 </div>

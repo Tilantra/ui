@@ -30,7 +30,7 @@ const HeroSection = () => {
                         Guidera . CapsuleHub
                     </p>
                     <p className="animate-fade-in-delay-2 text-lg md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-10">
-                        The unified solution for enterprise AI management. Deploy, monitor, and scale your AI models with unprecedented control and visibility.
+                        The unified solution for enterprise AI management. Deploy, monitor, and scale your AI usage with unprecedented control and visibility.
                     </p>
                 </div>
             </div>

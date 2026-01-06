@@ -35,9 +35,11 @@ const Footer = () => {
                     {/* Brand Column */}
                     <div className="col-span-2 md:col-span-1">
                         <Link to="/" className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                                <span className="text-primary-foreground font-bold text-sm">T</span>
-                            </div>
+                            <img
+                                src="/logo-small.jpeg"
+                                alt="Tilantra Logo"
+                                className="w-8 h-8 rounded-lg object-cover"
+                            />
                             <span className="font-semibold text-lg text-foreground">Tilantra</span>
                         </Link>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -68,7 +70,7 @@ const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-muted-foreground">
-                        © 2024 Tilantra. All rights reserved.
+                        © 2026 Tilantra. All rights reserved.
                     </p>
                     <div className="flex items-center gap-6">
                         <a

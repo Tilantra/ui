@@ -38,7 +38,7 @@ const AboutUsSection = () => {
                         <p className="text-base text-muted-foreground leading-relaxed max-w-xl">
                             Our mission is to empower organizations to seamlessly orchestrate, optimize, and govern their AI workflows—without sacrificing speed, security, or compliance.
                             <br /><br />
-                            As the landscape of AI models grows more complex, Guidera provides a unified solution that routes tasks to the best-performing models, ensures regulatory compliance, and keeps costs under control through a single API.
+                            As the landscape of AI models grows more complex, we provide unified solutions that routes tasks to the best-performing models, ensures regulatory compliance, and keeps costs under control, all the while reducing total AI friction.
                         </p>
                     </motion.div>
 

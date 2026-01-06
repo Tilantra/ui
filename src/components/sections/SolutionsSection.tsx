@@ -16,7 +16,7 @@ const solutions = [
     },
     {
         title: "Capsule Hub",
-        description: "our browser extension",
+        description: "Our browser extension",
         features: [
             "One-click capsules",
             "Easy sharing",

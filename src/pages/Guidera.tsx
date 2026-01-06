@@ -23,7 +23,7 @@ const Guidera = () => {
                                     <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
                                         Guidera:
                                     </span>{" "}
-                                    Integrated Platform
+                                    Your Integrated AI Platform
                                 </h1>
                             </div>
                         </section>
