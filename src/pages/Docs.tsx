@@ -1,132 +1,108 @@
+import { createContext, useContext, useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Book, Code, FileText, Terminal, Zap, Shield, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-const docsSections = [
-    {
-        icon: Book,
-        title: "Getting Started",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.",
-        links: ["Quick Start Guide", "Installation", "First Deployment"],
-    },
-    {
-        icon: Code,
-        title: "API Reference",
-        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.",
-        links: ["REST API", "GraphQL", "SDKs"],
-    },
-    {
-        icon: Terminal,
-        title: "CLI Documentation",
-        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.",
-        links: ["Commands", "Configuration", "Plugins"],
-    },
-    {
-        icon: Zap,
-        title: "Integrations",
-        description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
-        links: ["AWS", "Google Cloud", "Azure"],
-    },
-    {
-        icon: Shield,
-        title: "Security",
-        description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.",
-        links: ["Authentication", "Authorization", "Compliance"],
-    },
-    {
-        icon: FileText,
-        title: "Tutorials",
-        description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
-        links: ["Model Deployment", "Monitoring", "Scaling"],
-    },
-];
+// --- Context Definition ---
+interface LinkItem {
+    label: string;
+    anchor: string;
+}
+
+interface DocsContextType {
+    links: LinkItem[];
+    setLinks: (links: LinkItem[]) => void;
+}
+
+const DocsContext = createContext<DocsContextType>({
+    links: [],
+    setLinks: () => { },
+});
+
+export const useDocsOnThisPage = () => useContext(DocsContext);
+
+// --- Sidebar Component ---
+const RightSidebar = () => {
+    const { links } = useDocsOnThisPage();
+
+    if (!links || links.length === 0) return null;
+
+    return (
+        <div style={{
+            width: 240,
+            flexShrink: 0,
+            position: 'sticky',
+            top: 100,
+            alignSelf: 'flex-start',
+            maxHeight: 'calc(100vh - 100px)',
+            overflowY: 'auto',
+            paddingLeft: 24,
+            borderLeft: '1px solid #e5e7eb',
+            display: 'none', // Hidden on mobile by default, handled by media queries ideally
+            // We'll use a responsive generic approach below
+        }} className="hidden lg:block">
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: '#111', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                On This Page
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                {links.map((link) => (
+                    <li key={link.anchor} style={{ marginBottom: 10 }}>
+                        <a
+                            href={`#${link.anchor}`}
+                            style={{
+                                textDecoration: 'none',
+                                color: '#6b7280',
+                                fontSize: '0.92rem',
+                                display: 'block',
+                                transition: 'color 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = '#2563eb'}
+                            onMouseLeave={(e) => e.currentTarget.style.color = '#6b7280'}
+                        >
+                            {link.label}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
 const Docs = () => {
+    const [links, setLinks] = useState<LinkItem[]>([]);
+    const location = useLocation();
+
+    // Scroll to top on route change
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
-        <div className="min-h-screen bg-background">
-            <Header />
-            <main className="pt-24">
-                {/* Hero */}
-                <section className="py-16 border-b border-border">
-                    <div className="container mx-auto px-6">
-                        <div className="max-w-3xl">
-                            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                                Documentation
-                            </span>
-                            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                                Guidera Documentation
-                            </h1>
-                            <p className="text-xl text-muted-foreground mb-8">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                            </p>
-                            <div className="flex gap-4">
-                                <Button variant="hero" size="lg">
-                                    Quick Start
-                                    <ChevronRight className="w-4 h-4" />
-                                </Button>
-                                <Button variant="outline" size="lg">
-                                    API Reference
-                                </Button>
-                            </div>
+        <DocsContext.Provider value={{ links, setLinks }}>
+            <div className="min-h-screen bg-background flex flex-col">
+                <Header />
+                <div className="flex-1">
+                    {/* If we are on the landing page (no sidebar usually), we just render Outlet.
+                        If we are on a doc page, the layout might need to accommodate the sidebar. 
+                        We can use a flex container for the main content area. */}
+
+                    <div className="flex justify-center">
+                        {/* Content Wrapper */}
+                        <div className="w-full max-w-[1400px] flex items-start gap-10 px-6 pt-24 pb-16">
+
+                            {/* Main Content Area */}
+                            <main className="flex-1 w-full min-w-0">
+                                <Outlet />
+                            </main>
+
+                            {/* Right Sidebar - only renders if there are links */}
+                            <RightSidebar />
                         </div>
                     </div>
-                </section>
-
-                {/* Documentation Grid */}
-                <section className="py-16">
-                    <div className="container mx-auto px-6">
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {docsSections.map((section) => (
-                                <div
-                                    key={section.title}
-                                    className="group p-6 rounded-xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-                                >
-                                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                        <section.icon className="w-5 h-5 text-primary" />
-                                    </div>
-                                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                                        {section.title}
-                                    </h3>
-                                    <p className="text-muted-foreground text-sm mb-4">
-                                        {section.description}
-                                    </p>
-                                    <ul className="space-y-2">
-                                        {section.links.map((link) => (
-                                            <li key={link}>
-                                                <a
-                                                    href="#"
-                                                    className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
-                                                >
-                                                    <ChevronRight className="w-3 h-3" />
-                                                    {link}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Search CTA */}
-                <section className="py-16 bg-muted/30">
-                    <div className="container mx-auto px-6 text-center">
-                        <h2 className="text-2xl font-bold text-foreground mb-4">
-                            Can't find what you're looking for?
-                        </h2>
-                        <p className="text-muted-foreground mb-6">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                        <Button variant="outline" size="lg">
-                            Search Documentation
-                        </Button>
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
+                </div>
+                <Footer />
+            </div>
+        </DocsContext.Provider>
     );
 };
 

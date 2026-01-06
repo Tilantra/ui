@@ -26,8 +26,8 @@ const HeroSection = () => {
                     </h1>
 
                     {/* Subheading */}
-                    <p className="animate-fade-in-delay-2 text-xl md:text-2xl text-primary-foreground/70 mb-4">
-                        Meet <span className="font-semibold text-primary-foreground">Guidera</span>
+                    <p className="animate-fade-in-delay-2 text-xl font-semibold md:text-2xl text-primary-foreground/70 mb-4">
+                        Guidera . CapsuleHub
                     </p>
                     <p className="animate-fade-in-delay-2 text-lg md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-10">
                         The unified solution for enterprise AI management. Deploy, monitor, and scale your AI models with unprecedented control and visibility.

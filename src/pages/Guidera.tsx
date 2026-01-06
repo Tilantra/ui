@@ -107,15 +107,11 @@ const Guidera = () => {
                 <section className="py-20 bg-white">
                     <div className="container mx-auto px-6 max-w-4xl text-center">
                         <h2 className="text-3xl font-bold text-slate-900 mb-6">Explore the Possibilities</h2>
-                        <p className="text-lg text-slate-600 leading-relaxed mb-8">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <p className="text-lg text-slate-600 leading-relaxed mb-8 text-left">
+                            Guidera is Tilantra’s intelligent control layer for modern AI systems. As organizations scale GenAI across products, models, and regions, things get messy fast. Costs spike, outputs become inconsistent, and compliance turns into a constant worry. Guidera brings clarity by giving you a single place to manage how AI is used across your stack, without slowing teams down or adding friction.
                         </p>
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                        <p className="text-lg text-slate-600 leading-relaxed text-left">
+                            Guidera intelligently routes requests to the right models, optimizes spend in real time, and enforces guardrails by default. With it, teams typically see more than 60 percent lower AI costs, more reliable outputs, and far less operational risk. From AI-native startups to regulated enterprises, Guidera ensures every prompt, model call, and decision is optimized, auditable, and aligned with business goals automatically.
                         </p>
                     </div>
                 </section>

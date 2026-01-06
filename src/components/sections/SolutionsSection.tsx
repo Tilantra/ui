@@ -29,7 +29,7 @@ const solutions = [
 
 const SolutionsSection = () => {
     return (
-        <section id="solutions" className="py-16 bg-muted/30">
+        <section id="solutions" className="py-12 bg-muted/30">
             <div className="container mx-auto px-6">
                 {/* Section Header */}
                 <div className="max-w-2xl mx-auto text-center mb-12">
@@ -50,7 +50,7 @@ const SolutionsSection = () => {
                     {solutions.map((solution) => (
                         <div
                             key={solution.title}
-                            className="relative p-6 rounded-xl bg-card border border-border transition-all duration-300 hover:border-primary/20 hover:shadow-md"
+                            className="group relative p-6 rounded-xl bg-card border border-border transition-all duration-300 hover:border-primary/20 hover:bg-blue-500/5 hover:shadow-md"
                         >
                             <h3 className="text-xl font-bold text-foreground mb-2">
                                 {solution.title}
@@ -58,6 +58,22 @@ const SolutionsSection = () => {
                             <p className="text-sm text-muted-foreground mb-4">
                                 {solution.description}
                             </p>
+
+                            {/* Logos positioned outside the card */}
+                            {solution.title === "Guidera" && (
+                                <img
+                                    src="/GuideraLogo.png"
+                                    alt="Guidera Logo"
+                                    className="hidden lg:block absolute right-[80%] opacity-0 group-hover:right-[105%] group-hover:opacity-100 transition-all duration-500 ease-out top-1/2 -translate-y-1/2 w-32 object-contain pointer-events-none"
+                                />
+                            )}
+                            {solution.title === "Capsule Hub" && (
+                                <img
+                                    src="/CapsuleHubLogo.png"
+                                    alt="Capsule Hub Logo"
+                                    className="hidden lg:block absolute left-[80%] opacity-0 group-hover:left-[105%] group-hover:opacity-100 transition-all duration-500 ease-out top-1/2 -translate-y-1/2 w-32 object-contain pointer-events-none"
+                                />
+                            )}
 
                             <ul className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
                                 {solution.features.map((feature) => (
