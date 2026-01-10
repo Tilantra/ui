@@ -1,105 +1,116 @@
-
+import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import ChatbotSection from "@/components/sections/ChatbotSection";
-import { motion } from "framer-motion";
+import GuideraBentoSection from "@/components/sections/GuideraBentoSection";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const Guidera = () => {
+    const images = [
+        { src: "/GuideraPage3.png", label: "Metrics Dashboard: Real-time analytics to monitor AI spend, performance metrics, and operational risks." },
+        { src: "/GuideraPage2.png", label: "Policy Management: A unified control layer to manage AI usage across your entire stack without slowing teams down." },
+        { src: "/GuideraPage1.png", label: "Smart Chatbot: Intelligently routes requests to the right models and enforces guardrails by default." },
+    ];
+
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
     return (
         <div className="min-h-screen bg-white text-slate-900 font-sans antialiased">
             <Header />
 
             <main>
-                {/* Top Section with Dark Blue Background & Hero Gradient */}
-                <div className="relative overflow-hidden hero-gradient pt-24 pb-12">
+                {/* Hero Section with Split Layout */}
+                <div className="relative overflow-hidden hero-gradient pt-24 pb-32">
                     {/* Mesh overlay */}
                     <div className="absolute inset-0 mesh-overlay pointer-events-none opacity-60" />
 
-                    <div className="relative z-10">
-                        {/* Hero Section */}
-                        <section className="pt-12 md:pt-20 pb-4 text-center">
-                            <div className="container mx-auto px-6">
-                                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-white">
-                                    <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
+                    <div className="container mx-auto px-6 relative z-10">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                            {/* Left Column: Text Content */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -30 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="text-left"
+                            >
+                                <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-white leading-[1.1]">
+                                    <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent block mb-2">
                                         Guidera:
-                                    </span>{" "}
-                                    Your Integrated AI Platform
+                                    </span>
+                                    Integrated AI Platform
                                 </h1>
-                            </div>
-                        </section>
+                                <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-10 max-w-xl">
+                                    The intelligent control layer for modern AI systems.
+                                    Optimize spend, ensure compliance, and accelerate deployment with one unified platform.
+                                </p>
 
-                        {/* 3D Floating Cards Layout */}
-                        <section className="pb-24 pt-10">
-                            <div className="container mx-auto px-4 perspective-1000">
-                                <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-8 md:gap-4 preserve-3d">
+                                <div className="min-h-[6rem]">
+                                    <AnimatePresence mode="wait">
+                                        {hoveredIndex !== null && (
+                                            <motion.p
+                                                key={hoveredIndex}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                transition={{ duration: 0.3 }}
+                                                className="text-blue-300 text-lg font-medium leading-relaxed max-w-lg border-l-2 border-blue-400/30 pl-6 italic"
+                                            >
+                                                {images[hoveredIndex].label}
+                                            </motion.p>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            </motion.div>
 
-                                    {/* Left Card - Tilted Right */}
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -50, rotateY: 0 }}
-                                        animate={{ opacity: 1, x: 0, rotateY: 25 }}
-                                        transition={{ duration: 0.8, delay: 0.2 }}
-                                        whileHover={{ scale: 1.05, rotateY: 0, zIndex: 50, transition: { duration: 0.3 } }}
-                                        className="relative w-full md:w-[380px] group cursor-pointer"
-                                        style={{ transformStyle: "preserve-3d" }}
-                                    >
-                                        <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.3)] bg-slate-900/80 backdrop-blur-xl">
-                                            {/* Glow Effect */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="relative h-[500px] md:h-[600px] flex items-center justify-center">
+                                <div className="relative w-full max-w-[550px] aspect-[1600/1000] lg:-ml-30">
+                                    {images.map((image, idx) => {
+                                        const isHovered = hoveredIndex === idx;
+                                        const offsets = [
+                                            { x: -60, y: -50, rotate: -8, scale: 0.95 },
+                                            { x: 0, y: 0, rotate: 0, scale: 1 },
+                                            { x: 60, y: 50, rotate: 8, scale: 0.95 },
+                                        ];
 
-                                            <img src="/GuideraPage2.png" alt="Policy Management" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-300" />
-
-                                            {/* Overlay Text */}
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                                <span className="px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-100 backdrop-blur-md font-medium text-sm">
-                                                    Policy Management
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Center Card - Front & Center */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1.1, z: 50 }}
-                                        transition={{ duration: 0.8 }}
-                                        whileHover={{ scale: 1.15, z: 100, zIndex: 50, transition: { duration: 0.3 } }}
-                                        className="relative w-full md:w-[420px] z-20 group cursor-pointer shadow-2xl"
-                                        style={{ transformStyle: "preserve-3d" }}
-                                    >
-                                        <div className="relative aspect-video rounded-2xl overflow-hidden border-2 border-teal-400/30 shadow-[0_0_50px_rgba(20,184,166,0.2)] bg-slate-900/90 backdrop-blur-xl">
-                                            <img src="/GuideraPage1.png" alt="Smart Chatbot" className="w-full h-full object-cover" />
-
-
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Right Card - Tilted Left */}
-                                    <motion.div
-                                        initial={{ opacity: 0, x: 50, rotateY: 0 }}
-                                        animate={{ opacity: 1, x: 0, rotateY: -25 }}
-                                        transition={{ duration: 0.8, delay: 0.4 }}
-                                        whileHover={{ scale: 1.05, rotateY: 0, zIndex: 50, transition: { duration: 0.3 } }}
-                                        className="relative w-full md:w-[380px] group cursor-pointer"
-                                        style={{ transformStyle: "preserve-3d" }}
-                                    >
-                                        <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.3)] bg-slate-900/80 backdrop-blur-xl">
-                                            {/* Glow Effect */}
-                                            <div className="absolute inset-0 bg-gradient-to-bl from-emerald-500/20 to-teal-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                                            <img src="/GuideraPage3.png" alt="Metrics Dashboard" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-300" />
-
-                                            {/* Overlay Text */}
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                                <span className="px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-100 backdrop-blur-md font-medium text-sm">
-                                                    Metrics Dashboard
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-
+                                        return (
+                                            <motion.div
+                                                key={image.src}
+                                                initial={offsets[idx]}
+                                                animate={{
+                                                    x: isHovered ? 0 : offsets[idx].x,
+                                                    y: isHovered ? -20 : offsets[idx].y,
+                                                    rotate: isHovered ? 0 : offsets[idx].rotate,
+                                                    scale: isHovered ? 1.05 : offsets[idx].scale,
+                                                    zIndex: isHovered ? 50 : 10 + idx,
+                                                }}
+                                                transition={{
+                                                    type: "spring",
+                                                    stiffness: 300,
+                                                    damping: 25
+                                                }}
+                                                onMouseEnter={() => setHoveredIndex(idx)}
+                                                onMouseLeave={() => setHoveredIndex(null)}
+                                                className="absolute inset-0 cursor-pointer"
+                                            >
+                                                <div className={cn(
+                                                    "w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl transition-all duration-300",
+                                                    isHovered ? "ring-4 ring-blue-500/30 ring-offset-4 ring-offset-slate-900" : ""
+                                                )}>
+                                                    <img
+                                                        src={image.src}
+                                                        alt={image.label}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                    {!isHovered && (
+                                                        <div className="absolute inset-0 bg-slate-900/5 backdrop-blur-[0.5px] hover:backdrop-blur-0 transition-all" />
+                                                    )}
+                                                </div>
+                                            </motion.div>
+                                        );
+                                    })}
                                 </div>
                             </div>
-                        </section>
+                        </div>
                     </div>
                 </div>
 
@@ -116,7 +127,8 @@ const Guidera = () => {
                     </div>
                 </section>
 
-                <ChatbotSection />
+                {/* Bento Features Section */}
+                <GuideraBentoSection />
             </main>
             <Footer />
         </div>

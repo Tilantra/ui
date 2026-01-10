@@ -56,7 +56,7 @@ const CapsuleHub = () => {
                                         <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
                                             Capsule Hub:
                                         </span>{" "}
-                                        Bridge Your AI Conversations
+                                        The First AI Context Supply Chain
                                     </h1>
                                 </div>
                             </div>

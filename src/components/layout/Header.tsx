@@ -43,13 +43,12 @@ const Header = () => {
             <div className="container mx-auto px-6">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2">
+                    <Link to="/" className="flex items-center -ml-4">
                         <img
-                            src="/logo-small.jpeg"
-                            alt="Tilantra Logo"
-                            className="w-8 h-8 rounded-lg object-cover"
+                            src="/Tilantra_blueLOGO.png"
+                            alt="Tilantra"
+                            className="h-16 w-48 object-contain"
                         />
-                        <span className="font-semibold text-lg text-foreground">Tilantra</span>
                     </Link>
 
                     {/* Desktop Navigation */}
