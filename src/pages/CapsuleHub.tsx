@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { ChevronLeft, ChevronRight, Zap, Move, Users, Globe, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Zap, Move, Users, Globe, Search, History } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const CapsuleHub = () => {
     const images = [
@@ -58,6 +59,15 @@ const CapsuleHub = () => {
                                         </span>{" "}
                                         The First AI Context Supply Chain
                                     </h1>
+                                    <div className="flex flex-wrap gap-4 mt-8 justify-center">
+                                        <Link
+                                            to="/docs/get-started-capsule-hub"
+                                            className="px-8 py-4 rounded-full bg-white text-blue-900 font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
+                                        >
+                                            Get Started with Capsule Hub
+                                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -170,6 +180,12 @@ const CapsuleHub = () => {
                                             desc: "Search your capsule library by content, tags, or team for fast and easy retrieval of your best AI prompts.",
                                             metric: "Instant Retrieval"
                                         },
+                                        {
+                                            icon: History,
+                                            title: "Versioning",
+                                            desc: "Track changes to capsules over time, roll back to previous versions, and tag stable versions.",
+                                            metric: "Version Control"
+                                        },
                                     ].map((feature) => (
                                         <div
                                             key={feature.title}
@@ -209,35 +225,35 @@ const CapsuleHub = () => {
                             {/* Tiers */}
                             <div>
                                 <h2 className="text-3xl font-bold mb-10 text-center text-slate-900">Tiers</h2>
-                                <div className="grid md:grid-cols-2 gap-8 text-slate-900">
+                                <div className="grid md:grid-cols-3 gap-6 text-slate-900">
+                                    {/* Free Tier */}
                                     <div className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-lg flex flex-col h-full hover:border-primary/20 transition-all">
-                                        <h3 className="text-2xl font-bold mb-4 text-slate-800">Basic</h3>
-                                        <p className="text-slate-600 mb-8 flex-grow">Create and use capsules privately. Does not include collaboration or versioning.</p>
+                                        <h3 className="text-2xl font-bold mb-4 text-slate-800">Free</h3>
+                                        <p className="text-slate-600 mb-8 flex-grow leading-relaxed">
+                                            Get started with personal context libraries. Includes single-user capsules and essential generation credits for individual use.
+                                        </p>
                                     </div>
+
+                                    {/* Premium Tier */}
                                     <div className="p-8 rounded-[2rem] border-2 border-primary bg-primary/5 relative overflow-hidden flex flex-col h-full shadow-xl hover:bg-primary/10 transition-all font-sans">
-                                        <div className="absolute top-4 right-4 px-4 py-1.5 bg-primary text-white text-[10px] font-black tracking-[0.2em] rounded-full uppercase">PRO</div>
-                                        <h3 className="text-2xl font-bold mb-4 text-primary">Pro</h3>
-                                        <p className="text-slate-700 font-medium mb-8 flex-grow">
-                                            All basic features along with team collaboration. Ability to merge, split capsules and rollback to versions.
-                                            Includes premium support and early access to marketplace and other features.
+                                        <div className="absolute top-4 right-4 px-4 py-1.5 bg-primary text-white text-[10px] font-black tracking-[0.2em] rounded-full uppercase">POPULAR</div>
+                                        <h3 className="text-2xl font-bold mb-4 text-primary">Premium</h3>
+                                        <p className="text-slate-700 font-medium mb-8 flex-grow leading-relaxed">
+                                            Empower your team with shared workspaces, full version history, and priority support. Perfect for growing organizations.
+                                        </p>
+                                    </div>
+
+                                    {/* Enterprise Tier */}
+                                    <div className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-lg flex flex-col h-full hover:border-primary/20 transition-all">
+                                        <h3 className="text-2xl font-bold mb-4 text-slate-800">Enterprise</h3>
+                                        <p className="text-slate-600 mb-8 flex-grow leading-relaxed">
+                                            Scale with confidence using dedicated enterprise nodes, advanced analytics, and exclusive early access to marketplace features.
                                         </p>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Coming Soon */}
-                            <div className="p-10 rounded-3xl bg-blue-50 border border-blue-100 relative overflow-hidden group">
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 via-transparent to-teal-100/50 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <h2 className="text-2xl font-bold mb-4 flex items-center gap-3 text-blue-900">
-                                    <span className="w-3 h-3 rounded-full bg-blue-500 animate-pulse ring-4 ring-blue-500/20" />
-                                    Coming Soon: Versioning (Beta)
-                                </h2>
-                                <p className="text-slate-700 text-lg leading-relaxed relative z-10">
-                                    In the next major update, Capsule Hub will introduce versioning features, including the ability to track changes
-                                    to capsules over time, roll back to previous versions if mistakes are made, and tag stable versions
-                                    while maintaining team collaboration.
-                                </p>
-                            </div>
+
                         </div>
                     </div>
                 </section>

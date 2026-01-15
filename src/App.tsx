@@ -18,6 +18,8 @@ import MessageTransforms from "./pages/docs/MessageTransforms";
 import ToolCalling from "./pages/docs/ToolCalling";
 import ComplianceEngine from "./pages/docs/ComplianceEngine";
 import Principles from "./pages/docs/Principles";
+import GetStartedGuidera from "./pages/docs/GetStartedGuidera";
+import GetStartedCapsuleHub from "./pages/docs/GetStartedCapsuleHub";
 import Contact from "./pages/Contact";
 import Guidera from "./pages/Guidera";
 import CapsuleHub from "./pages/CapsuleHub";
@@ -42,6 +44,8 @@ const App = () => (
             <Route path="faq" element={<FAQ />} />
             <Route path="models" element={<Models />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="get-started-guidera" element={<GetStartedGuidera />} />
+            <Route path="get-started-capsule-hub" element={<GetStartedCapsuleHub />} />
 
             <Route path="arms-routing" element={<ArmsModel />} />
             <Route path="message-transforms" element={<MessageTransforms />} />

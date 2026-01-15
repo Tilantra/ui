@@ -10,7 +10,8 @@ const docsSections = [
         description: "Everything you need to know to get started with Guidera.",
         links: [
             { label: "Quick Start Guide", to: "/docs/quickstart" },
-            { label: "Installation", to: "/docs/quickstart" },
+            { label: "Getting Started with Guidera", to: "/docs/get-started-guidera" },
+            { label: "Getting Started with Capsule Hub", to: "/docs/get-started-capsule-hub" },
         ],
     },
     {

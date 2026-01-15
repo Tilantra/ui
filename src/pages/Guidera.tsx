@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import GuideraBentoSection from "@/components/sections/GuideraBentoSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const Guidera = () => {
     const images = [
@@ -40,9 +41,18 @@ const Guidera = () => {
                                     Integrated AI Platform
                                 </h1>
                                 <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-10 max-w-xl">
-                                    The intelligent control layer for modern AI systems.
                                     Optimize spend, ensure compliance, and accelerate deployment with one unified platform.
                                 </p>
+
+                                <div className="flex flex-wrap gap-4 mb-12">
+                                    <Link
+                                        to="/docs/get-started-guidera"
+                                        className="px-8 py-4 rounded-full bg-white text-blue-900 font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
+                                    >
+                                        Get Started with Guidera
+                                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                                    </Link>
+                                </div>
 
                                 <div className="min-h-[6rem]">
                                     <AnimatePresence mode="wait">
