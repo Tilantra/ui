@@ -10,6 +10,7 @@ const CapsuleHub = () => {
         "/CapsuleHub1.png",
         "/CapsuleHub2.png",
         "/CapsuleHub3.png",
+        "/CapsuleHub4.png",
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
