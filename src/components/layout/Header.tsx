@@ -104,6 +104,11 @@ const Header = () => {
 
                     {/* Desktop CTA */}
                     <div className="hidden md:flex items-center gap-3">
+                        <Link to="/book-demo">
+                            <Button variant="outline" size="sm">
+                                Book a Demo
+                            </Button>
+                        </Link>
                         <Link to="/contact">
                             <Button variant="hero" size="sm">
                                 Contact Us
@@ -171,8 +176,13 @@ const Header = () => {
                                 );
                             })}
                             <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border/50">
+                                <Link to="/book-demo">
+                                    <Button variant="outline" className="w-full" onClick={() => setIsMenuOpen(false)}>
+                                        Book a Demo
+                                    </Button>
+                                </Link>
                                 <Link to="/contact">
-                                    <Button variant="hero" className="w-full">
+                                    <Button variant="hero" className="w-full" onClick={() => setIsMenuOpen(false)}>
                                         Contact Us
                                     </Button>
                                 </Link>

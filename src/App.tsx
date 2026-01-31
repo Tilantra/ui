@@ -23,6 +23,7 @@ import GetStartedCapsuleHub from "./pages/docs/GetStartedCapsuleHub";
 import Contact from "./pages/Contact";
 import Guidera from "./pages/Guidera";
 import CapsuleHub from "./pages/CapsuleHub";
+import BookDemo from "./pages/BookDemo";
 import NotFound from "./pages/NotFound";
 
 import ScrollToTop from "./components/ScrollToTop";
@@ -58,6 +59,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/guidera" element={<Guidera />} />
           <Route path="/capsule-hub" element={<CapsuleHub />} />
+          <Route path="/book-demo" element={<BookDemo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
