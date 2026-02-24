@@ -65,7 +65,14 @@ const CapsuleHub = () => {
                                             to="/docs/get-started-capsule-hub"
                                             className="px-8 py-4 rounded-full bg-white text-blue-900 font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
                                         >
-                                            Get Started with Capsule Hub
+                                            Get Started
+                                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                                        </Link>
+                                        <Link
+                                            to="/docs/capsule-hub-mcp"
+                                            className="px-8 py-4 rounded-full bg-blue-600/20 backdrop-blur-md border border-white/30 text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
+                                        >
+                                            Capsule Hub MCP
                                             <span className="group-hover:translate-x-1 transition-transform">→</span>
                                         </Link>
                                     </div>

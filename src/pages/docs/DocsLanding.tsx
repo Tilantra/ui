@@ -12,6 +12,7 @@ const docsSections = [
             { label: "Quick Start Guide", to: "/docs/quickstart" },
             { label: "Getting Started with Guidera", to: "/docs/get-started-guidera" },
             { label: "Getting Started with Capsule Hub", to: "/docs/get-started-capsule-hub" },
+            { label: "Capsule Hub MCP", to: "/docs/capsule-hub-mcp" },
         ],
     },
     {
