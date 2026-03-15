@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { ChevronLeft, ChevronRight, Zap, Move, Users, Globe, Search, History } from "lucide-react";
+import { ChevronLeft, ChevronRight, Zap, Move, Users, Globe, Search, History, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -231,32 +231,151 @@ const CapsuleHub = () => {
                             </div>
 
                             {/* Tiers */}
-                            <div>
-                                <h2 className="text-3xl font-bold mb-10 text-center text-slate-900">Tiers</h2>
-                                <div className="grid md:grid-cols-3 gap-6 text-slate-900">
-                                    {/* Free Tier */}
-                                    <div className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-lg flex flex-col h-full hover:border-primary/20 transition-all">
-                                        <h3 className="text-2xl font-bold mb-4 text-slate-800">Free</h3>
-                                        <p className="text-slate-600 mb-8 flex-grow leading-relaxed">
-                                            Get started with personal context libraries. Includes single-user capsules and essential generation credits for individual use.
-                                        </p>
+                            <div className="mb-20">
+                                <div className="text-center mb-16">
+                                    <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight lg:tracking-tighter mb-4 text-center">
+                                        Simple, transparent pricing
+                                    </h2>
+                                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                                        Choose the perfect tier for you or your team. Unlock the full potential of your AI workflows with the right context size and team capabilities.
+                                    </p>
+                                </div>
+
+                                <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto px-4">
+
+                                    {/* Basic Tier */}
+                                    <div className="p-6 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col relative group">
+                                        <div className="flex justify-between items-start mb-3">
+                                            <div>
+                                                <h3 className="text-lg font-bold text-slate-900 mb-1">Basic</h3>
+                                                <p className="text-xs text-slate-500">Essential tools for individual creators.</p>
+                                            </div>
+                                            <div className="text-right">
+                                                <span className="text-2xl font-extrabold text-slate-900">$0</span>
+                                                <span className="text-slate-500 text-xs ml-1">/mo</span>
+                                            </div>
+                                        </div>
+                                        <div className="w-full h-px bg-slate-100 mb-4"></div>
+                                        <ul className="space-y-3 mb-2 flex-grow">
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                                                <span className="text-slate-600 text-sm"><strong>5</strong> Capsules</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start opacity-40">
+                                                <div className="w-4 h-4 shrink-0" />
+                                                <span className="text-slate-500 text-sm line-through">Team workspaces</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start opacity-40">
+                                                <div className="w-4 h-4 shrink-0" />
+                                                <span className="text-slate-500 text-sm line-through">Version control</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                                                <span className="text-slate-600 text-sm"><strong>MCP</strong> Support</span>
+                                            </li>
+                                        </ul>
                                     </div>
 
-                                    {/* Premium Tier */}
-                                    <div className="p-8 rounded-[2rem] border-2 border-primary bg-primary/5 relative overflow-hidden flex flex-col h-full shadow-xl hover:bg-primary/10 transition-all font-sans">
-                                        <div className="absolute top-4 right-4 px-4 py-1.5 bg-primary text-white text-[10px] font-black tracking-[0.2em] rounded-full uppercase">POPULAR</div>
-                                        <h3 className="text-2xl font-bold mb-4 text-primary">Premium</h3>
-                                        <p className="text-slate-700 font-medium mb-8 flex-grow leading-relaxed">
-                                            Empower your team with shared workspaces, full version history, and priority support. Perfect for growing organizations.
-                                        </p>
+                                    {/* Pro Tier */}
+                                    <div className="p-6 rounded-3xl border-2 border-primary bg-white shadow-2xl flex flex-col relative transition-transform duration-300 hover:-translate-y-2">
+                                        <div className="absolute -top-3 right-6 px-3 py-0.5 bg-primary text-white text-[10px] font-bold tracking-wider rounded-full uppercase shadow-sm">Popular</div>
+
+                                        <div className="flex justify-between items-start mb-3">
+                                            <div>
+                                                <h3 className="text-lg font-bold text-primary mb-1">Pro</h3>
+                                                <p className="text-xs text-slate-600">Perfect for professionals part of a team.</p>
+                                            </div>
+                                            <div className="text-right">
+                                                <span className="text-2xl font-extrabold text-slate-900">$5</span>
+                                                <span className="text-slate-500 text-xs ml-1">/mo</span>
+                                            </div>
+                                        </div>
+                                        <div className="w-full h-px bg-slate-100 mb-4"></div>
+                                        <ul className="space-y-3 mb-2 flex-grow">
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm"><strong>15</strong> Capsules</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm"><strong>Join</strong> team workspaces</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm"><strong>Version control</strong> (Basic & Pro)</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm">MCP + <strong>Attachments</strong></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    {/* Elite Tier */}
+                                    <div className="p-6 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col relative group">
+                                        <div className="flex justify-between items-start mb-3">
+                                            <div>
+                                                <h3 className="text-lg font-bold text-slate-900 mb-1">Elite</h3>
+                                                <p className="text-xs text-slate-500">Advanced control for team leaders.</p>
+                                            </div>
+                                            <div className="text-right">
+                                                <span className="text-2xl font-extrabold text-slate-900">$15</span>
+                                                <span className="text-slate-500 text-xs ml-1">/mo</span>
+                                            </div>
+                                        </div>
+                                        <div className="w-full h-px bg-slate-100 mb-4"></div>
+                                        <ul className="space-y-3 mb-2 flex-grow">
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm"><strong>Unlimited</strong> Capsules</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm"><strong>Create & join</strong> workspaces</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm"><strong>Version control</strong> (All)</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                                                <span className="text-slate-700 text-sm">MCP + Attachments + <strong>Dynamic Context</strong></span>
+                                            </li>
+                                        </ul>
                                     </div>
 
                                     {/* Enterprise Tier */}
-                                    <div className="p-8 rounded-[2rem] border border-slate-200 bg-white shadow-lg flex flex-col h-full hover:border-primary/20 transition-all">
-                                        <h3 className="text-2xl font-bold mb-4 text-slate-800">Enterprise</h3>
-                                        <p className="text-slate-600 mb-8 flex-grow leading-relaxed">
-                                            Scale with confidence using dedicated enterprise nodes, advanced analytics, and exclusive early access to marketplace features.
-                                        </p>
+                                    <div className="p-6 rounded-3xl border border-slate-200 bg-slate-900 shadow-xl overflow-hidden flex flex-col relative transform">
+                                        <div className="absolute inset-0 opacity-20 transition-opacity bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-400 via-transparent to-transparent"></div>
+
+                                        <div className="flex justify-between items-start mb-3 relative z-10">
+                                            <div>
+                                                <h3 className="text-lg font-bold text-white mb-1">Enterprise</h3>
+                                                <p className="text-xs text-slate-400">Dedicated infrastructure for scale.</p>
+                                            </div>
+                                            <div className="text-right">
+                                                <span className="text-lg font-extrabold text-white">Custom</span>
+                                            </div>
+                                        </div>
+                                        <div className="w-full h-px bg-slate-700 mb-4 relative z-10"></div>
+                                        <ul className="space-y-3 mb-2 flex-grow relative z-10">
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                                                <span className="text-white text-sm">Everything in <strong>Elite</strong></span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                                                <span className="text-white text-sm">Dedicated enterprise nodes</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                                                <span className="text-white text-sm">Advanced access controls</span>
+                                            </li>
+                                            <li className="flex gap-2.5 items-start">
+                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                                                <span className="text-white text-sm">Priority SLA & Support</span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
