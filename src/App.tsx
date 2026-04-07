@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Docs from "./pages/Docs";
@@ -23,13 +24,20 @@ import GetStartedCapsuleHub from "./pages/docs/GetStartedCapsuleHub";
 import CapsuleHubMCP from "./pages/docs/CapsuleHubMCP";
 import Contact from "./pages/Contact";
 import Guidera from "./pages/Guidera";
-import CapsuleHub from "./pages/CapsuleHub";
 import BookDemo from "./pages/BookDemo";
 import NotFound from "./pages/NotFound";
 
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
+
+const ExternalRedirect = ({ to }: { to: string }) => {
+  useEffect(() => {
+    window.location.replace(to);
+  }, [to]);
+
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -60,7 +68,10 @@ const App = () => (
           </Route>
           <Route path="/contact" element={<Contact />} />
           <Route path="/guidera" element={<Guidera />} />
-          <Route path="/capsule-hub" element={<CapsuleHub />} />
+          <Route
+            path="/capsule-hub"
+            element={<ExternalRedirect to="https://capsulehub.tilantra.com" />}
+          />
           <Route path="/book-demo" element={<BookDemo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
