@@ -1,22 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDocsOnThisPage } from '../Docs';
+import { CodeBlock } from '@/components/ui/code-block';
 
 const ON_THIS_PAGE = [
     { label: 'Principles', anchor: 'principles' },
     { label: 'Configuration Example', anchor: 'configuration-example' },
 ];
-
-const codeBlock = (code: string) => (
-    <div className="relative my-6 rounded-lg bg-muted/10 p-4 font-mono text-sm overflow-x-auto shadow-sm border border-border">
-        <pre className="whitespace-pre-wrap break-words m-0 bg-transparent text-foreground">{code}</pre>
-        <button
-            className="absolute top-2 right-2 rounded-md bg-card border border-border px-3 py-1 text-xs font-semibold text-primary shadow-sm hover:bg-muted transition-colors"
-            onClick={() => navigator.clipboard.writeText(code)}
-        >
-            Copy
-        </button>
-    </div>
-);
 
 const Principles: React.FC = () => {
     const { setLinks } = useDocsOnThisPage();
@@ -81,11 +70,14 @@ const Principles: React.FC = () => {
             </ul>
 
             <h2 id="configuration-example" className="text-purple-600 dark:text-purple-400 font-bold text-2xl mt-10 mb-4 scroll-mt-24">Configuration Example</h2>
-            {codeBlock(`const client = new Guidera({
-  apiKey: 'YOUR_API_KEY',
-  compliance: true,
-  providers: ['openai', 'anthropic'],
-});`)}
+            <CodeBlock language="typescript" code={`const client = new Guidera({
+  apiKey: process.env.GUIDERA_API_KEY
+});
+
+// The interface remains the same, regardless of the underlying model
+const response = await client.generate({
+  prompt: "What is the capital of France?"
+});`} />
         </div>
     );
 };

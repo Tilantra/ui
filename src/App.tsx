@@ -39,13 +39,18 @@ const ExternalRedirect = ({ to }: { to: string }) => {
   return null;
 };
 
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import GlobalBackground from "@/components/layout/GlobalBackground";
+
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
+  <ThemeProvider defaultTheme="dark" storageKey="tilantra-ui-theme">
+    <GlobalBackground />
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/docs" element={<Docs />}>
@@ -79,6 +84,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

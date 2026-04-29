@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDocsOnThisPage } from '../Docs';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CodeBlock } from '@/components/ui/code-block';
 
 const ON_THIS_PAGE = [
     { label: 'What is MCP?', anchor: 'what-is-mcp' },
@@ -118,9 +119,7 @@ const CapsuleHubMCP: React.FC = () => {
                                     <li>Click <strong>Add MCP server</strong></li>
                                 </ol>
                                 <p className="text-sm font-semibold mb-2">Add this to your mcp-servers config:</p>
-                                <pre className="bg-slate-950 text-slate-50 p-4 rounded-lg overflow-x-auto text-sm mb-6">
-                                    <code>{cursorConfig}</code>
-                                </pre>
+                                <CodeBlock language="json" code={cursorConfig} />
                             </motion.div>
                         ) : (
                             <motion.div
@@ -139,9 +138,7 @@ const CapsuleHubMCP: React.FC = () => {
                                     <li>Click <strong>View raw config</strong></li>
                                 </ol>
                                 <p className="text-sm font-semibold mb-2">Add this to your mcp-servers config:</p>
-                                <pre className="bg-slate-950 text-slate-50 p-4 rounded-lg overflow-x-auto text-sm mb-6">
-                                    <code>{antigravityConfig}</code>
-                                </pre>
+                                <CodeBlock language="json" code={antigravityConfig} />
                             </motion.div>
                         )}
                     </AnimatePresence>

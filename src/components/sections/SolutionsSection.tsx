@@ -1,102 +1,106 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ScrollReveal, ScrollRevealItem } from "@/components/ui/scroll-reveal";
 import { Link } from "react-router-dom";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 const solutions = [
     {
         title: "Guidera",
-        description: "Our chatbot offering",
-        features: [
-            "Intelligent responses",
-            "Custom training",
-            "Seamless integration",
-            "24/7 Availability",
-        ],
-        link: "/guidera",
+        subtitle: "Enterprise AI Gateway",
+        description: "Intelligent AI routing with compliance enforcement, content moderation, and real-time threat detection — all in a single gateway your team can trust.",
+        features: ["Intelligent model routing", "Compliance layer", "Content moderation", "Threat detection"],
+        logo: "/GuideraLogo.png",
+        href: "/guidera",
+        glow: "from-blue-600/20 via-blue-500/5 to-transparent",
+        border: "group-hover:border-blue-500/30",
+        tag: "AI Gateway",
+        tagColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
     },
     {
         title: "Capsule Hub",
-        description: "Our browser extension",
-        features: [
-            "One-click capsules",
-            "Easy sharing",
-            "Team collaboration",
-            "Secure storage",
-        ],
-        link: "/capsule-hub",
+        subtitle: "Knowledge Management",
+        description: "Capture, organize, and share AI-powered knowledge capsules across your team. One-click saves, instant retrieval, and seamless collaboration.",
+        features: ["One-click capsules", "Team collaboration", "MCP integration", "Secure storage"],
+        logo: "/CapsuleHubLogo.png",
+        href: "/capsule-hub",
+        glow: "from-cyan-600/20 via-cyan-500/5 to-transparent",
+        border: "group-hover:border-cyan-500/30",
+        tag: "Knowledge Layer",
+        tagColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
     },
 ];
 
+
+
 const SolutionsSection = () => {
     return (
-        <section id="solutions" className="py-12 bg-muted/30">
+        <section id="solutions" className="py-16 bg-transparent relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_50%,hsl(217,91%,60%,0.04),transparent)] pointer-events-none" />
+
             <div className="container mx-auto px-6">
-                {/* Section Header */}
-                <div className="max-w-2xl mx-auto text-center mb-12">
-                    <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-medium mb-3">
-                        Solutions
-                    </span>
-                    <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">
-                        Explore Our
-                        <span className="gradient-text"> Offerings</span>
+                <ScrollReveal>
+                {/* Header */}
+                <ScrollRevealItem className="text-center mb-14">
+                    <h2 className="text-3xl md:text-5xl font-bold" style={{ letterSpacing: "-0.03em" }}>
+                        <span className="headline-gradient">Explore Our </span>
+                        <span className="gradient-text">Offerings</span>
                     </h2>
-                    <p className="text-base text-muted-foreground">
-                        Discover how our tools can help you streamline your workflow and enhance productivity.
-                    </p>
-                </div>
+                </ScrollRevealItem>
 
-                {/* Solutions Grid */}
-                <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    {solutions.map((solution) => (
-                        <div
-                            key={solution.title}
-                            className="group relative p-6 rounded-xl bg-card border border-border transition-all duration-300 hover:border-primary/20 hover:bg-blue-500/5 hover:shadow-md"
+                {/* Cards (ElitePlanCard + FUI Bento Dark pattern) */}
+                <div className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+                    {solutions.map((sol, i) => (
+                        <ScrollRevealItem
+                            key={sol.title}
+                            className={`group relative rounded-3xl overflow-hidden border border-white shadow-xl dark:shadow-none dark:border-white/10 bg-white/70 dark:bg-white/[0.02] backdrop-blur-xl cursor-pointer ${sol.border} hover:-translate-y-1 transition-all duration-500`}
+                            // Removed artificial inset shadow on light mode to prevent looking dirty
                         >
-                            <h3 className="text-xl font-bold text-foreground mb-2">
-                                {solution.title}
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4">
-                                {solution.description}
-                            </p>
-
-                            {/* Logos positioned outside the card */}
-                            {solution.title === "Guidera" && (
+                            {/* Top logo area */}
+                            <div className="relative h-44 flex items-center justify-center overflow-hidden bg-white/[0.01]">
+                                <div className={`absolute inset-0 bg-gradient-to-br ${sol.glow} opacity-60`} />
                                 <img
-                                    src="/GuideraLogo.png"
-                                    alt="Guidera Logo"
-                                    className="hidden lg:block absolute right-[80%] opacity-0 group-hover:right-[105%] group-hover:opacity-100 transition-all duration-500 ease-out top-1/2 -translate-y-1/2 w-32 object-contain pointer-events-none"
+                                    src={sol.logo}
+                                    alt={sol.title}
+                                    className="relative z-10 h-16 object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                                 />
-                            )}
-                            {solution.title === "Capsule Hub" && (
-                                <img
-                                    src="/CapsuleHubLogo.png"
-                                    alt="Capsule Hub Logo"
-                                    className="hidden lg:block absolute left-[80%] opacity-0 group-hover:left-[105%] group-hover:opacity-100 transition-all duration-500 ease-out top-1/2 -translate-y-1/2 w-32 object-contain pointer-events-none"
-                                />
-                            )}
+                                {/* Bottom fade into card body */}
+                                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-[#0b1120] to-transparent" />
+                            </div>
 
-                            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
-                                {solution.features.map((feature) => (
-                                    <li key={feature} className="flex items-start gap-2">
-                                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                        <span className="text-[13px] text-foreground leading-tight">{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            {/* Content */}
+                            <div className="p-7 pt-4 bg-white/50 dark:bg-transparent h-full">
+                                <div className="flex items-start justify-between mb-3">
+                                    <div>
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-0.5">{sol.title}</h3>
+                                        <p className="text-xs text-slate-500 dark:text-white/35 uppercase tracking-widest">{sol.subtitle}</p>
+                                    </div>
+                                    <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${sol.tagColor}`}>
+                                        {sol.tag}
+                                    </span>
+                                </div>
 
-                            <Link to={solution.link} className="block w-full">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full"
+                                <p className="text-sm text-slate-600 dark:text-white/45 leading-relaxed mb-5">{sol.description}</p>
+
+                                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
+                                    {sol.features.map((f) => (
+                                        <li key={f} className="flex items-center gap-2">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 dark:text-blue-400 shrink-0" />
+                                            <span className="text-xs text-slate-500 dark:text-white/50">{f}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <Link
+                                    to={sol.href}
+                                    className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-white/50 hover:text-slate-900 dark:hover:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300"
                                 >
-                                    More
-                                    <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                                </Button>
-                            </Link>
-                        </div>
+                                    Learn more
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                                </Link>
+                            </div>
+                        </ScrollRevealItem>
                     ))}
                 </div>
+                </ScrollReveal>
             </div>
         </section>
     );
