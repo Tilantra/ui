@@ -1,7 +1,7 @@
 import { ScrollReveal, ScrollRevealItem } from "@/components/ui/scroll-reveal";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight, Plus, Package } from "lucide-react";
 
 const CTASection = () => {
     return (
@@ -10,21 +10,18 @@ const CTASection = () => {
                 <ScrollReveal>
                 <ScrollRevealItem className="relative max-w-3xl mx-auto">
                     {/* Corner plus icons (CTA 3 component) */}
-                    <Plus className="absolute -top-[13px] -left-[13px] z-10 w-6 h-6 text-slate-200 dark:text-white/15" strokeWidth={1} />
-                    <Plus className="absolute -top-[13px] -right-[13px] z-10 w-6 h-6 text-slate-200 dark:text-white/15" strokeWidth={1} />
-                    <Plus className="absolute -bottom-[13px] -left-[13px] z-10 w-6 h-6 text-slate-200 dark:text-white/15" strokeWidth={1} />
-                    <Plus className="absolute -bottom-[13px] -right-[13px] z-10 w-6 h-6 text-slate-200 dark:text-white/15" strokeWidth={1} />
+                    <Plus className="absolute -top-[13px] -left-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
+                    <Plus className="absolute -top-[13px] -right-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
+                    <Plus className="absolute -bottom-[13px] -left-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
+                    <Plus className="absolute -bottom-[13px] -right-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
 
                     {/* Vertical side borders */}
-                    <div className="pointer-events-none absolute inset-y-0 left-0 w-px border-l border-slate-200 dark:border-white/[0.08]" />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 w-px border-r border-slate-200 dark:border-white/[0.08]" />
-
-                    {/* Dashed center line (CTA 3) */}
-                    <div className="absolute top-0 left-1/2 h-full border-l border-dashed border-slate-200 dark:border-white/[0.06] -z-10" />
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-px border-l border-slate-300 dark:border-white/[0.08]" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-px border-r border-slate-300 dark:border-white/[0.08]" />
 
                     {/* Main content */}
                     <div
-                        className="relative px-10 py-14 border-y border-slate-200 dark:border-white/[0.08] text-center"
+                        className="relative px-10 py-14 border-y border-slate-300 dark:border-white/[0.08] text-center"
                         style={{ background: "radial-gradient(35% 80% at 50% 0%, rgba(59,130,246,0.07), transparent)" }}
                     >
                         <motion.p
@@ -48,6 +45,10 @@ const CTASection = () => {
                             <span className="headline-gradient">Start orchestrating AI</span>
                             <br />
                             <span className="gradient-text">the right way.</span>
+                            <br />
+                            <span className="text-slate-500 dark:text-white/20 text-2xl md:text-3xl font-medium">
+                                Guidera for control. Capsule Hub for context.
+                            </span>
                         </motion.h2>
 
                         <motion.p
@@ -57,7 +58,7 @@ const CTASection = () => {
                             transition={{ delay: 0.26, duration: 0.6 }}
                             className="text-slate-600 dark:text-white/35 text-base mb-8 max-w-md mx-auto"
                         >
-                            No credit card required. See how Tilantra handles routing, compliance, and cost in your environment.
+                            Two products. One AI operations stack. Tilantra eliminates compliance risk and context loss so your teams ship faster without the risk.
                         </motion.p>
 
                         <motion.div
@@ -81,6 +82,17 @@ const CTASection = () => {
                                 <div className="absolute inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-blue-500/10 via-blue-400/5 to-blue-500/10 rounded-lg" />
                             </Link>
 
+                            {/* Capsule Hub CTA */}
+                            <a
+                                href="https://chromewebstore.google.com/detail/capsule-hub-by-tilantra/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-violet-600 dark:text-violet-400 rounded-lg border border-violet-200 dark:border-violet-500/20 hover:bg-violet-50 dark:hover:bg-violet-500/[0.08] transition-all duration-200"
+                            >
+                                <Package className="w-4 h-4" />
+                                Get Capsule Hub Free
+                            </a>
+
                             {/* Secondary */}
                             <Link
                                 to="/contact"
@@ -102,7 +114,9 @@ const CTASection = () => {
                             <span className="w-px h-3 bg-slate-200 dark:bg-white/10" />
                             <span>99.9% Uptime SLA</span>
                             <span className="w-px h-3 bg-slate-200 dark:bg-white/10" />
-                            <span>Enterprise support</span>
+                            <span>10+ AI platforms</span>
+                            <span className="w-px h-3 bg-slate-200 dark:bg-white/10" />
+                            <span>Free to start</span>
                         </motion.div>
                     </div>
                 </ScrollRevealItem>

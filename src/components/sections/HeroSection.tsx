@@ -1,8 +1,12 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { TextEffect } from "@/components/ui/text-effect";
+import CountUp from "react-countup";
+
+// ─── Grid / Glow Canvas (unchanged) ──────────────────────────────────────────
 
 const GridGlowCanvas = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -86,83 +90,280 @@ const GridGlowCanvas = () => {
     return <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full opacity-40 dark:opacity-60" />;
 };
 
+// ─── Live Feed ────────────────────────────────────────────────────────────────
+
+const FEED_ITEMS = [
+    { type: "route",   icon: "↗", label: "Routed",       detail: "gpt-4o → gemini-flash",         meta: "saved $0.14 · 9ms"         },
+    { type: "cache",   icon: "⚡", label: "Cache hit",    detail: "Prompt reused",                  meta: "saved $0.22 · 2.4k tokens" },
+    { type: "comply",  icon: "◈", label: "Blocked",      detail: "Policy: competitor mention",     meta: "auto-corrected"            },
+    { type: "capsule", icon: "⬡", label: "Capsule",      detail: "\"Auth Spec v3\" → Cursor",     meta: "@alex · Engineering"       },
+    { type: "route",   icon: "↗", label: "Routed",       detail: "claude-3.5 → haiku",             meta: "saved $0.31 · 7ms"         },
+    { type: "comply",  icon: "◈", label: "PII redacted", detail: "3 email addresses removed",      meta: "before delivery"           },
+    { type: "capsule", icon: "⬡", label: "Team sync",    detail: "\"Q2 Brief\" → Marketing",      meta: "6 members notified"        },
+    { type: "route",   icon: "↗", label: "Routed",       detail: "gpt-4-turbo → mistral-7b",       meta: "saved $0.48 · 11ms"        },
+    { type: "cache",   icon: "⚡", label: "Cache hit",    detail: "Prompt reused",                  meta: "saved $0.19 · 1.8k tokens" },
+    { type: "comply",  icon: "◈", label: "Escalated",    detail: "Medical advice query",           meta: "routed to human"           },
+    { type: "capsule", icon: "⬡", label: "Capsule",      detail: "\"Competitor Research v2\"",     meta: "→ Claude for synthesis"    },
+    { type: "route",   icon: "↗", label: "Routed",       detail: "gemini-pro → llama-3.1",         meta: "saved $0.27 · 6ms"         },
+    { type: "cache",   icon: "⚡", label: "Cache hit",    detail: "Prompt reused",                  meta: "saved $0.34 · 3.1k tokens" },
+    { type: "comply",  icon: "◈", label: "Blocked",      detail: "Policy: profanity filter",       meta: "sanitised response"        },
+    { type: "capsule", icon: "⬡", label: "MCP inject",   detail: "\"Sprint Spec\" → Cursor IDE",  meta: "@priya · Engineering"      },
+    { type: "route",   icon: "↗", label: "Routed",       detail: "gpt-4o-mini → deepseek-r1",      meta: "saved $0.09 · 5ms"         },
+] as const;
+
+type FeedType = "route" | "cache" | "comply" | "capsule";
+
+const TYPE_STYLES: Record<FeedType, { row: string; badge: string }> = {
+    route:   { row: "text-blue-400",    badge: "bg-blue-500/10 text-blue-400 border-blue-500/20"       },
+    cache:   { row: "text-emerald-400", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
+    comply:  { row: "text-amber-400",   badge: "bg-amber-500/10 text-amber-400 border-amber-500/20"    },
+    capsule: { row: "text-violet-400",  badge: "bg-violet-500/10 text-violet-400 border-violet-500/20" },
+};
+
+const LiveFeed = () => {
+    const [rpm, setRpm] = useState(823);
+    useEffect(() => {
+        const t = setInterval(() => {
+            setRpm(prev => prev + Math.floor(Math.random() * 4 + 1));
+        }, 800);
+        return () => clearInterval(t);
+    }, []);
+
+    const doubled = [...FEED_ITEMS, ...FEED_ITEMS];
+    const singleListHeight = 36 * FEED_ITEMS.length;
+
+    return (
+        <div className="relative w-full max-w-[480px] rounded-2xl border border-white/10 bg-[hsl(224,28%,5%)]/90 backdrop-blur-xl overflow-hidden shadow-2xl shadow-black/40">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.07]">
+                <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-xs font-semibold text-white/60 uppercase tracking-widest">Tilantra Platform</span>
+                    <span className="text-white/15 text-xs">·</span>
+                    <span className="text-xs text-white/30">Live</span>
+                </div>
+                <div className="text-xs text-white/25 font-mono tabular-nums">
+                    {rpm.toLocaleString()} req/min
+                </div>
+            </div>
+
+            {/* Column headers */}
+            <div className="flex items-center gap-3 px-4 py-2 border-b border-white/[0.04]">
+                <span className="text-[10px] text-white/20 uppercase tracking-widest w-[72px]">Type</span>
+                <span className="text-[10px] text-white/20 uppercase tracking-widest flex-1">Event</span>
+                <span className="text-[10px] text-white/20 uppercase tracking-widest text-right">Outcome</span>
+            </div>
+
+            {/* Scrolling feed */}
+            <div className="h-[320px] overflow-hidden relative">
+                <div className="absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-[hsl(224,28%,5%)] to-transparent z-10 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-[hsl(224,28%,5%)] to-transparent z-10 pointer-events-none" />
+
+                <motion.div
+                    animate={{ y: [0, -singleListHeight] }}
+                    transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                >
+                    {doubled.map((item, i) => {
+                        const styles = TYPE_STYLES[item.type as FeedType];
+                        return (
+                            <div
+                                key={i}
+                                className="flex items-center gap-3 px-4 h-9 border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors"
+                            >
+                                <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-md border text-[10px] font-semibold w-[72px] shrink-0 ${styles.badge}`}>
+                                    <span className="font-mono">{item.icon}</span>
+                                    <span className="truncate">{item.label}</span>
+                                </div>
+                                <span className="text-xs text-white/50 flex-1 truncate font-mono">{item.detail}</span>
+                                <span className={`text-[11px] font-mono shrink-0 ${styles.row}`}>{item.meta}</span>
+                            </div>
+                        );
+                    })}
+                </motion.div>
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/[0.07] bg-white/[0.01]">
+                <div className="flex items-center gap-4">
+                    <span className="text-[11px] text-emerald-400 font-mono">+$0.14 saved</span>
+                    <span className="text-[11px] text-blue-400 font-mono">↗ gpt-4o → flash</span>
+                </div>
+                <span className="text-[11px] text-white/20 font-mono">last 100ms</span>
+            </div>
+        </div>
+    );
+};
+
+// ─── Stats ────────────────────────────────────────────────────────────────────
+
+const STATS = [
+    { end: 60,   suffix: "%+", label: "Cost reduction",   color: "text-emerald-600 dark:text-emerald-400", decimals: 0 },
+    { end: 40,   suffix: "+",  label: "AI models",        color: "text-blue-600 dark:text-blue-400",    decimals: 0 },
+    { end: 99.9, suffix: "%",  label: "Uptime SLA",       color: "text-slate-900 dark:text-white/60",    decimals: 1 },
+    { end: 0,    suffix: "",   label: "Compliance leaks", color: "text-slate-900 dark:text-white/60",    decimals: 0 },
+];
+
+const BULLETS = [
+    { icon: "↗", color: "text-blue-400",   text: "Smart routing across 40+ models — cost optimised, latency aware, always on" },
+    { icon: "◈", color: "text-amber-400",  text: "Enterprise compliance built in — PII redaction, policy rules, full audit trail" },
+    { icon: "⬡", color: "text-violet-400", text: "Context that travels — capture from any AI, inject anywhere, share with your team" },
+];
+
+// ─── Main Component ───────────────────────────────────────────────────────────
+
 const HeroSection = () => {
     return (
-        <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
+        <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-transparent">
             <GridGlowCanvas />
 
-            {/* Radial vignette to focus center */}
+            {/* Vignette */}
             <div className="absolute inset-0 z-[1] pointer-events-none vignette-bg" />
 
-            {/* Content */}
-            <div className="relative z-10 container mx-auto px-6 pt-32 pb-20 flex flex-col items-center text-center">
-                    <AnimatedGroup
-                    className="flex flex-col items-center w-full max-w-4xl mx-auto"
-                    preset="slide"
-                >
+            <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
+                <div className="grid lg:grid-cols-[1fr_500px] gap-16 items-center">
 
-                    {/* Headline */}
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight mb-8 text-slate-900 dark:text-white">
-                        <TextEffect per="word" preset="fade">
-                            Enterprise AI Orchestration.
-                        </TextEffect>
-                        <div className="gradient-text mt-2 inline-block">
-                            <TextEffect per="char" preset="fade" delay={0.15}>
-                                Simplified.
+                    {/* ── Left Column ── */}
+                    <AnimatedGroup className="flex flex-col items-start w-full" preset="slide">
+
+
+
+                        {/* Headline */}
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.06] tracking-tight mb-6 text-slate-900 dark:text-white text-left">
+                            <div className="flex flex-wrap items-baseline gap-x-4">
+                                <TextEffect per="word" preset="fade">
+                                    Run AI
+                                </TextEffect>
+                                <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">
+                                    <TextEffect per="word" preset="fade" delay={0.1}>
+                                        At enterprise scale.
+                                    </TextEffect>
+                                </span>
+                            </div>
+                            <div className="mt-1">
+                                <span className="text-slate-500 dark:text-white/90">
+                                    <TextEffect per="char" preset="fade" delay={0.4}>
+                                        Without the chaos.
+                                    </TextEffect>
+                                </span>
+                            </div>
+                        </h1>
+
+                        {/* Sub-headline */}
+                        <p className="text-lg md:text-xl text-slate-600 dark:text-white/45 mb-8 max-w-lg leading-relaxed text-left">
+                            <TextEffect per="word" preset="blur" delay={0.7}>
+                                The infrastructure layer between your teams and every AI model. We handle the routing, the compliance, and the context — so you can focus on what AI makes possible.
                             </TextEffect>
+                        </p>
+
+                        {/* Capability bullets */}
+                        <div className="flex flex-col gap-3 mb-10">
+                            {BULLETS.map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, x: -16 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 1.0 + i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                                    className="flex items-start gap-3"
+                                >
+                                    <span className={`${item.color} text-sm mt-[3px] shrink-0 font-mono`}>{item.icon}</span>
+                                    <span className="text-sm text-slate-600 dark:text-white/40 leading-relaxed">{item.text}</span>
+                                </motion.div>
+                            ))}
                         </div>
-                    </h1>
 
-                    <p className="text-lg md:text-xl text-slate-600 dark:text-cyan-100/60 mb-12 max-w-2xl mx-auto leading-relaxed">
-                        <TextEffect per="word" preset="blur" delay={0.8}>
-                            The unified solution for enterprise AI management. Deploy, monitor, and scale your AI usage with unprecedented control and visibility.
-                        </TextEffect>
-                    </p>
+                        {/* CTAs */}
+                        <div className="flex items-center gap-3 flex-wrap mb-12">
+                            {/* Primary — rainbow glow */}
+                            <div className="relative group">
+                                <div
+                                    className="absolute inset-0 -m-[2px] rounded-full opacity-70 blur-sm animate-rainbow pointer-events-none"
+                                    style={{
+                                        background: "linear-gradient(90deg, hsl(210,100%,60%), hsl(190,90%,55%), hsl(185,85%,50%), hsl(190,90%,55%), hsl(210,100%,60%))",
+                                        backgroundSize: "200% 200%",
+                                    }}
+                                />
+                                <Link
+                                    to="/book-demo"
+                                    className="relative z-10 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-blue-600 dark:text-white bg-white dark:bg-[hsl(224,28%,5%)] rounded-full border border-blue-200 dark:border-cyan-500/30 hover:border-blue-300 dark:hover:border-cyan-400/50 transition-all duration-200"
+                                >
+                                    Book a Demo
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                                </Link>
+                            </div>
 
-                    {/* CTAs */}
-                    <div className="flex items-center gap-3 flex-wrap justify-center">
-                        {/* Primary — rainbow glow button */}
-                        <div className="relative group">
-                            <div
-                                className="absolute inset-0 -m-[2px] rounded-full opacity-70 blur-sm animate-rainbow pointer-events-none"
-                                style={{
-                                    background: "linear-gradient(90deg, hsl(210,100%,60%), hsl(190,90%,55%), hsl(185,85%,50%), hsl(190,90%,55%), hsl(210,100%,60%))",
-                                    backgroundSize: "200% 200%",
-                                }}
-                            />
-                            <Link
-                                to="/book-demo"
-                                className="relative z-10 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-blue-600 dark:text-white bg-white dark:bg-[hsl(224,28%,5%)] rounded-full border border-blue-200 dark:border-cyan-500/30 hover:border-blue-300 dark:hover:border-cyan-400/50 transition-all duration-200 hover:bg-slate-50 dark:group-hover:bg-[hsl(224,28%,7%)]"
+                            {/* Secondary — scroll to products */}
+                            <button
+                                onClick={() => document.getElementById("solutions")?.scrollIntoView({ behavior: "smooth" })}
+                                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-600 dark:text-white/50 rounded-full hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] backdrop-blur-md border border-slate-200 dark:border-white/5 transition-all duration-200"
                             >
-                                Book a Demo
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                            </Link>
+                                Explore our products
+                                <ChevronDown className="w-4 h-4" />
+                            </button>
                         </div>
 
-                        {/* Secondary */}
-                        <Link
-                            to="/docs"
-                            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-600 dark:text-white/50 rounded-full hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-white/[0.06] backdrop-blur-md border border-slate-200 dark:border-white/5 transition-all duration-200"
+                        {/* Animated stat strip */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.5, duration: 0.6 }}
+                            className="flex items-center gap-8 flex-wrap"
                         >
-                            View Docs
-                        </Link>
+                            {STATS.map((stat, i) => (
+                                <div key={i} className="flex flex-col items-start">
+                                    <div
+                                        className={`text-xl font-bold tabular-nums ${stat.color}`}
+                                        style={{ letterSpacing: "-0.04em" }}
+                                    >
+                                        <CountUp
+                                            end={stat.end}
+                                            decimals={stat.decimals}
+                                            duration={2.4}
+                                            enableScrollSpy={false}
+                                            delay={1.6}
+                                        />
+                                        {stat.suffix}
+                                    </div>
+                                    <div className="text-[11px] text-slate-500 dark:text-white/25 mt-0.5">{stat.label}</div>
+                                </div>
+                            ))}
+                        </motion.div>
+                    </AnimatedGroup>
+
+                    {/* ── Right Column — Live Feed (desktop only) ── */}
+                    <div className="relative hidden lg:flex items-center justify-end">
+                        <LiveFeed />
+
+                        {/* Float card — top left */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            transition={{ delay: 1.8, duration: 0.5, type: "spring" }}
+                            className="absolute -top-12 -left-16 px-4 py-3 rounded-xl border border-emerald-200 dark:border-emerald-500/20 bg-white/90 dark:bg-emerald-500/[0.08] backdrop-blur-xl shadow-xl dark:shadow-none"
+                        >
+                            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 tabular-nums" style={{ letterSpacing: "-0.04em" }}>-61%</div>
+                            <div className="text-[11px] text-slate-500 dark:text-white/35 mt-0.5">avg AI cost</div>
+                            <div className="text-[11px] text-slate-400 dark:text-white/20">this month</div>
+                        </motion.div>
+
+                        {/* Float card — bottom right */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, x: -20 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            transition={{ delay: 2.0, duration: 0.5, type: "spring" }}
+                            className="absolute -bottom-10 -right-16 px-4 py-3 rounded-xl border border-blue-200 dark:border-blue-500/20 bg-white/90 dark:bg-blue-500/[0.08] backdrop-blur-xl shadow-xl dark:shadow-none"
+                        >
+                            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 tabular-nums" style={{ letterSpacing: "-0.04em" }}>0</div>
+                            <div className="text-[11px] text-slate-500 dark:text-white/35 mt-0.5">policy leaks</div>
+                            <div className="text-[11px] text-slate-400 dark:text-white/20">past 90 days</div>
+                        </motion.div>
                     </div>
 
-                    {/* Trust indicators */}
-                    <div className="flex items-center gap-6 mt-12 text-xs text-slate-500 dark:text-white/25">
-                        <span>SOC2 Compliant</span>
-                        <span className="w-px h-3 bg-slate-300 dark:bg-white/10" />
-                        <span>40+ Models</span>
-                        <span className="w-px h-3 bg-slate-300 dark:bg-white/10" />
-                        <span>99.9% Uptime</span>
-                        <span className="w-px h-3 bg-slate-300 dark:bg-white/10" />
-                        <span>70% Cost Savings</span>
-                    </div>
-                </AnimatedGroup>
-
-                {/* Bottom section glow bleed */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-t from-blue-200/50 via-blue-100/20 dark:from-cyan-600/15 dark:via-blue-600/5 to-transparent rounded-t-full blur-3xl pointer-events-none" />
+                </div>
             </div>
+
+            {/* Dual-colour glow bleed */}
+            <div className="absolute bottom-0 left-1/3 -translate-x-1/2 w-[400px] h-[180px] bg-gradient-to-t from-blue-600/12 to-transparent rounded-t-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 right-1/3 translate-x-1/2 w-[400px] h-[180px] bg-gradient-to-t from-violet-600/12 to-transparent rounded-t-full blur-3xl pointer-events-none" />
         </section>
     );
 };

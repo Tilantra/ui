@@ -70,7 +70,7 @@ const GlobalBackground: React.FC = () => {
             <div className={`absolute inset-0 z-0 bg-[size:24px_24px] ${
                 isDark 
                     ? "bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)]"
-                    : "bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)]"
+                    : "bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)]"
             }`} />
 
             {/* Ambient Blurred Orbs */}

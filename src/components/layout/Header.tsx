@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 const AnimatedNavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void }) => (
     <a
@@ -18,6 +20,7 @@ const AnimatedNavLink = ({ href, children, onClick }: { href: string; children: 
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [productsOpen, setProductsOpen] = useState(false);
     const [shape, setShape] = useState<"rounded-full" | "rounded-xl">("rounded-full");
     const shapeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const location = useLocation();
@@ -45,9 +48,8 @@ const Header = () => {
     };
 
     const navLinks = [
-        { name: "Product", href: "/#hero" },
         { name: "Solutions", href: "/#solutions" },
-        { name: "Docs", href: "/docs" },
+        { name: "Docs",      href: "/docs" },
     ];
 
     return (
@@ -83,6 +85,52 @@ const Header = () => {
 
                 {/* Desktop nav */}
                 <nav className="hidden sm:flex items-center gap-6">
+                    {/* Products dropdown */}
+                    <div className="relative"
+                        onMouseEnter={() => setProductsOpen(true)}
+                        onMouseLeave={() => setProductsOpen(false)}
+                    >
+                        <button className="group relative inline-flex items-center gap-1 text-sm text-slate-500 dark:text-white/45 hover:text-slate-900 dark:hover:text-white transition-colors">
+                            Products
+                            <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${productsOpen ? "rotate-180" : ""}`} />
+                        </button>
+                        <AnimatePresence>
+                            {productsOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 4, scale: 0.97 }}
+                                    transition={{ duration: 0.15 }}
+                                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-80 p-2 rounded-2xl border border-white/15 dark:border-white/10 bg-white/95 dark:bg-[hsl(224,28%,7%)]/95 backdrop-blur-xl shadow-2xl shadow-black/20"
+                                >
+                                    <Link to="/guidera" onClick={() => setProductsOpen(false)}
+                                        className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-white/[0.04] transition-all group/item"
+                                    >
+                                        <div className="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+                                            <img src="/GuideraLogo.png" alt="Guidera" className="h-5 object-contain" />
+                                        </div>
+                                        <div>
+                                            <div className="text-sm font-semibold text-slate-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">Guidera</div>
+                                            <div className="text-xs text-slate-500 dark:text-white/30 leading-snug mt-0.5">AI gateway — routing, compliance &amp; cost control</div>
+                                        </div>
+                                    </Link>
+                                    <div className="my-1 h-px bg-slate-100 dark:bg-white/[0.06] mx-3" />
+                                    <Link to="/capsule-hub" onClick={() => setProductsOpen(false)}
+                                        className="flex items-start gap-3 p-3 rounded-xl hover:bg-violet-50/50 dark:hover:bg-violet-500/[0.06] transition-all group/item"
+                                    >
+                                        <div className="w-9 h-9 rounded-xl bg-violet-500/10 flex items-center justify-center shrink-0">
+                                            <img src="/CapsuleHubLogo.png" alt="Capsule Hub" className="h-5 object-contain" />
+                                        </div>
+                                        <div>
+                                            <div className="text-sm font-semibold text-slate-900 dark:text-white group-hover/item:text-violet-600 dark:group-hover/item:text-violet-400 transition-colors">Capsule Hub</div>
+                                            <div className="text-xs text-slate-500 dark:text-white/30 leading-snug mt-0.5">Context layer — capture once, inject into any AI</div>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
                     {navLinks.map((link) => (
                         <AnimatedNavLink
                             key={link.name}
