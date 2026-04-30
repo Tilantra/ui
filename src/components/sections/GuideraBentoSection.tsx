@@ -105,7 +105,7 @@ const GuideraBentoSection = () => {
     };
 
     return (
-        <section className="py-20 bg-transparent relative overflow-hidden">
+        <section className="py-12 bg-transparent relative overflow-hidden">
             {/* Mesh Overlay & Background Decorations */}
             <div className="absolute inset-0 mesh-overlay opacity-30 pointer-events-none" />
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-200/30 dark:bg-blue-900/30 rounded-full blur-[120px] -z-10" />

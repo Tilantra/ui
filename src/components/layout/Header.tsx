@@ -49,7 +49,7 @@ const Header = () => {
 
     const navLinks = [
         { name: "Solutions", href: "/#solutions" },
-        { name: "Docs",      href: "/docs" },
+        { name: "Docs", href: "/docs" },
     ];
 
     return (
@@ -111,7 +111,7 @@ const Header = () => {
                                         </div>
                                         <div>
                                             <div className="text-sm font-semibold text-slate-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors">Guidera</div>
-                                            <div className="text-xs text-slate-500 dark:text-white/30 leading-snug mt-0.5">AI gateway — routing, compliance &amp; cost control</div>
+                                            <div className="text-xs text-slate-500 dark:text-white/30 leading-snug mt-0.5">AI Gateway — Routing, Compliance &amp; Cost Control</div>
                                         </div>
                                     </Link>
                                     <div className="my-1 h-px bg-slate-100 dark:bg-white/[0.06] mx-3" />
@@ -123,7 +123,7 @@ const Header = () => {
                                         </div>
                                         <div>
                                             <div className="text-sm font-semibold text-slate-900 dark:text-white group-hover/item:text-violet-600 dark:group-hover/item:text-violet-400 transition-colors">Capsule Hub</div>
-                                            <div className="text-xs text-slate-500 dark:text-white/30 leading-snug mt-0.5">Context layer — capture once, inject into any AI</div>
+                                            <div className="text-xs text-slate-500 dark:text-white/30 leading-snug mt-0.5">Context Layer — Capture Once, Inject into any AI</div>
                                         </div>
                                     </Link>
                                 </motion.div>

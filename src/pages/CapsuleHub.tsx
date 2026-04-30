@@ -131,7 +131,7 @@ const CapsuleHub = () => (
     <main>
 
       {/* ── Hero Split ── */}
-      <section className="bg-slate-50 dark:bg-[hsl(224,28%,3%)] pt-24 pb-48 relative overflow-hidden">
+      <section className="bg-slate-50 dark:bg-[hsl(224,28%,3%)] pt-20 pb-24 relative overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-t from-violet-600/15 via-cyan-600/5 to-transparent rounded-t-full blur-3xl pointer-events-none" />
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -174,7 +174,7 @@ const CapsuleHub = () => (
       </section>
 
       {/* ── Narrative ── */}
-      <section className="py-20 bg-transparent relative z-10">
+      <section className="py-12 bg-transparent relative z-10">
         <div className="container mx-auto px-6 max-w-4xl text-center">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">The Bridge for Your AI Workflows</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 text-left">
@@ -187,14 +187,14 @@ const CapsuleHub = () => (
       </section>
 
       {/* ── Bento ── */}
-      <section className="py-20 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-6">
           <CapsuleHubBentoSection showHeading={true} />
         </div>
       </section>
 
       {/* ── Use Cases ── */}
-      <section className="py-16 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-6">
           <ScrollReveal>
             <ScrollRevealItem className="text-center mb-14">
@@ -212,7 +212,7 @@ const CapsuleHub = () => (
       </section>
 
       {/* ── Pricing ── */}
-      <section className="py-20 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-6">
           <ScrollReveal>
             <ScrollRevealItem className="text-center mb-16">
@@ -262,7 +262,7 @@ const CapsuleHub = () => (
       </section>
 
       {/* ── Page CTA ── */}
-      <section className="py-20 bg-transparent">
+      <section className="py-12 bg-transparent">
         <div className="container mx-auto px-6 text-center max-w-2xl">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Ready to stop starting from zero?</h2>
           <p className="text-slate-600 dark:text-white/40 mb-8 text-base leading-relaxed">

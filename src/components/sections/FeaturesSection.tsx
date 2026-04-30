@@ -177,7 +177,6 @@ const FeatureCard = ({ f, product }: { f: Feature; product: "guidera" | "capsule
                             </span>
                         ))}
                     </div>
-                    <span className="text-xs text-slate-500 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity">Explore →</span>
                 </div>
             </div>
         </div>
@@ -191,7 +190,7 @@ const FeaturesSection = () => {
     const features = product === "guidera" ? guideraFeatures : capsuleHubFeatures;
 
     return (
-        <section id="features" className="py-16 bg-transparent relative overflow-hidden">
+        <section id="features" className="py-12 bg-transparent relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,hsl(217,91%,60%,0.05),transparent)] pointer-events-none" />
 
             <div className="container mx-auto px-6">

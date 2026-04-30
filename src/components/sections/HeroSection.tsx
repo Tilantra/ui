@@ -93,31 +93,31 @@ const GridGlowCanvas = () => {
 // ─── Live Feed ────────────────────────────────────────────────────────────────
 
 const FEED_ITEMS = [
-    { type: "route",   icon: "↗", label: "Routed",       detail: "gpt-4o → gemini-flash",         meta: "saved $0.14 · 9ms"         },
-    { type: "cache",   icon: "⚡", label: "Cache hit",    detail: "Prompt reused",                  meta: "saved $0.22 · 2.4k tokens" },
-    { type: "comply",  icon: "◈", label: "Blocked",      detail: "Policy: competitor mention",     meta: "auto-corrected"            },
-    { type: "capsule", icon: "⬡", label: "Capsule",      detail: "\"Auth Spec v3\" → Cursor",     meta: "@alex · Engineering"       },
-    { type: "route",   icon: "↗", label: "Routed",       detail: "claude-3.5 → haiku",             meta: "saved $0.31 · 7ms"         },
-    { type: "comply",  icon: "◈", label: "PII redacted", detail: "3 email addresses removed",      meta: "before delivery"           },
-    { type: "capsule", icon: "⬡", label: "Team sync",    detail: "\"Q2 Brief\" → Marketing",      meta: "6 members notified"        },
-    { type: "route",   icon: "↗", label: "Routed",       detail: "gpt-4-turbo → mistral-7b",       meta: "saved $0.48 · 11ms"        },
-    { type: "cache",   icon: "⚡", label: "Cache hit",    detail: "Prompt reused",                  meta: "saved $0.19 · 1.8k tokens" },
-    { type: "comply",  icon: "◈", label: "Escalated",    detail: "Medical advice query",           meta: "routed to human"           },
-    { type: "capsule", icon: "⬡", label: "Capsule",      detail: "\"Competitor Research v2\"",     meta: "→ Claude for synthesis"    },
-    { type: "route",   icon: "↗", label: "Routed",       detail: "gemini-pro → llama-3.1",         meta: "saved $0.27 · 6ms"         },
-    { type: "cache",   icon: "⚡", label: "Cache hit",    detail: "Prompt reused",                  meta: "saved $0.34 · 3.1k tokens" },
-    { type: "comply",  icon: "◈", label: "Blocked",      detail: "Policy: profanity filter",       meta: "sanitised response"        },
-    { type: "capsule", icon: "⬡", label: "MCP inject",   detail: "\"Sprint Spec\" → Cursor IDE",  meta: "@priya · Engineering"      },
-    { type: "route",   icon: "↗", label: "Routed",       detail: "gpt-4o-mini → deepseek-r1",      meta: "saved $0.09 · 5ms"         },
+    { type: "route", icon: "↗", label: "Routed", detail: "gpt-4o → gemini-flash", meta: "saved $0.14 · 9ms" },
+    { type: "cache", icon: "⚡", label: "Cache hit", detail: "Prompt reused", meta: "saved $0.22 · 2.4k tokens" },
+    { type: "comply", icon: "◈", label: "Blocked", detail: "Policy: competitor mention", meta: "auto-corrected" },
+    { type: "capsule", icon: "⬡", label: "Capsule", detail: "\"Auth Spec v3\" → Cursor", meta: "@alex · Engineering" },
+    { type: "route", icon: "↗", label: "Routed", detail: "claude-3.5 → haiku", meta: "saved $0.31 · 7ms" },
+    { type: "comply", icon: "◈", label: "PII redacted", detail: "3 email addresses removed", meta: "before delivery" },
+    { type: "capsule", icon: "⬡", label: "Team sync", detail: "\"Q2 Brief\" → Marketing", meta: "6 members notified" },
+    { type: "route", icon: "↗", label: "Routed", detail: "gpt-4-turbo → mistral-7b", meta: "saved $0.48 · 11ms" },
+    { type: "cache", icon: "⚡", label: "Cache hit", detail: "Prompt reused", meta: "saved $0.19 · 1.8k tokens" },
+    { type: "comply", icon: "◈", label: "Escalated", detail: "Medical advice query", meta: "routed to human" },
+    { type: "capsule", icon: "⬡", label: "Capsule", detail: "\"Competitor Research v2\"", meta: "→ Claude for synthesis" },
+    { type: "route", icon: "↗", label: "Routed", detail: "gemini-pro → llama-3.1", meta: "saved $0.27 · 6ms" },
+    { type: "cache", icon: "⚡", label: "Cache hit", detail: "Prompt reused", meta: "saved $0.34 · 3.1k tokens" },
+    { type: "comply", icon: "◈", label: "Blocked", detail: "Policy: profanity filter", meta: "sanitised response" },
+    { type: "capsule", icon: "⬡", label: "MCP inject", detail: "\"Sprint Spec\" → Cursor IDE", meta: "@priya · Engineering" },
+    { type: "route", icon: "↗", label: "Routed", detail: "gpt-4o-mini → deepseek-r1", meta: "saved $0.09 · 5ms" },
 ] as const;
 
 type FeedType = "route" | "cache" | "comply" | "capsule";
 
 const TYPE_STYLES: Record<FeedType, { row: string; badge: string }> = {
-    route:   { row: "text-blue-400",    badge: "bg-blue-500/10 text-blue-400 border-blue-500/20"       },
-    cache:   { row: "text-emerald-400", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
-    comply:  { row: "text-amber-400",   badge: "bg-amber-500/10 text-amber-400 border-amber-500/20"    },
-    capsule: { row: "text-violet-400",  badge: "bg-violet-500/10 text-violet-400 border-violet-500/20" },
+    route: { row: "text-blue-400", badge: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+    cache: { row: "text-emerald-400", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
+    comply: { row: "text-amber-400", badge: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
+    capsule: { row: "text-violet-400", badge: "bg-violet-500/10 text-violet-400 border-violet-500/20" },
 };
 
 const LiveFeed = () => {
@@ -197,17 +197,12 @@ const LiveFeed = () => {
 // ─── Stats ────────────────────────────────────────────────────────────────────
 
 const STATS = [
-    { end: 60,   suffix: "%+", label: "Cost reduction",   color: "text-emerald-600 dark:text-emerald-400", decimals: 0 },
-    { end: 40,   suffix: "+",  label: "AI models",        color: "text-blue-600 dark:text-blue-400",    decimals: 0 },
-    { end: 99.9, suffix: "%",  label: "Uptime SLA",       color: "text-slate-900 dark:text-white/60",    decimals: 1 },
-    { end: 0,    suffix: "",   label: "Compliance leaks", color: "text-slate-900 dark:text-white/60",    decimals: 0 },
+    { end: 68, suffix: "%+", label: "Cost reduction", color: "text-emerald-600 dark:text-emerald-400", decimals: 0 },
+    { end: 40, suffix: "+", label: "AI models", color: "text-blue-600 dark:text-blue-400", decimals: 0 },
+    { end: 99.9, suffix: "%", label: "Uptime SLA", color: "text-slate-900 dark:text-white/60", decimals: 1 },
+    { end: 0, suffix: "", label: "Compliance leaks", color: "text-rose-500 dark:text-rose-400", decimals: 0 },
 ];
 
-const BULLETS = [
-    { icon: "↗", color: "text-blue-400",   text: "Smart routing across 40+ models — cost optimised, latency aware, always on" },
-    { icon: "◈", color: "text-amber-400",  text: "Enterprise compliance built in — PII redaction, policy rules, full audit trail" },
-    { icon: "⬡", color: "text-violet-400", text: "Context that travels — capture from any AI, inject anywhere, share with your team" },
-];
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
@@ -219,7 +214,7 @@ const HeroSection = () => {
             {/* Vignette */}
             <div className="absolute inset-0 z-[1] pointer-events-none vignette-bg" />
 
-            <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
+            <div className="relative z-10 container mx-auto px-6 pt-24 pb-12">
                 <div className="grid lg:grid-cols-[1fr_500px] gap-16 items-center">
 
                     {/* ── Left Column ── */}
@@ -229,47 +224,29 @@ const HeroSection = () => {
 
                         {/* Headline */}
                         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.06] tracking-tight mb-6 text-slate-900 dark:text-white text-left">
-                            <div className="flex flex-wrap items-baseline gap-x-4">
+                            <div className="flex flex-col gap-1">
                                 <TextEffect per="word" preset="fade">
-                                    Run AI
+                                    Accelerate Any
                                 </TextEffect>
                                 <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">
                                     <TextEffect per="word" preset="fade" delay={0.1}>
-                                        At enterprise scale.
+                                        Workflow.
                                     </TextEffect>
                                 </span>
-                            </div>
-                            <div className="mt-1">
                                 <span className="text-slate-500 dark:text-white/90">
-                                    <TextEffect per="char" preset="fade" delay={0.4}>
-                                        Without the chaos.
+                                    <TextEffect per="word" preset="fade" delay={0.3}>
+                                        Secure Every Request.
                                     </TextEffect>
                                 </span>
                             </div>
                         </h1>
 
                         {/* Sub-headline */}
-                        <p className="text-lg md:text-xl text-slate-600 dark:text-white/45 mb-8 max-w-lg leading-relaxed text-left">
+                        <p className="text-lg md:text-xl text-slate-600 dark:text-white/45 mb-8 max-w-2xl leading-relaxed text-left">
                             <TextEffect per="word" preset="blur" delay={0.7}>
-                                The infrastructure layer between your teams and every AI model. We handle the routing, the compliance, and the context — so you can focus on what AI makes possible.
+                                The platform that makes AI work. Capture shared knowledge with Capsule Hub and optimize model routing with Guidera, giving your teams the speed of AI without the friction of context loss or cost spikes.
                             </TextEffect>
                         </p>
-
-                        {/* Capability bullets */}
-                        <div className="flex flex-col gap-3 mb-10">
-                            {BULLETS.map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, x: -16 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 1.0 + i * 0.12, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                    className="flex items-start gap-3"
-                                >
-                                    <span className={`${item.color} text-sm mt-[3px] shrink-0 font-mono`}>{item.icon}</span>
-                                    <span className="text-sm text-slate-600 dark:text-white/40 leading-relaxed">{item.text}</span>
-                                </motion.div>
-                            ))}
-                        </div>
 
                         {/* CTAs */}
                         <div className="flex items-center gap-3 flex-wrap mb-12">
@@ -330,7 +307,7 @@ const HeroSection = () => {
                     </AnimatedGroup>
 
                     {/* ── Right Column — Live Feed (desktop only) ── */}
-                    <div className="relative hidden lg:flex items-center justify-end">
+                    <div className="relative hidden lg:flex items-center justify-end pr-16">
                         <LiveFeed />
 
                         {/* Float card — top left */}
@@ -338,7 +315,7 @@ const HeroSection = () => {
                             initial={{ opacity: 0, scale: 0.9, x: 20 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             transition={{ delay: 1.8, duration: 0.5, type: "spring" }}
-                            className="absolute -top-12 -left-16 px-4 py-3 rounded-xl border border-emerald-200 dark:border-emerald-500/20 bg-white/90 dark:bg-emerald-500/[0.08] backdrop-blur-xl shadow-xl dark:shadow-none"
+                            className="absolute -top-12 -left-[70px] px-4 py-3 rounded-xl border border-emerald-200 dark:border-emerald-500/20 bg-white/90 dark:bg-emerald-500/[0.08] backdrop-blur-xl shadow-xl dark:shadow-none"
                         >
                             <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 tabular-nums" style={{ letterSpacing: "-0.04em" }}>-61%</div>
                             <div className="text-[11px] text-slate-500 dark:text-white/35 mt-0.5">avg AI cost</div>
@@ -350,9 +327,9 @@ const HeroSection = () => {
                             initial={{ opacity: 0, scale: 0.9, x: -20 }}
                             animate={{ opacity: 1, scale: 1, x: 0 }}
                             transition={{ delay: 2.0, duration: 0.5, type: "spring" }}
-                            className="absolute -bottom-10 -right-16 px-4 py-3 rounded-xl border border-blue-200 dark:border-blue-500/20 bg-white/90 dark:bg-blue-500/[0.08] backdrop-blur-xl shadow-xl dark:shadow-none"
+                            className="absolute -bottom-10 right-4 px-4 py-3 rounded-xl border border-rose-200 dark:border-rose-500/20 bg-white/90 dark:bg-rose-500/[0.08] backdrop-blur-xl shadow-xl dark:shadow-none"
                         >
-                            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 tabular-nums" style={{ letterSpacing: "-0.04em" }}>0</div>
+                            <div className="text-2xl font-bold text-rose-600 dark:text-rose-400 tabular-nums" style={{ letterSpacing: "-0.04em" }}>0</div>
                             <div className="text-[11px] text-slate-500 dark:text-white/35 mt-0.5">policy leaks</div>
                             <div className="text-[11px] text-slate-400 dark:text-white/20">past 90 days</div>
                         </motion.div>

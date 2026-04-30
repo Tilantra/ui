@@ -235,7 +235,7 @@ const SolutionsSection = () => {
     const product = PRODUCTS[active];
 
     return (
-        <section id="solutions" className="py-16 bg-transparent relative overflow-hidden">
+        <section id="solutions" className="py-12 bg-transparent relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_40%_at_50%_50%,hsl(217,91%,60%,0.04),transparent)] pointer-events-none" />
 
             <div className="container mx-auto px-6">

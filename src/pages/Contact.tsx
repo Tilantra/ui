@@ -59,7 +59,7 @@ const Contact = () => {
                 <div className='absolute inset-0 blur-[118px] max-w-lg h-[800px] mx-auto sm:max-w-3xl sm:h-[400px] pointer-events-none' style={{ background: "linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.41) 15.74%, rgba(232, 121, 249, 0.26) 56.49%, rgba(79, 70, 229, 0.4) 115.91%)" }}></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-start">
-                        {/* Left Column: Lore Ipsum Content */}
+                        {/* Left Column */}
                         <div className="space-y-6">
                             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
                                 Get in touch
@@ -74,6 +74,19 @@ const Contact = () => {
                                     Reach out to us and discover how Tilantra can streamline your workflows,
                                     optimize your performance, and accelerate your path to innovation.
                                 </p>
+
+                                <div className="pt-8 border-t border-slate-200 dark:border-white/10 mt-8">
+                                    <p className="text-base text-muted-foreground">
+                                        Alternatively talk to us on{" "}
+                                        <a href="mailto:tilantra.technologies@gmail.com" className="text-blue-600 dark:text-cyan-400 font-medium hover:underline transition-colors">
+                                            tilantra.technologies@gmail.com
+                                        </a>
+                                        {" "}or{" "}
+                                        <a href="mailto:tech@tilantra.com" className="text-blue-600 dark:text-cyan-400 font-medium hover:underline transition-colors">
+                                            tech@tilantra.com
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
 

@@ -10,7 +10,7 @@ const stats = [
 
 const AboutUsSection = () => {
     return (
-        <section id="about-us" className="py-16 bg-transparent relative overflow-hidden">
+        <section id="about-us" className="py-12 bg-transparent relative overflow-hidden">
             {/* Subtle center glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-blue-200/40 dark:bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
 

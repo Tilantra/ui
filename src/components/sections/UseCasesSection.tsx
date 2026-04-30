@@ -225,7 +225,7 @@ const UseCasesSection = () => {
     const activeCases = product === "guidera" ? guideraCases : capsuleHubCases;
 
     return (
-        <section id="use-cases" className="py-24 bg-transparent relative overflow-hidden">
+        <section id="use-cases" className="py-12 bg-transparent relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,hsl(217,91%,60%,0.05),transparent)] pointer-events-none" />
 
             <div className="container mx-auto px-6">

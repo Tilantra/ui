@@ -5,7 +5,7 @@ import { ArrowRight, Plus, Package } from "lucide-react";
 
 const CTASection = () => {
     return (
-        <section className="py-16 bg-transparent relative overflow-hidden">
+        <section className="py-12 bg-transparent relative overflow-hidden">
             <div className="container mx-auto px-6">
                 <ScrollReveal>
                 <ScrollRevealItem className="relative max-w-3xl mx-auto">

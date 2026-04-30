@@ -21,7 +21,7 @@ const Guidera = () => {
 
             <main>
                 {/* Hero Section with Split Layout */}
-                <div className="relative overflow-hidden bg-slate-50 dark:bg-[hsl(224,28%,3%)] pt-24 pb-48">
+                <div className="relative overflow-hidden bg-slate-50 dark:bg-[hsl(224,28%,3%)] pt-24 pb-24">
                     {/* Bottom section glow bleed */}
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-t from-cyan-600/15 via-blue-600/5 to-transparent rounded-t-full blur-3xl pointer-events-none" />
                     {/* Mesh overlay */}
@@ -34,11 +34,11 @@ const Guidera = () => {
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
-                                className="text-left"
+                                className="text-left relative"
                             >
                                 <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-slate-900 dark:text-white leading-[1.1]">
                                     <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent block mb-2">
-                                        Guidera:
+                                        Guidera
                                     </span>
                                     Integrated AI Platform
                                 </h1>
@@ -56,7 +56,7 @@ const Guidera = () => {
                                     </Link>
                                 </div>
 
-                                <div className="min-h-[6rem]">
+                                <div className="absolute top-full left-0 w-full pt-4">
                                     <AnimatePresence mode="wait">
                                         {hoveredIndex !== null && (
                                             <motion.p
@@ -126,11 +126,10 @@ const Guidera = () => {
                     </div>
                 </div>
 
-                {/* Angle Gradient Divider */}
-                <div className="w-full h-32 bg-gradient-to-b from-slate-50 dark:from-[hsl(224,28%,3%)] to-transparent relative -mt-32 pointer-events-none z-0"></div>
+
 
                 {/* Lorem Ipsum Section */}
-                <section className="py-20 bg-transparent relative z-10">
+                <section className="py-12 bg-transparent relative z-10">
                     <div className="container mx-auto px-6 max-w-4xl text-center">
                         <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Explore the Possibilities</h2>
                         <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 text-left">
