@@ -52,12 +52,14 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen bg-transparent text-foreground">
             <Header />
-            <main className="pt-32 pb-20">
-                <div className="container mx-auto px-6">
+            <main className="pt-32 pb-20 relative overflow-hidden">
+                {/* Intense glowing gradient blob inspired by Dark Contact Section */}
+                <div className='absolute inset-0 blur-[118px] max-w-lg h-[800px] mx-auto sm:max-w-3xl sm:h-[400px] pointer-events-none' style={{ background: "linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.41) 15.74%, rgba(232, 121, 249, 0.26) 56.49%, rgba(79, 70, 229, 0.4) 115.91%)" }}></div>
+                <div className="container mx-auto px-6 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-start">
-                        {/* Left Column: Lore Ipsum Content */}
+                        {/* Left Column */}
                         <div className="space-y-6">
                             <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
                                 Get in touch
@@ -72,13 +74,26 @@ const Contact = () => {
                                     Reach out to us and discover how Tilantra can streamline your workflows,
                                     optimize your performance, and accelerate your path to innovation.
                                 </p>
+
+                                <div className="pt-8 border-t border-slate-200 dark:border-white/10 mt-8">
+                                    <p className="text-base text-muted-foreground">
+                                        Alternatively talk to us on{" "}
+                                        <a href="mailto:tilantra.technologies@gmail.com" className="text-blue-600 dark:text-cyan-400 font-medium hover:underline transition-colors">
+                                            tilantra.technologies@gmail.com
+                                        </a>
+                                        {" "}or{" "}
+                                        <a href="mailto:tech@tilantra.com" className="text-blue-600 dark:text-cyan-400 font-medium hover:underline transition-colors">
+                                            tech@tilantra.com
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
                         {/* Right Column: Contact Form */}
-                        <div className="bg-card border border-border rounded-3xl p-8 md:p-10 shadow-sm relative overflow-hidden">
+                        <div className="bg-white/80 dark:bg-white/[0.03] backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl p-8 md:p-10 shadow-xl dark:shadow-[0_0_50px_rgba(14,165,233,0.15)] relative overflow-hidden group">
                             {/* Decorative element */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10" />
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-bl-full blur-xl -z-10 group-hover:scale-150 transition-transform duration-700" />
 
                             <form onSubmit={handleSubmit} className="space-y-5">
                                 <div className="space-y-2">
@@ -90,7 +105,7 @@ const Contact = () => {
                                         value={form.name}
                                         onChange={handleChange}
                                         required
-                                        className="bg-background"
+                                        className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
                                     />
                                 </div>
 
@@ -103,7 +118,7 @@ const Contact = () => {
                                         value={form.designation}
                                         onChange={handleChange}
                                         required
-                                        className="bg-background"
+                                        className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
                                     />
                                 </div>
 
@@ -118,7 +133,7 @@ const Contact = () => {
                                             value={form.email}
                                             onChange={handleChange}
                                             required
-                                            className="bg-background"
+                                            className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -130,7 +145,7 @@ const Contact = () => {
                                             placeholder="+1 (555) 000-0000"
                                             value={form.phone}
                                             onChange={handleChange}
-                                            className="bg-background"
+                                            className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
                                         />
                                     </div>
                                 </div>
@@ -145,7 +160,7 @@ const Contact = () => {
                                         value={form.message}
                                         onChange={handleChange}
                                         required
-                                        className="bg-background resize-none"
+                                        className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all resize-none font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
                                     />
                                 </div>
 
@@ -165,9 +180,8 @@ const Contact = () => {
 
                                 <Button
                                     type="submit"
-                                    variant="hero"
                                     size="lg"
-                                    className="w-full mt-2"
+                                    className="w-full mt-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold shadow-[0_0_20px_rgba(14,165,233,0.3)] transition-all rounded-full"
                                     disabled={submitting}
                                 >
                                     {submitting ? (
@@ -177,8 +191,8 @@ const Contact = () => {
                                         </>
                                     ) : (
                                         <>
-                                            Send Inquiry
-                                            <Send className="w-4 h-4 ml-2" />
+                                            Submit Inquiry
+                                            <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                         </>
                                     )}
                                 </Button>

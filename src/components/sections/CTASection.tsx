@@ -1,52 +1,126 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ScrollReveal, ScrollRevealItem } from "@/components/ui/scroll-reveal";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight, Plus, Package } from "lucide-react";
 
 const CTASection = () => {
     return (
-        <section className="py-12 relative overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 hero-gradient" />
-            <div className="absolute inset-0 mesh-overlay" />
+        <section className="py-12 bg-transparent relative overflow-hidden">
+            <div className="container mx-auto px-6">
+                <ScrollReveal>
+                <ScrollRevealItem className="relative max-w-3xl mx-auto">
+                    {/* Corner plus icons (CTA 3 component) */}
+                    <Plus className="absolute -top-[13px] -left-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
+                    <Plus className="absolute -top-[13px] -right-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
+                    <Plus className="absolute -bottom-[13px] -left-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
+                    <Plus className="absolute -bottom-[13px] -right-[13px] z-10 w-6 h-6 text-slate-300 dark:text-white/15" strokeWidth={1} />
 
-            {/* Animated orbs */}
-            <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse-slow" />
-            <div className="absolute bottom-1/4 right-1/3 w-48 h-48 bg-secondary/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
+                    {/* Vertical side borders */}
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-px border-l border-slate-300 dark:border-white/[0.08]" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-px border-r border-slate-300 dark:border-white/[0.08]" />
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mx-auto text-center">
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary-foreground mb-8">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="text-sm font-medium">Ready to transform your AI operations?</span>
+                    {/* Main content */}
+                    <div
+                        className="relative px-10 py-14 border-y border-slate-300 dark:border-white/[0.08] text-center"
+                        style={{ background: "radial-gradient(35% 80% at 50% 0%, rgba(59,130,246,0.07), transparent)" }}
+                    >
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1, duration: 0.6 }}
+                            className="text-xs text-blue-600 dark:text-blue-400/70 uppercase tracking-widest mb-4 font-medium"
+                        >
+                            Get started today
+                        </motion.p>
+
+                        <motion.h2
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.18, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-3xl md:text-4xl font-bold mb-4"
+                            style={{ letterSpacing: "-0.03em" }}
+                        >
+                            <span className="headline-gradient">Start orchestrating AI</span>
+                            <br />
+                            <span className="gradient-text">the right way.</span>
+                            <br />
+                            <span className="text-slate-500 dark:text-white/20 text-2xl md:text-3xl font-medium">
+                                Guidera for control. Capsule Hub for context.
+                            </span>
+                        </motion.h2>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.26, duration: 0.6 }}
+                            className="text-slate-600 dark:text-white/35 text-base mb-8 max-w-md mx-auto"
+                        >
+                            Two products. One AI operations stack. Tilantra eliminates compliance risk and context loss so your teams ship faster without the risk.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.34, duration: 0.6 }}
+                            className="flex items-center justify-center gap-3 flex-wrap"
+                        >
+                            {/* Primary CTA — ButtonCta layered gradient pattern */}
+                            <Link to="/book-demo" className="relative group inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold overflow-hidden">
+                                <div className="absolute inset-0 rounded-lg p-px bg-gradient-to-b from-blue-400/40 via-blue-600/20 to-blue-900/30">
+                                    <div className="absolute inset-0 bg-white dark:bg-[hsl(224,28%,7%)] rounded-lg" />
+                                </div>
+                                <div className="absolute inset-[1px] bg-gradient-to-b from-blue-500/10 via-transparent to-blue-900/20 rounded-lg" />
+                                <div className="absolute inset-[1px] shadow-[inset_0_0_15px_rgba(59,130,246,0.12)] rounded-lg" />
+                                <span className="relative z-10 bg-gradient-to-b from-blue-200 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(59,130,246,0.4)]">
+                                    Book a Demo
+                                </span>
+                                <ArrowRight className="relative z-10 w-4 h-4 text-blue-400 group-hover:translate-x-0.5 transition-transform" />
+                                <div className="absolute inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-blue-500/10 via-blue-400/5 to-blue-500/10 rounded-lg" />
+                            </Link>
+
+                            {/* Capsule Hub CTA */}
+                            <a
+                                href="https://chromewebstore.google.com/detail/capsule-hub-by-tilantra/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-violet-600 dark:text-violet-400 rounded-lg border border-violet-200 dark:border-violet-500/20 hover:bg-violet-50 dark:hover:bg-violet-500/[0.08] transition-all duration-200"
+                            >
+                                <Package className="w-4 h-4" />
+                                Get Capsule Hub Free
+                            </a>
+
+                            {/* Secondary */}
+                            <Link
+                                to="/contact"
+                                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-500 dark:text-white/40 rounded-lg border border-slate-200 dark:border-white/[0.08] hover:text-slate-900 dark:hover:text-white/70 hover:bg-slate-100 dark:hover:bg-white/[0.04] transition-all duration-200"
+                            >
+                                Contact Sales
+                            </Link>
+                        </motion.div>
+
+                        {/* Trust badges */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5, duration: 0.6 }}
+                            className="flex items-center justify-center gap-6 mt-8 text-xs text-slate-500 dark:text-white/20"
+                        >
+                            <span>SOC2 Compliant</span>
+                            <span className="w-px h-3 bg-slate-200 dark:bg-white/10" />
+                            <span>99.9% Uptime SLA</span>
+                            <span className="w-px h-3 bg-slate-200 dark:bg-white/10" />
+                            <span>10+ AI platforms</span>
+                            <span className="w-px h-3 bg-slate-200 dark:bg-white/10" />
+                            <span>Free to start</span>
+                        </motion.div>
                     </div>
-
-                    {/* Heading */}
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-                        Start building with
-                        <span className="block gradient-text">Guidera today</span>
-                    </h2>
-
-                    {/* Description */}
-                    <p className="text-lg md:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-10">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-
-                    {/* CTAs */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Button variant="hero" size="xl">
-                            Start Free Trial
-                            <ArrowRight className="w-5 h-5" />
-                        </Button>
-                        <Button variant="heroOutline" size="xl" className="text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/10">
-                            Talk to Sales
-                        </Button>
-                    </div>
-
-                    {/* Trust line */}
-                    <p className="mt-8 text-sm text-primary-foreground/50">
-                        No credit card required • 14-day free trial • Cancel anytime
-                    </p>
-                </div>
+                </ScrollRevealItem>
+                </ScrollReveal>
             </div>
         </section>
     );

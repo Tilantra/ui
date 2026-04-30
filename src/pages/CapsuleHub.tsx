@@ -1,393 +1,285 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { ChevronLeft, ChevronRight, Zap, Move, Users, Globe, Search, History, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowRight, Check, Terminal, Megaphone, ShoppingCart, Search, Cpu } from "lucide-react";
+import { ScrollReveal, ScrollRevealItem } from "@/components/ui/scroll-reveal";
+import CapsuleHubBentoSection from "@/components/sections/CapsuleHubBentoSection";
 
-const CapsuleHub = () => {
-    const images = [
-        "/CapsuleHub1.png",
-        "/CapsuleHub2.png",
-        "/CapsuleHub3.png",
-        "/CapsuleHub4.png",
-    ];
+// ─── Stacked screenshots ──────────────────────────────────────────────────────
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+const IMAGES = [
+  { src: "/CapsuleHub1.png", label: "Capsule Library: Your full context history — searchable, versioned, and team-ready." },
+  { src: "/CapsuleHub2.png", label: "Capture in Action: One click extracts context from any AI chat into a portable Capsule." },
+  { src: "/CapsuleHub3.png", label: "Team Workspace: Shared capsules organized by department, with transparent ownership." },
+];
+const OFFSETS = [
+  { x: -55, y: -45, rotate: -7, scale: 0.94 },
+  { x: 0,   y: 0,   rotate: 0,  scale: 1    },
+  { x: 55,  y: 45,  rotate: 7,  scale: 0.94 },
+];
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            nextSlide();
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [currentIndex]);
-
-    const nextSlide = () => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    };
-
-    // Logic for side-by-side images: 
-    // index 0 -> [0, 1]
-    // index 1 -> [1, 2]
-    // index 2 -> [2, 0]
-    const visibleImages = [
-        images[currentIndex],
-        images[(currentIndex + 1) % images.length],
-    ];
-
-    return (
-        <div className="min-h-screen bg-white text-slate-900 font-sans antialiased">
-            <Header />
-
-            <main>
-                {/* Top Section with Dark Blue Background */}
-                <div className="relative overflow-hidden hero-gradient pt-24 pb-12">
-                    {/* Mesh overlay */}
-                    <div className="absolute inset-0 mesh-overlay pointer-events-none opacity-60" />
-
-                    <div className="relative z-10">
-                        {/* Hero Section */}
-                        <section className="py-12 md:py-16">
-                            <div className="container mx-auto px-6">
-                                <div className="max-w-4xl mx-auto text-center">
-                                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-white">
-                                        <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
-                                            Capsule Hub:
-                                        </span>{" "}
-                                        The First AI Context Supply Chain
-                                    </h1>
-                                    <div className="flex flex-wrap gap-4 mt-8 justify-center">
-                                        <Link
-                                            to="/docs/get-started-capsule-hub"
-                                            className="px-8 py-4 rounded-full bg-white text-blue-900 font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
-                                        >
-                                            Get Started
-                                            <span className="group-hover:translate-x-1 transition-transform">→</span>
-                                        </Link>
-                                        <Link
-                                            to="/docs/capsule-hub-mcp"
-                                            className="px-8 py-4 rounded-full bg-blue-600/20 backdrop-blur-md border border-white/30 text-white font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
-                                        >
-                                            Capsule Hub MCP
-                                            <span className="group-hover:translate-x-1 transition-transform">→</span>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Carousel Section */}
-                        <section className="pb-8 overflow-hidden">
-                            <div className="container mx-auto px-4 lg:px-6">
-                                <div className="relative group max-w-[1400px] mx-auto">
-                                    <div className="flex gap-4 md:gap-6 justify-center items-stretch">
-                                        <AnimatePresence mode="wait">
-                                            {visibleImages.map((src, idx) => (
-                                                <motion.div
-                                                    key={`${src}-${idx}`}
-                                                    initial={{ opacity: 0, scale: 0.95 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 0, scale: 0.95 }}
-                                                    transition={{ duration: 0.4 }}
-                                                    className="w-1/2 aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl flex items-center justify-center p-1"
-                                                >
-                                                    <img
-                                                        src={src}
-                                                        alt={`Capsule Hub Preview ${idx + 1}`}
-                                                        className="w-full h-full object-cover md:object-contain rounded-xl"
-                                                    />
-                                                </motion.div>
-                                            ))}
-                                        </AnimatePresence>
-                                    </div>
-
-                                    {/* Navigation Arrows */}
-                                    <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none px-2 md:-mx-12 lg:-mx-16">
-                                        <button
-                                            onClick={prevSlide}
-                                            className="pointer-events-auto p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all transform hover:scale-110 active:scale-95 group text-white"
-                                            aria-label="Previous image"
-                                        >
-                                            <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
-                                        </button>
-                                        <button
-                                            onClick={nextSlide}
-                                            className="pointer-events-auto p-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/20 transition-all transform hover:scale-110 active:scale-95 group text-white"
-                                            aria-label="Next image"
-                                        >
-                                            <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-                {/* Content Section with White Background */}
-                <section className="py-20 bg-white">
-                    <div className="container mx-auto px-6 max-w-4xl pt-4">
-                        <div className="space-y-16">
-                            {/* Intro */}
-                            <div className="prose prose-slate max-w-none">
-                                <p className="text-xl leading-relaxed text-slate-600">
-                                    <span className="text-slate-900 font-semibold">Capsule Hub</span> is a context-transfer tool for AI workflows (a feature offering by Tilantra).
-                                    Whether you are brainstorming on ChatGPT, coding on Claude, or researching on Gemini,
-                                    it lets you capture the essence of any conversation into a <span className="text-primary font-bold">"Capsule"</span> and instantly reuse it in another AI chat.
-                                </p>
-                            </div>
-
-                            {/* Why Capsule Hub? */}
-                            <div>
-                                <h2 className="text-3xl font-bold mb-6 flex items-center gap-3 text-slate-900">
-                                    <span className="w-8 h-1 bg-primary rounded-full" />
-                                    Why Capsule Hub?
-                                </h2>
-                                <p className="text-lg text-slate-600 leading-relaxed">
-                                    Most users lose significant time switching between AI tools and rebuilding context.
-                                    Capsule Hub turns scattered conversations into a unified, portable knowledge base.
-                                </p>
-                            </div>
-
-                            {/* Key Features */}
-                            <div>
-                                <h2 className="text-3xl font-bold mb-8 text-slate-900 border-l-4 border-primary pl-4">Key Features</h2>
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                                    {[
-                                        {
-                                            icon: Zap,
-                                            title: "Context Capsule Generation",
-                                            desc: "Instantly capture the core context of a conversation into a Capsule. This removes the need to copy-paste long chat histories.",
-                                            metric: "1-Click Capture"
-                                        },
-                                        {
-                                            icon: Move,
-                                            title: "Drag and Drop Injection",
-                                            desc: "Use the Drop feature to inject a saved capsule into a new chat. The AI immediately understands the background and goals.",
-                                            metric: "Zero Copy-Paste"
-                                        },
-                                        {
-                                            icon: Users,
-                                            title: "Team Collaboration",
-                                            desc: "Organize capsules by teams such as Engineering or Product. See who created each capsule for transparency.",
-                                            metric: "Role-Based Access"
-                                        },
-                                        {
-                                            icon: Globe,
-                                            title: "Multi-Model Support",
-                                            desc: "Works seamlessly with ChatGPT (Official and Plus), Claude.ai, and Google Gemini and AI Studio.",
-                                            metric: "GPT, Claude, Gemini"
-                                        },
-                                        {
-                                            icon: Search,
-                                            title: "Smart Library",
-                                            desc: "Search your capsule library by content, tags, or team for fast and easy retrieval of your best AI prompts.",
-                                            metric: "Instant Retrieval"
-                                        },
-                                        {
-                                            icon: History,
-                                            title: "Versioning",
-                                            desc: "Track changes to capsules over time, roll back to previous versions, and tag stable versions.",
-                                            metric: "Version Control"
-                                        },
-                                    ].map((feature) => (
-                                        <div
-                                            key={feature.title}
-                                            className="group relative p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-primary/30 hover:bg-white transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
-                                        >
-                                            <div className="flex flex-col h-full">
-                                                {/* Icon container */}
-                                                <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                                                    <feature.icon className="w-5 h-5 text-primary" />
-                                                </div>
-
-                                                <div className="flex-1 min-w-0">
-                                                    {/* Content */}
-                                                    <h3 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-primary transition-colors duration-300">
-                                                        {feature.title}
-                                                    </h3>
-                                                    <p className="text-sm text-slate-600 leading-relaxed mb-4 line-clamp-3">
-                                                        {feature.desc}
-                                                    </p>
-                                                </div>
-
-                                                {/* Metric Tag */}
-                                                <div className="mt-auto">
-                                                    <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-primary/10 text-primary border border-primary/20">
-                                                        {feature.metric}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Decorative background glow on hover */}
-                                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Tiers */}
-                            <div className="mb-20">
-                                <div className="text-center mb-16">
-                                    <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight lg:tracking-tighter mb-4 text-center">
-                                        Simple, transparent pricing
-                                    </h2>
-                                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                                        Choose the perfect tier for you or your team. Unlock the full potential of your AI workflows with the right context size and team capabilities.
-                                    </p>
-                                </div>
-
-                                <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto px-4">
-
-                                    {/* Basic Tier */}
-                                    <div className="p-6 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col relative group">
-                                        <div className="flex justify-between items-start mb-3">
-                                            <div>
-                                                <h3 className="text-lg font-bold text-slate-900 mb-1">Basic</h3>
-                                                <p className="text-xs text-slate-500">Essential tools for individual creators.</p>
-                                            </div>
-                                            <div className="text-right">
-                                                <span className="text-2xl font-extrabold text-slate-900">$0</span>
-                                                <span className="text-slate-500 text-xs ml-1">/mo</span>
-                                            </div>
-                                        </div>
-                                        <div className="w-full h-px bg-slate-100 mb-4"></div>
-                                        <ul className="space-y-3 mb-2 flex-grow">
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                                                <span className="text-slate-600 text-sm"><strong>5</strong> Capsules</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start opacity-40">
-                                                <div className="w-4 h-4 shrink-0" />
-                                                <span className="text-slate-500 text-sm line-through">Team workspaces</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start opacity-40">
-                                                <div className="w-4 h-4 shrink-0" />
-                                                <span className="text-slate-500 text-sm line-through">Version control</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                                                <span className="text-slate-600 text-sm"><strong>MCP</strong> Support</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    {/* Pro Tier */}
-                                    <div className="p-6 rounded-3xl border-2 border-primary bg-white shadow-2xl flex flex-col relative transition-transform duration-300 hover:-translate-y-2">
-                                        <div className="absolute -top-3 right-6 px-3 py-0.5 bg-primary text-white text-[10px] font-bold tracking-wider rounded-full uppercase shadow-sm">Popular</div>
-
-                                        <div className="flex justify-between items-start mb-3">
-                                            <div>
-                                                <h3 className="text-lg font-bold text-primary mb-1">Pro</h3>
-                                                <p className="text-xs text-slate-600">Perfect for professionals part of a team.</p>
-                                            </div>
-                                            <div className="text-right">
-                                                <span className="text-2xl font-extrabold text-slate-900">$5</span>
-                                                <span className="text-slate-500 text-xs ml-1">/mo</span>
-                                            </div>
-                                        </div>
-                                        <div className="w-full h-px bg-slate-100 mb-4"></div>
-                                        <ul className="space-y-3 mb-2 flex-grow">
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm"><strong>15</strong> Capsules</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm"><strong>Join</strong> team workspaces</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm"><strong>Version control</strong> (Basic & Pro)</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm">MCP + <strong>Attachments</strong></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    {/* Elite Tier */}
-                                    <div className="p-6 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col relative group">
-                                        <div className="flex justify-between items-start mb-3">
-                                            <div>
-                                                <h3 className="text-lg font-bold text-slate-900 mb-1">Elite</h3>
-                                                <p className="text-xs text-slate-500">Advanced control for team leaders.</p>
-                                            </div>
-                                            <div className="text-right">
-                                                <span className="text-2xl font-extrabold text-slate-900">$15</span>
-                                                <span className="text-slate-500 text-xs ml-1">/mo</span>
-                                            </div>
-                                        </div>
-                                        <div className="w-full h-px bg-slate-100 mb-4"></div>
-                                        <ul className="space-y-3 mb-2 flex-grow">
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm"><strong>Unlimited</strong> Capsules</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm"><strong>Create & join</strong> workspaces</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm"><strong>Version control</strong> (All)</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                                                <span className="text-slate-700 text-sm">MCP + Attachments + <strong>Dynamic Context</strong></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    {/* Enterprise Tier */}
-                                    <div className="p-6 rounded-3xl border border-slate-200 bg-slate-900 shadow-xl overflow-hidden flex flex-col relative transform">
-                                        <div className="absolute inset-0 opacity-20 transition-opacity bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-400 via-transparent to-transparent"></div>
-
-                                        <div className="flex justify-between items-start mb-3 relative z-10">
-                                            <div>
-                                                <h3 className="text-lg font-bold text-white mb-1">Enterprise</h3>
-                                                <p className="text-xs text-slate-400">Dedicated infrastructure for scale.</p>
-                                            </div>
-                                            <div className="text-right">
-                                                <span className="text-lg font-extrabold text-white">Custom</span>
-                                            </div>
-                                        </div>
-                                        <div className="w-full h-px bg-slate-700 mb-4 relative z-10"></div>
-                                        <ul className="space-y-3 mb-2 flex-grow relative z-10">
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                                                <span className="text-white text-sm">Everything in <strong>Elite</strong></span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                                                <span className="text-white text-sm">Dedicated enterprise nodes</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                                                <span className="text-white text-sm">Advanced access controls</span>
-                                            </li>
-                                            <li className="flex gap-2.5 items-start">
-                                                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
-                                                <span className="text-white text-sm">Priority SLA & Support</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
-    );
+const StackedScreenshots = () => {
+  const [hovered, setHovered] = useState<number | null>(null);
+  return (
+    <div className="relative h-80 flex items-center justify-center">
+      {IMAGES.map((img, i) => {
+        const base = OFFSETS[i];
+        const isHov = hovered === i;
+        return (
+          <motion.div
+            key={img.src}
+            style={{ zIndex: isHov ? 10 : i + 1 }}
+            animate={{ x: isHov ? 0 : base.x, y: isHov ? -8 : base.y, rotate: isHov ? 0 : base.rotate, scale: isHov ? 1.04 : base.scale }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            onHoverStart={() => setHovered(i)}
+            onHoverEnd={() => setHovered(null)}
+            className={`absolute w-56 rounded-xl overflow-hidden shadow-2xl border cursor-pointer ${isHov ? "ring-4 ring-violet-500/30 ring-offset-4 ring-offset-slate-900 border-violet-400/30" : "border-white/10"}`}
+          >
+            <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+          </motion.div>
+        );
+      })}
+      {hovered !== null && (
+        <motion.p
+          key={hovered}
+          initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
+          className="absolute -bottom-10 left-0 right-0 text-center text-[11px] text-white/30 italic px-4"
+        >
+          {IMAGES[hovered].label}
+        </motion.p>
+      )}
+    </div>
+  );
 };
+
+// ─── Use cases ────────────────────────────────────────────────────────────────
+
+const capsuleHubCases = [
+  { company: "Engineering", icon: Terminal, incident: "The Spec That Got Lost Between Tools", what: "A senior engineer spent three days re-explaining a complex auth migration spec across ChatGPT, Figma, and their IDE. Every new session started cold. By the time the code landed in review, it had drifted from the original requirements because each hop introduced a subtle misremembering.", how: ["Capture the requirements session from ChatGPT as a Capsule with one click", "Drop into Figma conversations to align design — same context, no re-typing", "Connect via MCP so Cursor codes against the exact spec from the first line", "Version the Capsule as decisions evolve — the IDE always sees the latest state"] },
+  { company: "Marketing", icon: Megaphone, incident: "When Everyone Had a Different Version of the Story", what: "A growth-stage startup's marketing, sales, and product teams were all pitching the product differently. Positioning lived in Notion, Slack threads, and people's memories. Launch messaging was inconsistent, and no one could agree on what the product actually did.", how: ["Create one team Capsule with approved positioning, key claims, and competitor talking points", "All team members inject the same vetted context into their AI writing tools", "Update once when messaging changes — one place, one version of truth", "Tag stable releases so 'the launch brief' is always findable and never overwritten"] },
+  { company: "AI / Automation", icon: Cpu, incident: "Three Agents, Zero Shared Memory", what: "A team built a multi-agent pipeline: planner → coder → reviewer. Each agent started from a static system prompt with no memory of prior decisions. The reviewer kept re-flagging issues the planner had already resolved. Every run re-litigated the same ground.", how: ["Planner produces a Capsule containing decisions, constraints, and rationale from each run", "Coding agent consumes it via MCP — receives the exact spec the planner intended", "Reviewer agent receives the updated Capsule — context includes what changed and why", "The Capsule ID and version act as a deterministic shared reference across all agents"] },
+  { company: "Sales", icon: ShoppingCart, incident: "Every RFP Started From Scratch", what: "Solutions engineers spent 40% of their RFP time re-researching the same product capabilities, pricing rationale, and security answers. Different SEs gave different answers to identical questions. Proposals were inconsistent and sometimes contradicted each other.", how: ["Capture discovery call and RFP-answer sessions as versioned Capsules", "All SEs inject the same fact base into their proposal-writing AI tools", "Update once when pricing or capabilities change — everyone pulls the latest automatically", "Role-based team folders ensure only verified answers reach proposals"] },
+  { company: "Research", icon: Search, incident: "Hours of Research, Lost at Tab Close", what: "A product researcher ran a 2-hour deep-dive across Gemini and Perplexity — competitive landscape, user pain points, market sizing. When they opened a new Claude session to write the strategy brief, they had to reconstruct everything from memory and fragmented notes.", how: ["Capture the Gemini research session as a Capsule the moment the session is complete", "Drop it into Claude to write the brief — full context available instantly, no reconstruction", "Attach PDF source documents to the Capsule so no evidence is lost", "Share to the Product team workspace so PMs build on the same foundation, not their own version"] },
+];
+
+const UseCasesTab = () => {
+  const [active, setActive] = useState(0);
+  const current = capsuleHubCases[active];
+  const Icon = current.icon;
+  return (
+    <div className="flex flex-col lg:flex-row gap-6 max-w-5xl mx-auto">
+      <div className="flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-visible lg:w-52 shrink-0 pb-2 lg:pb-0">
+        {capsuleHubCases.map((c, i) => {
+          const TabIcon = c.icon;
+          return (
+            <button key={c.company} onClick={() => setActive(i)}
+              className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-left text-sm font-medium whitespace-nowrap transition-all duration-200 border ${active === i ? "bg-violet-50 dark:bg-violet-500/10 border-violet-200 dark:border-violet-500/20 text-violet-600 dark:text-violet-300" : "border-transparent text-slate-500 dark:text-white/35 hover:text-slate-800 dark:hover:text-white/70 hover:bg-slate-100 dark:hover:bg-white/[0.04]"}`}
+            >
+              <TabIcon className={`w-3.5 h-3.5 shrink-0 ${active === i ? "text-violet-400" : "text-slate-400 dark:text-white/25"}`} />
+              {c.company}
+            </button>
+          );
+        })}
+      </div>
+      <div className="flex-1 border border-slate-200 dark:border-white/[0.07] rounded-2xl bg-white/70 dark:bg-[hsl(224,24%,6%)] overflow-hidden min-h-[340px]">
+        <AnimatePresence mode="wait">
+          <motion.div key={active} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }} className="p-8 h-full">
+            <div className="flex items-start gap-3 mb-5">
+              <div className="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-500/15 flex items-center justify-center shrink-0">
+                <Icon className="w-4 h-4 text-violet-400" />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 dark:text-white/30 uppercase tracking-widest mb-1">{current.company}</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug">{current.incident}</h3>
+              </div>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-white/45 leading-relaxed mb-6 border-l-2 border-slate-200 dark:border-white/[0.06] pl-4">{current.what}</p>
+            <div className="rounded-xl bg-violet-500/[0.06] border border-violet-500/[0.12] p-5">
+              <p className="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-3">How Capsule Hub fixes this</p>
+              <ul className="space-y-2">
+                {current.how.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-white/55">
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-500 dark:bg-violet-400 mt-1.5 shrink-0" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+// ─── Pricing ──────────────────────────────────────────────────────────────────
+
+const tiers = [
+  { name: "Basic", price: "$0", sub: "Essential tools for individual creators.", cta: { label: "Get started free →", href: "https://capsulehub.tilantra.com", style: "border border-slate-200 dark:border-white/10 text-slate-600 dark:text-white/50 hover:bg-slate-50 dark:hover:bg-white/[0.04]" }, items: [{ text: "5 Capsules", check: true }, { text: "Team workspaces", check: false }, { text: "Version control", check: false }, { text: "MCP Support", check: true }], highlight: false },
+  { name: "Pro", price: "$5", sub: "Perfect for professionals part of a team.", cta: { label: "Start Pro →", href: "https://capsulehub.tilantra.com", style: "bg-gradient-to-r from-cyan-500 to-violet-600 text-white hover:opacity-90" }, items: [{ text: "15 Capsules", check: true }, { text: "Join team workspaces", check: true }, { text: "Version control (Basic & Pro)", check: true }, { text: "MCP + Attachments", check: true }], highlight: true },
+  { name: "Elite", price: "$15", sub: "Advanced control for team leaders.", cta: { label: "Start Elite →", href: "https://capsulehub.tilantra.com", style: "border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-500/[0.06]" }, items: [{ text: "Unlimited Capsules", check: true }, { text: "Create & join workspaces", check: true }, { text: "Version control (All)", check: true }, { text: "MCP + Attachments + Dynamic Context", check: true }], highlight: false },
+  { name: "Enterprise", price: "Custom", sub: "Dedicated infrastructure for scale.", cta: { label: "Talk to us →", href: "/contact", style: "border border-slate-200 dark:border-white/10 text-slate-600 dark:text-white/50 hover:bg-slate-50 dark:hover:bg-white/[0.04]", internal: true }, items: [{ text: "Everything in Elite", check: true }, { text: "Dedicated enterprise nodes", check: true }, { text: "Advanced access controls", check: true }, { text: "Priority SLA & Support", check: true }], highlight: false, dark: true },
+];
+
+// ─── Main Page ────────────────────────────────────────────────────────────────
+
+const CapsuleHub = () => (
+  <div className="min-h-screen bg-transparent">
+    <Header />
+    <main>
+
+      {/* ── Hero Split ── */}
+      <section className="bg-slate-50 dark:bg-[hsl(224,28%,3%)] pt-20 pb-24 relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-t from-violet-600/15 via-cyan-600/5 to-transparent rounded-t-full blur-3xl pointer-events-none" />
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left */}
+            <div className="flex flex-col items-start">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-200 dark:border-violet-500/20 bg-violet-50/50 dark:bg-violet-500/5 mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+                <span className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-widest">Context Layer</span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{ letterSpacing: "-0.03em" }}>
+                <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">Capsule Hub:</span>
+                <br />
+                <span className="text-slate-900 dark:text-white">Never Start From Zero Again</span>
+              </h1>
+              <p className="text-lg text-slate-600 dark:text-white/50 mb-8 leading-relaxed">
+                Turn any AI chat into a portable Capsule. Inject it anywhere with drag and drop. Pipe it to your IDE via MCP. Share it with your team. Context loss is over.
+              </p>
+              <div className="flex gap-3 flex-wrap mb-8">
+                <a href="https://chromewebstore.google.com/detail/capsule-hub-by-tilantra/" target="_blank" rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-violet-600 hover:opacity-90 transition-all shadow-lg shadow-violet-500/20">
+                  Get the Extension — Free <ArrowRight className="w-4 h-4" />
+                </a>
+                <Link to="/docs/capsule-hub-mcp"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium text-slate-600 dark:text-white/50 border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-all">
+                  MCP Docs
+                </Link>
+              </div>
+              <div className="flex flex-wrap gap-3 text-xs text-slate-400 dark:text-white/25">
+                {["Chrome Extension", "ChatGPT", "Claude", "Gemini", "MCP Ready", "Free to start"].map(t => (
+                  <span key={t} className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-white/20" />{t}</span>
+                ))}
+              </div>
+            </div>
+            {/* Right */}
+            <div className="flex items-center justify-center">
+              <StackedScreenshots />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Narrative ── */}
+      <section className="py-12 bg-transparent relative z-10">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">The Bridge for Your AI Workflows</h2>
+          <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 text-left">
+            Every AI chat starts cold. You open ChatGPT for requirements, Claude for writing, Cursor for coding — and each session begins with the same exhausting preamble: here's the project, here's the context, here's what we decided last time. Capsule Hub ends that loop. It turns the best output from any AI conversation into a portable Capsule — a structured bundle of goals, decisions, constraints, and attachments that travels with you between tools.
+          </p>
+          <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed text-left">
+            Capture with one click in your browser. Inject with drag-and-drop into any supported AI. Pipe directly into your IDE via MCP so your coding agent starts exactly where your planning session ended. Version it as the project evolves. Share it to a team workspace so everyone pulls from the same vetted context — not from memory. Capsule Hub is the context supply chain your AI stack was missing.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Bento ── */}
+      <section className="py-12 bg-transparent">
+        <div className="container mx-auto px-6">
+          <CapsuleHubBentoSection showHeading={true} />
+        </div>
+      </section>
+
+      {/* ── Use Cases ── */}
+      <section className="py-12 bg-transparent">
+        <div className="container mx-auto px-6">
+          <ScrollReveal>
+            <ScrollRevealItem className="text-center mb-14">
+              <h2 className="text-3xl md:text-5xl font-bold" style={{ letterSpacing: "-0.03em" }}>
+                <span className="text-slate-900 dark:text-white">Why </span>
+                <span className="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">Capsule Hub</span>
+              </h2>
+              <p className="mt-3 text-slate-600 dark:text-white/35 text-base max-w-xl mx-auto">
+                Real workflows where teams lose hours every week — and how Capsule Hub eliminates the friction.
+              </p>
+            </ScrollRevealItem>
+            <UseCasesTab />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── Pricing ── */}
+      <section className="py-12 bg-transparent">
+        <div className="container mx-auto px-6">
+          <ScrollReveal>
+            <ScrollRevealItem className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Simple, transparent pricing</h2>
+              <p className="text-lg text-slate-600 dark:text-white/40 max-w-2xl mx-auto">Choose the perfect tier for you or your team.</p>
+            </ScrollRevealItem>
+            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {tiers.map(tier => (
+                <ScrollRevealItem key={tier.name}
+                  className={`p-6 rounded-3xl flex flex-col relative transition-all duration-300 ${tier.highlight ? "border-2 border-violet-500 bg-white dark:bg-[hsl(224,28%,7%)] shadow-2xl" : tier.dark ? "border border-slate-200 dark:border-white/10 bg-slate-900 shadow-xl" : "border border-slate-200 dark:border-white/[0.07] bg-white/70 dark:bg-white/[0.02] hover:shadow-xl hover:-translate-y-1"}`}
+                >
+                  {tier.highlight && <div className="absolute -top-3 right-6 px-3 py-0.5 bg-violet-500 text-white text-[10px] font-bold tracking-wider rounded-full uppercase shadow-sm">Popular</div>}
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h3 className={`text-lg font-bold mb-1 ${tier.highlight ? "text-violet-600 dark:text-violet-400" : tier.dark ? "text-white" : "text-slate-900 dark:text-white"}`}>{tier.name}</h3>
+                      <p className={`text-xs ${tier.dark ? "text-slate-400" : "text-slate-500 dark:text-white/35"}`}>{tier.sub}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className={`text-2xl font-extrabold ${tier.dark ? "text-white" : "text-slate-900 dark:text-white"}`}>{tier.price}</span>
+                      {tier.price !== "Custom" && <span className={`text-xs ml-1 ${tier.dark ? "text-slate-400" : "text-slate-500"}`}>/mo</span>}
+                    </div>
+                  </div>
+                  <div className={`w-full h-px mb-4 ${tier.dark ? "bg-slate-700" : "bg-slate-100 dark:bg-white/[0.06]"}`} />
+                  <ul className="space-y-3 mb-5 flex-grow">
+                    {tier.items.map(item => (
+                      <li key={item.text} className={`flex gap-2.5 items-start ${!item.check ? "opacity-40" : ""}`}>
+                        {item.check
+                          ? <Check className={`w-4 h-4 shrink-0 mt-0.5 ${tier.highlight ? "text-violet-500" : tier.dark ? "text-blue-400" : "text-slate-400"}`} />
+                          : <div className="w-4 h-4 shrink-0" />}
+                        <span className={`text-sm ${!item.check ? "line-through" : ""} ${tier.dark ? "text-white" : tier.highlight ? "text-slate-700 dark:text-slate-200" : "text-slate-600 dark:text-white/50"}`}>{item.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {"internal" in tier.cta && tier.cta.internal ? (
+                    <Link to={tier.cta.href} className={`w-full text-center px-4 py-2.5 rounded-full text-sm font-semibold transition-all ${tier.cta.style}`}>{tier.cta.label}</Link>
+                  ) : (
+                    <a href={tier.cta.href} target="_blank" rel="noreferrer" className={`w-full text-center px-4 py-2.5 rounded-full text-sm font-semibold transition-all ${tier.cta.style}`}>{tier.cta.label}</a>
+                  )}
+                </ScrollRevealItem>
+              ))}
+            </div>
+            <ScrollRevealItem className="text-center mt-8">
+              <p className="text-xs text-slate-400 dark:text-white/25">Works inside ChatGPT · Claude · Gemini · Cursor · Gmail · Antigravity</p>
+            </ScrollRevealItem>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── Page CTA ── */}
+      <section className="py-12 bg-transparent">
+        <div className="container mx-auto px-6 text-center max-w-2xl">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Ready to stop starting from zero?</h2>
+          <p className="text-slate-600 dark:text-white/40 mb-8 text-base leading-relaxed">
+            Install the extension, capture your first Capsule in 60 seconds, and inject it into any AI tool. It's free.
+          </p>
+          <a href="https://chromewebstore.google.com/detail/capsule-hub-by-tilantra/" target="_blank" rel="noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white bg-gradient-to-r from-cyan-500 to-violet-600 shadow-lg shadow-violet-500/20 hover:opacity-90 hover:scale-[1.02] transition-all">
+            Get Capsule Hub — It's Free
+            <ArrowRight className="w-5 h-5" />
+          </a>
+          <p className="text-xs text-slate-400 dark:text-white/20 mt-4">Chrome extension · No credit card required</p>
+        </div>
+      </section>
+
+    </main>
+    <Footer />
+  </div>
+);
 
 export default CapsuleHub;

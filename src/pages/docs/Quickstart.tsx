@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDocsOnThisPage } from '../Docs';
 import { Link } from 'react-router-dom';
-import { Highlight, themes } from 'prism-react-renderer';
+import { CodeBlock } from '@/components/ui/code-block';
 
 const ON_THIS_PAGE = [
     { label: 'Overview', anchor: 'quickstart-overview' },
@@ -66,40 +66,8 @@ const InstallTabsBlock: React.FC = () => {
                         {t.label}
                     </button>
                 ))}
-                <button
-                    className="ml-auto text-muted-foreground hover:text-foreground p-1.5"
-                    title="Copy to clipboard"
-                    onClick={() => navigator.clipboard.writeText(code)}
-                >
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="6" y="6" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                        <rect x="3" y="3" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                    </svg>
-                </button>
             </div>
-            {/* Content */}
-            <div className="p-4 bg-muted/10 overflow-auto">
-                <Highlight code={code} language={language} theme={themes.vsLight}>
-                    {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                        <pre className={className} style={{ ...style, background: 'transparent', margin: 0, padding: 0 }}>
-                            <code className="block min-w-full">
-                                {tokens.map((line: any[], i: number) => (
-                                    <div key={i} className="flex">
-                                        <span className="w-8 text-right pr-3 text-muted-foreground select-none opacity-50 shrink-0">
-                                            {i + 1}
-                                        </span>
-                                        <span {...getLineProps({ line, key: i })} className="block">
-                                            {line.map((token: any, key: number) => (
-                                                <span key={key} {...getTokenProps({ token, key })} />
-                                            ))}
-                                        </span>
-                                    </div>
-                                ))}
-                            </code>
-                        </pre>
-                    )}
-                </Highlight>
-            </div>
+            <CodeBlock code={code} language={language} className="my-0 border-0 shadow-none rounded-none" />
         </div>
     );
 };
@@ -123,39 +91,8 @@ const IDECodeBlock: React.FC = () => {
                         {t.label}
                     </button>
                 ))}
-                <button
-                    className="ml-auto text-muted-foreground hover:text-foreground p-1.5"
-                    title="Copy to clipboard"
-                    onClick={() => navigator.clipboard.writeText(code)}
-                >
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="6" y="6" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                        <rect x="3" y="3" width="9" height="9" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                    </svg>
-                </button>
             </div>
-            <div className="p-4 bg-muted/10 overflow-auto">
-                <Highlight code={code} language={language} theme={themes.vsLight}>
-                    {({ className, style, tokens, getLineProps, getTokenProps }: any) => (
-                        <pre className={className} style={{ ...style, background: 'transparent', margin: 0, padding: 0 }}>
-                            <code className="block min-w-full">
-                                {tokens.map((line: any[], i: number) => (
-                                    <div key={i} className="flex">
-                                        <span className="w-8 text-right pr-3 text-muted-foreground select-none opacity-50 shrink-0">
-                                            {i + 1}
-                                        </span>
-                                        <span {...getLineProps({ line, key: i })} className="block">
-                                            {line.map((token: any, key: number) => (
-                                                <span key={key} {...getTokenProps({ token, key })} />
-                                            ))}
-                                        </span>
-                                    </div>
-                                ))}
-                            </code>
-                        </pre>
-                    )}
-                </Highlight>
-            </div>
+            <CodeBlock code={code} language={language} className="my-0 border-0 shadow-none rounded-none" />
         </div>
     );
 };

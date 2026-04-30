@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDocsOnThisPage } from '../Docs';
 import { ChevronDown, ChevronRight } from 'lucide-react';
+import { CodeBlock } from '@/components/ui/code-block';
 
 const ON_THIS_PAGE = [
     { label: 'Getting Started', anchor: 'getting-started' },
@@ -186,18 +187,6 @@ const faqs = [
     },
 ];
 
-const codeBlock = (code: string) => (
-    <div className="relative my-4 rounded-lg bg-secondary/10 p-4 font-mono text-sm overflow-x-auto">
-        <pre className="whitespace-pre-wrap break-words m-0 bg-transparent text-secondary-foreground">{code}</pre>
-        <button
-            className="absolute top-2 right-2 rounded-md bg-background border border-border px-3 py-1 text-xs font-semibold text-primary shadow-sm hover:bg-muted transition-colors"
-            onClick={() => navigator.clipboard.writeText(code)}
-        >
-            Copy
-        </button>
-    </div>
-);
-
 const FAQ: React.FC = () => {
     const [open, setOpen] = useState<{ [key: string]: boolean }>({});
     const { setLinks } = useDocsOnThisPage();
@@ -239,7 +228,7 @@ const FAQ: React.FC = () => {
                                 {open[`${section.section}-${idx}`] && (
                                     <div className="ml-8 mt-2 text-base leading-relaxed text-muted-foreground">
                                         {qa.a.includes('usage: {include: true}')
-                                            ? codeBlock('usage: {include: true}')
+                                            ? <CodeBlock language="typescript" code={'usage: {include: true}'} className="my-0 mt-4" />
                                             : qa.a}
                                     </div>
                                 )}

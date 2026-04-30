@@ -66,7 +66,7 @@ const docsSections = [
 
 const DocsLanding = () => {
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-transparent">
             {/* Hero */}
             <section className="py-16 border-b border-border">
                 <div className="container mx-auto px-6">
@@ -77,7 +77,7 @@ const DocsLanding = () => {
                         <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                             Guidera Documentation
                         </h1>
-                        <p className="text-xl text-muted-foreground mb-8">
+                        <p className="text-xl text-slate-700 dark:text-slate-300 mb-8">
                             Welcome to the Guidera documentation. Find guides, references, and examples to help you integrate and build with our platform.
                         </p>
                         <div className="flex gap-4">
@@ -112,7 +112,7 @@ const DocsLanding = () => {
                                 <h3 className="text-lg font-semibold text-foreground mb-2">
                                     {section.title}
                                 </h3>
-                                <p className="text-muted-foreground text-sm mb-4">
+                                <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
                                     {section.description}
                                 </p>
                                 <ul className="space-y-2">
@@ -140,7 +140,7 @@ const DocsLanding = () => {
                     <h2 className="text-2xl font-bold text-foreground mb-4">
                         Can't find what you're looking for?
                     </h2>
-                    <p className="text-muted-foreground mb-6">
+                    <p className="text-slate-600 dark:text-slate-400 mb-6">
                         Join our community or contact support for help.
                     </p>
                     <Link to="/contact">

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDocsOnThisPage } from '../Docs';
+import { CodeBlock } from '@/components/ui/code-block';
 
 const ON_THIS_PAGE = [
     { label: 'Overview', anchor: 'tool-calling-overview' },
@@ -8,18 +9,6 @@ const ON_THIS_PAGE = [
     { label: 'How It Works', anchor: 'tool-calling-how' },
     { label: 'Benefits', anchor: 'tool-calling-benefits' },
 ];
-
-const codeBlock = (code: string) => (
-    <div className="relative my-6 rounded-lg bg-muted/10 p-4 font-mono text-sm overflow-x-auto shadow-sm border border-border">
-        <pre className="whitespace-pre-wrap break-words m-0 bg-transparent text-foreground">{code}</pre>
-        <button
-            className="absolute top-2 right-2 rounded-md bg-card border border-border px-3 py-1 text-xs font-semibold text-primary shadow-sm hover:bg-muted transition-colors"
-            onClick={() => navigator.clipboard.writeText(code)}
-        >
-            Copy
-        </button>
-    </div>
-);
 
 const ToolCalling: React.FC = () => {
     const { setLinks } = useDocsOnThisPage();
@@ -56,13 +45,11 @@ const ToolCalling: React.FC = () => {
 
             <div className="my-8 rounded-lg border border-purple-200 bg-purple-50/50 dark:bg-purple-900/10 dark:border-purple-800 p-5 text-base">
                 <strong className="text-foreground block mb-2">Example:</strong>
-                {codeBlock(`response = guidera_client.generate(
-  prompt="What is the weather in Paris right now?",
-  prefs={},
-  cp_tradeoff_parameter=0.7,
-  compliance_enabled=True
-)
-# The system will automatically call a weather API and return the result with the model output.`)}
+                <CodeBlock language="python" code={`response = guidera_client.generate(
+    prompt="What is the weather in Tokyo?",
+    tools=[get_weather_tool],
+    # Guidera will route to the best model that supports tool calling
+)`} />
             </div>
 
             <h2 id="tool-calling-benefits" className="text-purple-600 dark:text-purple-400 font-bold text-2xl mt-10 mb-4 scroll-mt-24">Benefits</h2>
