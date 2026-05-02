@@ -145,12 +145,7 @@ const Header = () => {
                 {/* Desktop CTAs */}
                 <div className="hidden sm:flex items-center gap-2">
                     <ThemeToggle />
-                    <Link
-                        to="/book-demo"
-                        className="px-4 py-1.5 text-sm text-slate-600 dark:text-white/50 hover:text-slate-900 dark:hover:text-white border border-slate-200 hover:border-slate-300 dark:border-white/10 rounded-full hover:bg-slate-50 dark:hover:bg-white/[0.06] transition-all duration-200"
-                    >
-                        Book Demo
-                    </Link>
+
                     <Link
                         to="/contact"
                         className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full hover:from-blue-400 hover:to-cyan-400 transition-all duration-200"
@@ -195,13 +190,7 @@ const Header = () => {
                     <div className="flex justify-center mb-2">
                         <ThemeToggle />
                     </div>
-                    <Link
-                        to="/book-demo"
-                        onClick={() => setIsOpen(false)}
-                        className="text-center px-4 py-2 text-sm text-slate-600 dark:text-white/60 border border-slate-200 dark:border-white/10 rounded-lg hover:bg-slate-50 dark:hover:bg-white/[0.06] transition-all"
-                    >
-                        Book Demo
-                    </Link>
+
                     <Link
                         to="/contact"
                         onClick={() => setIsOpen(false)}

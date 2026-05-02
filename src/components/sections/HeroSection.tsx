@@ -248,26 +248,8 @@ const HeroSection = () => {
                             </TextEffect>
                         </p>
 
-                        {/* CTAs */}
-                        <div className="flex items-center gap-3 flex-wrap mb-12">
-                            {/* Primary — rainbow glow */}
-                            <div className="relative group">
-                                <div
-                                    className="absolute inset-0 -m-[2px] rounded-full opacity-70 blur-sm animate-rainbow pointer-events-none"
-                                    style={{
-                                        background: "linear-gradient(90deg, hsl(210,100%,60%), hsl(190,90%,55%), hsl(185,85%,50%), hsl(190,90%,55%), hsl(210,100%,60%))",
-                                        backgroundSize: "200% 200%",
-                                    }}
-                                />
-                                <Link
-                                    to="/book-demo"
-                                    className="relative z-10 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-blue-600 dark:text-white bg-white dark:bg-[hsl(224,28%,5%)] rounded-full border border-blue-200 dark:border-cyan-500/30 hover:border-blue-300 dark:hover:border-cyan-400/50 transition-all duration-200"
-                                >
-                                    Book a Demo
-                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                                </Link>
-                            </div>
 
+                        <div className="flex items-center gap-3 flex-wrap mb-12">
                             {/* Secondary — scroll to products */}
                             <button
                                 onClick={() => document.getElementById("solutions")?.scrollIntoView({ behavior: "smooth" })}

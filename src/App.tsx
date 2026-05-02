@@ -24,7 +24,7 @@ import GetStartedCapsuleHub from "./pages/docs/GetStartedCapsuleHub";
 import CapsuleHubMCP from "./pages/docs/CapsuleHubMCP";
 import Contact from "./pages/Contact";
 import Guidera from "./pages/Guidera";
-import BookDemo from "./pages/BookDemo";
+// import BookDemo from "./pages/BookDemo";
 import NotFound from "./pages/NotFound";
 
 import ScrollToTop from "./components/ScrollToTop";
@@ -77,7 +77,7 @@ const App = () => (
             path="/capsule-hub"
             element={<ExternalRedirect to="https://capsulehub.tilantra.com" />}
           />
-          <Route path="/book-demo" element={<BookDemo />} />
+          {/* <Route path="/book-demo" element={<BookDemo />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

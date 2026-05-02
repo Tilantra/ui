@@ -68,19 +68,6 @@ const CTASection = () => {
                             transition={{ delay: 0.34, duration: 0.6 }}
                             className="flex items-center justify-center gap-3 flex-wrap"
                         >
-                            {/* Primary CTA — ButtonCta layered gradient pattern */}
-                            <Link to="/book-demo" className="relative group inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold overflow-hidden">
-                                <div className="absolute inset-0 rounded-lg p-px bg-gradient-to-b from-blue-400/40 via-blue-600/20 to-blue-900/30">
-                                    <div className="absolute inset-0 bg-white dark:bg-[hsl(224,28%,7%)] rounded-lg" />
-                                </div>
-                                <div className="absolute inset-[1px] bg-gradient-to-b from-blue-500/10 via-transparent to-blue-900/20 rounded-lg" />
-                                <div className="absolute inset-[1px] shadow-[inset_0_0_15px_rgba(59,130,246,0.12)] rounded-lg" />
-                                <span className="relative z-10 bg-gradient-to-b from-blue-200 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(59,130,246,0.4)]">
-                                    Book a Demo
-                                </span>
-                                <ArrowRight className="relative z-10 w-4 h-4 text-blue-400 group-hover:translate-x-0.5 transition-transform" />
-                                <div className="absolute inset-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-blue-500/10 via-blue-400/5 to-blue-500/10 rounded-lg" />
-                            </Link>
 
                             {/* Capsule Hub CTA */}
                             <a
