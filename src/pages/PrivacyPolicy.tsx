@@ -1,33 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDocsOnThisPage } from '../Docs';
-
-const ON_THIS_PAGE = [
-    { label: 'Interpretation and Definitions', anchor: 'interpretation-definitions' },
-    { label: 'Collecting and Using Your Personal Data', anchor: 'collecting-data' },
-    { label: 'Usage of Your Personal Data', anchor: 'usage-data' },
-    { label: 'Sharing of Your Personal Data', anchor: 'sharing-data' },
-    { label: 'Retention of Your Personal Data', anchor: 'retention-data' },
-    { label: 'Account Deletion', anchor: 'account-deletion' },
-    { label: 'Transfer of Your Personal Data', anchor: 'transfer-data' },
-    { label: 'Disclosure of Your Personal Data', anchor: 'disclosure-data' },
-    { label: 'Security of Your Personal Data', anchor: 'security-data' },
-    { label: 'Privacy-Specific Features', anchor: 'privacy-features' },
-    { label: 'Children\'s Privacy', anchor: 'children-privacy' },
-    { label: 'Links to Other Websites', anchor: 'links-websites' },
-    { label: 'Chrome Web Store Policy Compliance', anchor: 'chrome-compliance' },
-    { label: 'Changes to this Privacy Policy', anchor: 'policy-changes' },
-    { label: 'Contact Us', anchor: 'contact-us' }
-];
+import React from 'react';
+import EditorialHeader from "@/components/editorial/EditorialHeader";
+import EditorialFooter from "@/components/editorial/EditorialFooter";
 
 const PrivacyPolicy: React.FC = () => {
-    const { setLinks } = useDocsOnThisPage();
-    useEffect(() => {
-        setLinks(ON_THIS_PAGE);
-        return () => setLinks([]);
-    }, [setLinks]);
-
     return (
-        <div className="max-w-[900px] mx-auto text-foreground font-sans pb-12">
+        <div className="editorial min-h-screen">
+            <EditorialHeader />
+            <div className="max-w-[900px] mx-auto px-6 pt-16 text-foreground pb-16">
             <h1 className="text-primary font-extrabold text-4xl mb-6">Privacy Policy for Capsule Hub</h1>
             <p className="text-lg font-semibold text-muted-foreground mb-8">
                 Last updated: March 12, 2026
@@ -299,6 +278,8 @@ const PrivacyPolicy: React.FC = () => {
                 <p className="mb-4"><strong>By using Capsule Hub, you acknowledge that you have read and understood this Privacy Policy.</strong></p>
                 <p>© 2026 Tilantra. All rights reserved.</p>
             </div>
+            </div>
+            <EditorialFooter />
         </div>
     );
 };

@@ -1,11 +1,9 @@
 import { useState } from "react";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import EditorialHeader from "@/components/editorial/EditorialHeader";
+import EditorialFooter from "@/components/editorial/EditorialFooter";
+
+const inputClass =
+    "w-full px-4 py-3 text-sm bg-white dark:bg-[#111114] border border-neutral-300 dark:border-neutral-700 text-neutral-950 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-neutral-950 dark:focus:border-white transition-colors";
 
 const Contact = () => {
     const [form, setForm] = useState({
@@ -31,7 +29,7 @@ const Contact = () => {
                 body: JSON.stringify(form),
             });
             if (response.ok) {
-                setSuccess("Thank you for your inquiry!");
+                setSuccess("Thank you for your inquiry. We'll get back to you shortly.");
                 setForm({ name: "", designation: "", email: "", phone: "", message: "" });
             } else {
                 const err = await response.json();
@@ -52,156 +50,171 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-transparent text-foreground">
-            <Header />
-            <main className="pt-32 pb-20 relative overflow-hidden">
-                {/* Intense glowing gradient blob inspired by Dark Contact Section */}
-                <div className='absolute inset-0 blur-[118px] max-w-lg h-[800px] mx-auto sm:max-w-3xl sm:h-[400px] pointer-events-none' style={{ background: "linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.41) 15.74%, rgba(232, 121, 249, 0.26) 56.49%, rgba(79, 70, 229, 0.4) 115.91%)" }}></div>
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-16 items-start">
-                        {/* Left Column */}
-                        <div className="space-y-6">
-                            <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                                Get in touch
-                            </h1>
-                            <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                                <p>
-                                    We're here to help you scale your AI operations. Whether you have questions
-                                    about our solutions, need technical support, or want to discuss a custom
-                                    integration, our team is ready to assist.
-                                </p>
-                                <p>
-                                    Reach out to us and discover how Tilantra can streamline your workflows,
-                                    optimize your performance, and accelerate your path to innovation.
-                                </p>
-
-                                <div className="pt-8 border-t border-slate-200 dark:border-white/10 mt-8">
-                                    <p className="text-base text-muted-foreground">
-                                        Alternatively talk to us on{" "}
-                                        <a href="mailto:tilantra.technologies@gmail.com" className="text-blue-600 dark:text-cyan-400 font-medium hover:underline transition-colors">
-                                            tilantra.technologies@gmail.com
-                                        </a>
-                                        {" "}or{" "}
-                                        <a href="mailto:tech@tilantra.com" className="text-blue-600 dark:text-cyan-400 font-medium hover:underline transition-colors">
-                                            tech@tilantra.com
-                                        </a>
+        <div className="editorial min-h-screen relative z-0">
+            <EditorialHeader />
+            <main>
+                <section className="bg-white dark:bg-[#0c0c0e]">
+                    <div className="mx-auto max-w-[1320px] px-6 md:px-10 pt-20 md:pt-32 pb-24 md:pb-32">
+                        <div className="grid grid-cols-12 gap-6 md:gap-10">
+                            {/* Left column — intro */}
+                            <div className="col-span-12 md:col-span-5">
+                                <div className="flex items-center gap-4 mb-8">
+                                    <span className="h-[3px] w-10 bg-orange-500" />
+                                    <p className="editorial-label text-neutral-400 dark:text-neutral-500">
+                                        Contact — Tilantra
                                     </p>
                                 </div>
+                                <h1 className="text-[clamp(2.4rem,5vw,4.2rem)] font-semibold leading-[1.0] tracking-[-0.035em] text-neutral-950 dark:text-white">
+                                    Get in touch.
+                                </h1>
+                                <div className="mt-8 space-y-5 text-base leading-relaxed text-neutral-500 dark:text-neutral-400 max-w-sm">
+                                    <p>
+                                        Questions about CapsuleHub or Guidera, technical support,
+                                        or a custom integration. Our team reads everything.
+                                    </p>
+                                </div>
+
+                                <div className="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+                                    <div>
+                                        <p className="editorial-label text-neutral-400 dark:text-neutral-500 mb-2">Email</p>
+                                        <a
+                                            href="mailto:tech@tilantra.com"
+                                            className="text-sm text-neutral-950 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                                        >
+                                            tech@tilantra.com
+                                        </a>
+                                        <br />
+                                        <a
+                                            href="mailto:tilantra.technologies@gmail.com"
+                                            className="text-sm text-neutral-950 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                                        >
+                                            tilantra.technologies@gmail.com
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p className="editorial-label text-neutral-400 dark:text-neutral-500 mb-2">Elsewhere</p>
+                                        <a
+                                            href="https://www.linkedin.com/company/tilantra/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-sm text-neutral-950 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                                        >
+                                            LinkedIn
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Right Column: Contact Form */}
-                        <div className="bg-white/80 dark:bg-white/[0.03] backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl p-8 md:p-10 shadow-xl dark:shadow-[0_0_50px_rgba(14,165,233,0.15)] relative overflow-hidden group">
-                            {/* Decorative element */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-bl-full blur-xl -z-10 group-hover:scale-150 transition-transform duration-700" />
-
-                            <form onSubmit={handleSubmit} className="space-y-5">
-                                <div className="space-y-2">
-                                    <Label htmlFor="name" className="text-sm font-medium">Full Name <span className="text-red-500">*</span></Label>
-                                    <Input
-                                        id="name"
-                                        name="name"
-                                        placeholder="John Doe"
-                                        value={form.name}
-                                        onChange={handleChange}
-                                        required
-                                        className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
-                                    />
-                                </div>
-
-                                <div className="space-y-2">
-                                    <Label htmlFor="designation" className="text-sm font-medium">Designation <span className="text-red-500">*</span></Label>
-                                    <Input
-                                        id="designation"
-                                        name="designation"
-                                        placeholder="Product Manager"
-                                        value={form.designation}
-                                        onChange={handleChange}
-                                        required
-                                        className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
-                                    />
-                                </div>
-
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="email" className="text-sm font-medium">Email <span className="text-red-500">*</span></Label>
-                                        <Input
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            placeholder="john@company.com"
-                                            value={form.email}
+                            {/* Right column — form */}
+                            <div className="col-span-12 md:col-span-6 md:col-start-7">
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="border border-neutral-200 dark:border-neutral-800 p-8 md:p-10 space-y-6"
+                                >
+                                    <div>
+                                        <label htmlFor="name" className="editorial-label text-neutral-950 dark:text-white block mb-2">
+                                            Full name <span className="text-orange-600 dark:text-orange-400">*</span>
+                                        </label>
+                                        <input
+                                            id="name"
+                                            name="name"
+                                            placeholder="John Doe"
+                                            value={form.name}
                                             onChange={handleChange}
                                             required
-                                            className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
+                                            className={inputClass}
                                         />
                                     </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
-                                        <Input
-                                            id="phone"
-                                            name="phone"
-                                            type="tel"
-                                            placeholder="+1 (555) 000-0000"
-                                            value={form.phone}
+
+                                    <div>
+                                        <label htmlFor="designation" className="editorial-label text-neutral-950 dark:text-white block mb-2">
+                                            Designation <span className="text-orange-600 dark:text-orange-400">*</span>
+                                        </label>
+                                        <input
+                                            id="designation"
+                                            name="designation"
+                                            placeholder="Product Manager"
+                                            value={form.designation}
                                             onChange={handleChange}
-                                            className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
+                                            required
+                                            className={inputClass}
                                         />
                                     </div>
-                                </div>
 
-                                <div className="space-y-2">
-                                    <Label htmlFor="message" className="text-sm font-medium">How can we help? <span className="text-red-500">*</span></Label>
-                                    <Textarea
-                                        id="message"
-                                        name="message"
-                                        placeholder="Tell us about your project or inquiry..."
-                                        rows={4}
-                                        value={form.message}
-                                        onChange={handleChange}
-                                        required
-                                        className="bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 focus:border-cyan-500/50 focus:ring-cyan-500/50 transition-all resize-none font-medium text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-white/30"
-                                    />
-                                </div>
-
-                                {success && (
-                                    <div className="p-4 bg-green-500/10 border border-green-500/20 text-green-500 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
-                                        <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                                        <p className="text-sm font-medium">{success}</p>
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label htmlFor="email" className="editorial-label text-neutral-950 dark:text-white block mb-2">
+                                                Email <span className="text-orange-600 dark:text-orange-400">*</span>
+                                            </label>
+                                            <input
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                placeholder="john@company.com"
+                                                value={form.email}
+                                                onChange={handleChange}
+                                                required
+                                                className={inputClass}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="phone" className="editorial-label text-neutral-950 dark:text-white block mb-2">
+                                                Phone
+                                            </label>
+                                            <input
+                                                id="phone"
+                                                name="phone"
+                                                type="tel"
+                                                placeholder="+1 (555) 000-0000"
+                                                value={form.phone}
+                                                onChange={handleChange}
+                                                className={inputClass}
+                                            />
+                                        </div>
                                     </div>
-                                )}
 
-                                {error && (
-                                    <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
-                                        <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                                        <p className="text-sm font-medium">{error}</p>
+                                    <div>
+                                        <label htmlFor="message" className="editorial-label text-neutral-950 dark:text-white block mb-2">
+                                            How can we help? <span className="text-orange-600 dark:text-orange-400">*</span>
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            placeholder="Tell us about your project or inquiry..."
+                                            rows={4}
+                                            value={form.message}
+                                            onChange={handleChange}
+                                            required
+                                            className={`${inputClass} resize-none`}
+                                        />
                                     </div>
-                                )}
 
-                                <Button
-                                    type="submit"
-                                    size="lg"
-                                    className="w-full mt-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold shadow-[0_0_20px_rgba(14,165,233,0.3)] transition-all rounded-full"
-                                    disabled={submitting}
-                                >
-                                    {submitting ? (
-                                        <>
-                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                            Submitting...
-                                        </>
-                                    ) : (
-                                        <>
-                                            Submit Inquiry
-                                            <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                                        </>
+                                    {success && (
+                                        <p className="border-l-2 border-neutral-950 dark:border-white pl-4 py-1 text-sm text-neutral-950 dark:text-white">
+                                            {success}
+                                        </p>
                                     )}
-                                </Button>
-                            </form>
+
+                                    {error && (
+                                        <p className="border-l-2 border-orange-500 pl-4 py-1 text-sm text-orange-600 dark:text-orange-400">
+                                            {error}
+                                        </p>
+                                    )}
+
+                                    <button
+                                        type="submit"
+                                        disabled={submitting}
+                                        className="w-full inline-flex items-center justify-center gap-3 px-7 py-4 text-sm font-semibold bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 hover:bg-orange-500 hover:text-white dark:hover:bg-orange-400 dark:hover:text-neutral-950 transition-colors disabled:opacity-50"
+                                    >
+                                        {submitting ? "Submitting..." : "Submit inquiry"} <span>→</span>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </main>
-            <Footer />
+            <EditorialFooter />
         </div>
     );
 };

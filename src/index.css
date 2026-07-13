@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Instrument+Serif:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -140,6 +141,80 @@
 
   .shadow-glow-sm {
     box-shadow: var(--shadow-glow-sm);
+  }
+
+  /* ── Editorial pages (home + Guidera) ──
+     Palette: white / black ink / purple / orange. No gradients. */
+  .editorial {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv05", "cv11";
+    background: #ffffff;
+    color: #131313;
+
+    /* Re-scope shadcn tokens so token-based pages (docs) inherit the
+       editorial palette: violet primary, neutral greys, no radius. */
+    --radius: 0rem;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 7%;
+    --ring: 263 70% 50%;
+  }
+
+  .dark .editorial {
+    background: #0c0c0e;
+    color: #f4f4f5;
+
+    --background: 240 6% 5%;
+    --foreground: 0 0% 96%;
+    --card: 240 8% 8%;
+    --card-foreground: 0 0% 96%;
+    --primary: 255 92% 76%;
+    --primary-foreground: 0 0% 7%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 96%;
+    --ring: 255 92% 76%;
+  }
+
+  /* Brutalist rule: no rounded corners anywhere on editorial pages,
+     including hardcoded rounded-* utilities in legacy doc pages. */
+  .editorial [class*="rounded"] {
+    border-radius: 0 !important;
+  }
+
+  .editorial ::selection {
+    background: #7c3aed;
+    color: #ffffff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash-cursor { display: none; }
+  }
+
+  @media (pointer: coarse) {
+    .splash-cursor { display: none; }
+  }
+
+  .editorial-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+  }
+
+  /* Micro label — uppercase, tracked-out, used instead of icons */
+  .editorial-label {
+    @apply text-[11px] font-medium uppercase;
+    letter-spacing: 0.14em;
   }
 
   /* Bento card dot hover overlay (Bento Grid component) */
